@@ -1,0 +1,594 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title>FIT | Survey welcome</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footers/footer-v1.css' %}">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/line-icons/line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.css' %}">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/pages/page_about.css' %}">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme-colors/default.css' %}" id="style_color">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link href="{% static 'assets/css/layouts/white_layout.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/headers/Custom_Header.css' %}" rel="stylesheet" />
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'Scripts/angular.min.js' %}"></script>
+    <script src="{% static 'Scripts/main.js' %}"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("{{ MIXPANEL_TOKEN }}");</script><!-- end Mixpanel -->
+</head>
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper"> 
+        
+<!--=== Header ===-->
+<div class="header">
+    <div class="container padding-right-0">
+        <div class="col-xs-4 col-md-3">
+            <a class="logo" id="logoAnchor" href="/">
+                <img class="header-logo guestInnerLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+        </div>
+        <div class="col-xs-8 col-md-9">
+            <!-- Toggle get grouped for better mobile display -->
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper publicHamburgerMenuWrapper">
+        <ul id="secureHamDropdown" class="hamburgerContent publicHamburgerContent">
+                <li class="hiddenOnSurveyPages">
+        <a href="{% url 'fit:survey_assessment' %}">
+            FIT Assessment
+        </a>
+    </li>
+    {% if request.user.is_authenticated %}
+    <li>
+        <a id="account_logout" href="{% url 'account_logout' %}">Log Out</a>
+    </li>
+    {% endif %}
+        </ul>
+    </div>
+</div>
+
+
+<!--=== End Header ===-->
+        
+        
+
+
+<link href="/assets/css/survey/assessment.css" rel="stylesheet" />   
+
+<!-- CSS Page Style -->
+<style>
+    /* Box styles */
+    .termsConditions {
+        padding: 20px 30px;
+        height: 250px;
+        border: 1px solid #515151;
+        overflow-y: scroll;
+    }
+
+    /* Scrollbar styles */
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        border: 0.5px solid #9B9B9B;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #515151;
+        border-radius: 5px;
+    }
+
+    .btn-blue {
+        background-color: #0085B1;
+        color: white;
+        border-color: #0085B1;
+        text-decoration: none;
+    }
+    
+</style>
+<!--=== Content Part ===-->
+ 
+<div class="welcomeHeading">
+    <div class="container content">
+        <div class="row">
+            <h2>Welcome to the FIT Assessment</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container content" ng-controller="WelcomeCtrl">
+
+    <!--
+    <div class="">
+-->
+       <!--
+        <div class="col-xs-12 col-md-6" style="float: right;">
+-->
+
+            <!-- remove youtube video display
+            <iframe width="100%" height="400px" src="https://www.youtube.com/embed/ycMVe2D_sVM" frameborder="0" allowfullscreen></iframe>
+            -->
+
+            <!--
+            <div class="text-center margin-top-20 margin-bottom-20">
+                <a href="/Home/About" class="btn btn-primary primaryBtn welcome-btn">ABOUT THE FIT ASSESSMENT</a>
+            </div>
+            -->
+<!--
+        </div>
+    -->
+
+<!--
+    </div>
+    -->
+
+    <div class="" style="font-size:18px;">
+        In our view, assessing current FITness levels is likened to assessing an organization’s operating systems. Are your habits healthy and providing efficient and productive outcomes? Or do you have negative habits that are sabotaging your productivity and your potential to enjoy a healthy, fulfilled, and financially robust future? <br /><br />
+        To better answer these questions, we developed the FIT Assessment based on contemporary science across the fields of exercise and nutrition science, cognitive neuroscience, positive psychology, learning and memory, and finance. No other assessment provides a snapshot of your Cognitive, Emotional, Physical, and Financial FITness levels in one questionnaire. <br /><br />
+
+        The FIT Assessment Tool provides a summary FIT score, as well as separate dimension scores summarizing how FIT you are in the Cognitive, Emotional, Physical, and Financial dimensions. Furthermore, these four dimensions are broken down into subcategories to help uncover specific areas that you can devote time to developing in order to achieve a more FIT life.  After taking the FIT Assessment, you are also provided with detailed feedback regarding your functioning in these 25 subcategories. Finally, you are provided with a BALANCE score that reflects how integrated you are across the Cognitive, Emotional, Physical, and Financial dimensions. <br /><br />
+        We believe that one of the most important aspects of the FIT experience is gaining an honest and clear understanding of areas that might be limiting your potential to achieve a more purposeful and Fully Integrated life. The only way to improve upon your future state is to actively engage in a process of growth and development, which necessitates a method of assessing your current functioning. <br /><br />While acknowledging that self-assessments are never free of bias, taking the FIT Assessment provides an understanding of your current strengths and weaknesses. Empowered by this knowledge, you can start working toward developing a more nutrient-rich and optimal future state. Furthermore, once you take the survey and receive your scores, you can use our educational materials to help you work toward living a more FIT and balanced life.
+    </div>
+
+    <BR>
+    <div class="col-sm-10 col-sm-offset-1">
+
+        <div class="termsConditions termsConditionsContainer">
+            <style>
+    .blueHeader {
+        color: #006b8c;
+    }
+    .termsAndConditionsWrapper h2{
+        font-weight: 600;
+    }
+
+    .termsAndConditionsWrapper h4 {
+        font-weight: 600;
+    }
+</style>
+
+<div class="col-xs-12 termsAndConditionsWrapper">
+    <h2>Terms and Conditions</h2>
+    <h4>Highlights</h4>
+
+    <ul class="margin-top-20">
+        <li>We respect your privacy and do not sell or disclose your contact information unless required by law. See our Privacy Policy.</li>
+        <li>Information you upload or post to Get Fit Enterprises may be seen by others </li>
+        <li>We want your feedback on Get Fit Enterprises but if you give it to us you don’t own it if we use it </li>
+        <li>No warranties or promises are made by Get Fit Enterprises and Get Fit Enterprises is not liable for your activities connected with the site </li>
+        <li>Get Fit Enterprises can cancel your account at our discretion</li>
+        <li>There are easy ways to reach Get Fit Enterprises support if you have questions or need help</li>
+    </ul>
+
+    <h4 class="margin-top-20">Terms and Conditions</h4>
+    <p>This site and the mobile applications and services available in connection with this site (the “Site”) are made available to you by Get Fit Enterprises, Inc. (“Get Fit Enterprises”) subject to these terms and conditions, including those set forth in the Get Fit Enterprises Privacy Policy (the “Terms”). By accessing, using or downloading any materials from the Site, you agree to follow and be bound by the Terms, which may be updated by Get Fit Enterprises from time to time without notice to you. You can review the most current version of the Terms at any time at Terms of Use. Get Fit Enterprises and its third party providers may make improvements and/or changes in the products, services, mobile applications, features, programs, and prices described in this Site at any time without notice. Certain provisions of the Terms may be supplemented or superseded by expressly designated legal notices or terms located on particular pages at this Site. The Site is not intended for and is not designed to attract children under 13 years of age. If you do not agree with the Terms, please do not use this Site. BY CONTINUING TO USE THE SITE, YOU ARE INDICATING YOUR AGREEMENT TO THE TERMS AND ALL REVISIONS THEREOF.</p>
+
+    <p>Get Fit Enterprises reserves the right at any time and from time to time to modify or discontinue, temporarily or permanently, the Site or any portion thereof with or without notice. You agree that Get Fit Enterprises shall not be liable to you or to any third party for any modification, suspension or discontinuance of the Site or any portion thereof.</p>
+
+    <h4 class="margin-top-20">Registration</h4>
+    <p>To use the services available on the Site, you must complete the membership registration form. You agree to: (a) provide true, accurate, current and complete information about yourself as prompted by the Site’s registration form (“User Data”) and (b) maintain and promptly update the User Data to keep it accurate and current. You agree that Get Fit Enterprises may use your User Data to provide services on the Site. If you provide any information that is inaccurate or not current, or Get Fit Enterprises has reasonable grounds to suspect that such information is inaccurate or not current, Get Fit Enterprises has the right to suspend or terminate your account and refuse any and all use of the Site. In consideration of your use of the Site, you represent that you are of legal age to form a binding contract and are not a person barred from receiving services under the laws of any applicable jurisdiction.</p>
+
+    <p class="margin-top-20 blueHeader">Payments</p>
+    <p>If you choose to become a paid subscription member of Get Fit Enterprises, you must designate and provide information about your preferred payment method (e.g., credit card, online payment service or any other payment method made available by Get Fit Enterprises) (“Payment Method”). You may switch to a different Payment Method or update your information by visiting the “Account” page or by contacting us by email at info@thefitexperience.com. You will immediately be charged for your membership fees after you click “Submit” on the confirmation page and your account will be activated to “Get Fit Enterprises Paid Subscription  Member” status. You agree to pay all membership fees and other charges incurred in connection with your username and password for your Get Fit Enterprises account.</p>
+
+    <p class="margin-top-20 blueHeader">Fees and Renewals</p>
+    <p>You may elect to pay membership fees on a monthly or annual basis. All membership fees are payable in advance. Membership fees will be billed automatically to the Payment Method at the start of the monthly or annual period, as applicable, and will auto-renew until your membership is terminated. The renewal membership fees will be the same as the initial charges unless you are otherwise notified in advance. You authorize Get Fit Enterprises to charge your Payment Method for the appropriate membership charges and fees and for any other purchases you elect to make via the Site. Get Fit Enterprises reserves the right to increase membership fees or to institute new fees at any time upon reasonable notice posted in advance on this Site. Members changing from monthly to annual memberships will have the annual rates take effect at the beginning of the next billing date. If you upgrade your membership or add new categories of service to your account, such changes may result in a new billing date effective upon the date you elect such upgrade or addition. ALL PURCHASES ARE FINAL AND NO REFUND WILL BE GIVEN FOR UNUSED PORTIONS OF YOUR INITIAL OR ANY RENEWAL MEMBERSHIP PERIOD.</p>
+
+    <p class="margin-top-20 blueHeader">Cancellation</p>
+    <p>You may cancel your paid subscription membership by visiting your “Account” page and selecting “Downgrade” or by contacting us at https://Get Fit Enterprises.zendesk.com/tickets/new. The cancellation of a membership will go into effect at the end of your current billing cycle, and you will have the same level of access to the Site through the remainder of such billing cycle. When your Paid subscription member membership ends, your account will enter “Get Fit Enterprises Free” mode. No refunds or credits will be provided by Get Fit Enterprises upon cancellation. You can renew your subscription at anytime without opening a new account, provided that additional fees may apply if you decide to upgrade to Get Fit Enterprises Paid Subscription Member status at a later date.</p>
+
+    <h4 class="margin-top-20">User Conduct</h4>
+    <p>You are solely responsible for maintaining the confidentiality of the password associated with your account and for restricting access to your password and to your computer while logged into the Site. You accept responsibility for all activities that occur under your account or from your computer. We endeavor to use reasonable security measures to protect against unauthorized access to your account. We cannot, however, guarantee absolute security of your account, your information, data, text, software, sound, photographs, graphics, video, messages, tags, or other materials (“Content”) or the personal information you provide, and we cannot promise that our security measures will prevent third-party “hackers” from illegally accessing the Site or its contents. You agree to immediately notify Get Fit Enterprises of any unauthorized use of your account or password, or any other breach of security, and to accept all risks of unauthorized access to the User Data and any other information you provide to Get Fit Enterprises.</p>
+
+    <p>You understand that all Content , whether publicly posted or privately transmitted, available in connection with the Site are the sole responsibility of the person from whom such Content originated. This means that you, and not Get Fit Enterprises, are entirely responsible for all Content that you upload, post, email, transmit or otherwise make available via the Site. Get Fit Enterprises does not control or monitor the Content posted to the Site by others and, as such, does not guarantee the accuracy, integrity or quality of such Content. You understand that by using the Site, you may be exposed to Content that is offensive, indecent or objectionable. Under no circumstances will Get Fit Enterprises be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available on the Site.</p>
+
+    <p>You agree to not use the Site to: (a) upload, post, email, transmit or otherwise make available any Content that is unlawful, harmful, threatening, abusive, harassing, tortious, defamatory, vulgar, obscene, libelous, invasive of another’s privacy, hateful, or racially, ethnically or otherwise objectionable; (b) harm minors in any way; (c) impersonate any person or entity, including, but not limited to, a Get Fit Enterprises official, forum leader, guide or host, or falsely state or otherwise misrepresent your affiliation with a person or entity; (d) upload, post, email, transmit or otherwise make available any Content that you do not have a right to make available under any law or under contractual or fiduciary relationships; (e) upload, post, email, transmit or otherwise make available any Content that infringes any patent, trademark, trade secret, copyright or other proprietary rights of any party; (f) upload, post, email, transmit or otherwise make available any unsolicited or unauthorized advertising, promotional materials, “junk mail,” “spam,” “chain letters,” “pyramid schemes,” or any other form of solicitation; (g) upload, post, email, transmit or otherwise make available any material that contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment; (h) interfere with or disrupt the Site or servers or networks connected to the Site, or disobey any requirements, procedures, policies or regulations of networks connected to the Site; and/or (i) intentionally or unintentionally violate any applicable local, state, national or international law. You specifically agree not to access (or attempt to access) the Site or the Content through any automated means (including the use of any script, web crawler, robot, spider, or scraper), and that you will not forge or manipulate identifiers in order to disguise the origin of any access (or attempted access) to the Site.</p>
+
+    <p>You acknowledge that Get Fit Enterprises may or may not pre-screen or monitor Content, but that Get Fit Enterprises and its designees shall have the right (but not the obligation) in their sole discretion to pre-screen, monitor, refuse or remove any Content that is available via the Site. Without limiting the foregoing, Get Fit Enterprises and its designees shall have the right in their sole discretion to remove any Content that violates these Terms or is otherwise objectionable. You agree that you must evaluate, and bear all risks associated with, the use of any Content available in connection with the Site, including any reliance on the accuracy, completeness, or usefulness of such Content.</p>
+
+    <p>You acknowledge, consent and agree that Get Fit Enterprises may access, preserve and disclose your User Data, Payment Method information and other Content if required to do so by law or in a good faith belief that such access preservation or disclosure is reasonably necessary to: (a) comply with legal process; (b) enforce the Terms; (c) respond to claims that any Content violates the rights of third parties; (d) respond to your requests for customer service; or (e) protect the rights, property or personal safety of Get Fit Enterprises, its users and the public. Subject to the foregoing, Get Fit Enterprises will use reasonable efforts to maintain the confidentiality of your User Data and Payment Method information.</p>
+
+    <p>The Site is for your personal and noncommercial use. You may not modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer or sell for any commercial purposes any portion of the Site, use of the Site or access to the Site.</p>
+
+    <p>You understand that use of certain features of the Site may require you to purchase third party equipment or materials (e.g., GPS systems). While Get Fit Enterprises may recommend the equipment or materials of certain third party suppliers, Get Fit Enterprises shall have no responsibility for your acquisition or use of any third party equipment or materials and does not guarantee that third party equipment or materials will function with the Site or will be error-free.</p>
+
+    <h4 class="margin-top-20">Content Submitted to the Site</h4>
+    <p>Get Fit Enterprises does not claim ownership of Content you may submit or make available for inclusion on the Site. However, with respect to Content you submit or make available for inclusion on the Site (other than User Data or Payment Method information), you grant Get Fit Enterprises a worldwide, perpetual, irrevocable, royalty-free and non-exclusive license, as applicable, to use, distribute, reproduce, modify, adapt, publicly perform and publicly display and otherwise exploit such Content on the Site for the purposes of providing and promoting the Site and the features and services available on the Site.</p>
+
+    <p>The Site may provide you with the option of making certain Content that you submit to the Site  private or available only to select users of the Site. If, upon submission of Content to the Site, you initially mark Content as private or available for a limited group of users, Get Fit Enterprises will maintain the privacy of such Content, subject to disclosure as may be required by law as described in User Conduct above. However, if you do not mark your Content as private or available for a limited group of users, or later change such designation to allow such Content to be made generally available, Get Fit Enterprises can not and does not guarantee the privacy of such Content.</p>
+
+    <h4 class="margin-top-20">Dealings with Third Party Service Providers and Advertisers</h4>
+    <p>Third party product and service offerings made available for purchase by you on the Site are made and offered directly by the applicable third party service provider or advertiser. When you purchase any such product or service offering through the Site, you acknowledge that you are contracting directly with the applicable third party service provider or advertiser and not with Get Fit Enterprises. Your correspondence or business dealings with, or participation in promotions of, third party service providers or advertisers found on or through the Site, including payment and delivery of related goods or services, and any other terms, conditions, warranties or representations associated with such dealings, are solely between you and such third party service provider or advertiser. Although we are interested in receiving feedback regarding our third party service providers and advertisers and their products and services, and may from time to time assist you in your dealings with such third party service providers and advertisers, Get Fit Enterprises is not responsible for the performance or nonperformance of any third party service provider or advertiser. You are in no way obligated to use or transact business with any particular third party service provider or advertiser that appears on the Site. YOU AGREE THAT GET FIT ENTERPRISES SHALL NOT BE LIABLE FOR ANY LOSS OR DAMAGES OF ANY KIND INCURRED BY YOU AS THE RESULT OF ANY OF YOUR DEALINGS WITH THIRD PARTY SERVICE PROVIDERS OR ADVERTISERS AVAILABLE ON THE SITE.</p>
+
+    <h4 class="margin-top-20">Links</h4>
+    <p>The Site may provide, or third parties may provide, links to other Internet sites or resources. Because Get Fit Enterprises has no control over such sites and resources, you acknowledge and agree that Get Fit Enterprises is not responsible for the availability of such external sites or resources, and does not endorse and is not responsible or liable for any Content, advertising, products or other materials on or available from such sites or resources.</p>
+
+    <p>You are granted a limited, non-exclusive right to create a text hyperlink to the Site, provided such link does not portray Get Fit Enterprises or any of its products or services in a false, misleading, derogatory or otherwise defamatory manner, and provided further that the linking site does not contain any pornographic, illegal, offensive, harassing or otherwise objectionable material. You are further granted a right to implement any RSS feeds located on the Site for your personal, non-commercial use, solely as described on the Site. We reserve the right in our sole discretion to revoke these licenses generally, or your right to use specific links or RSS feeds, at any time, with or without cause.</p>
+
+    <h4 class="margin-top-20">Interactions with Site Users</h4>
+    <p>The Site functions as a venue to connect members in a virtual information place. As a neutral facilitator, Get Fit Enterprises is not directly involved in the actual transactions between members of the Site. As a result, Get Fit Enterprises has no control over the truth, accuracy, quality, legality, or safety of postings made by users of the Site. Get Fit Enterprises shall have no responsibility to confirm the identity of members. Get Fit Enterprises shall also have no responsibility to confirm or verify the qualifications, background, or abilities of users of the Site. You shall at all times exercise common sense and good judgment when dealing with any user of the Site.</p>
+
+    <p>If you elect to use our “share-a-ride” service or similar Site features for informing a friend about our Site or for emailing a ride or other information to a friend, Get Fit Enterprises will require you to provide your friend’s contact information and/or email address. Get Fit Enterprises will automatically send that friend a one-time email. Get Fit Enterprises may store the information you provide for a period of time, provided that Get Fit Enterprises will use such information only to identify if your friend is or later becomes a member of Get Fit Enterprises. You represent that you are authorized to provide any third party email address or other information that you provide to Get Fit Enterprises.</p>
+
+    <h4 class="margin-top-20">Electronic Communications</h4>
+    <p>The Site may provide you with the ability to send e-mails, post messages to user forums, enter chat rooms, speak via Internet voice connections or send similar messages and communications to third party service providers, advertisers, other users and/or Get Fit Enterprises. You agree to use communication methods available on the Site only to send communications and materials related to the subject matter for which Get Fit Enterprises provided the communication method, and you further agree that all such communications by you shall be deemed your Content and shall be subject to and governed by the Terms. By using any of the communications methods available on the Site, you acknowledge and agree that (a) ALL COMMUNICATIONS METHODS CONSTITUTE PUBLIC, AND NOT PRIVATE, MEANS OF COMMUNICATION BETWEEN YOU AND THE OTHER PARTY OR PARTIES, (b) communications sent to or received from third party service providers, advertisers or other third parties are not be endorsed, sponsored or approved by Get Fit Enterprises (unless expressly stated otherwise by Get Fit Enterprises) and (c) communications are not pre-reviewed, post-reviewed, screened, archived or otherwise monitored by Get Fit Enterprises in any manner, though Get Fit Enterprises reserves the right to do so at any time at its sole discretion in accordance with the Terms. YOU AGREE THAT ALL NOTICES, DISCLOSURES AND OTHER COMMUNICATIONS THAT WE PROVIDE TO YOU ELECTRONICALLY SHALL SATISFY ANY LEGAL REQUIREMENT THAT SUCH COMMUNICATIONS BE IN WRITING.</p>
+
+    <h4 class="margin-top-20">Proprietary Rights</h4>
+    <p>You acknowledge and agree that the Site, any necessary software used in connection with the Site (if any) and any Content available on the Site contain proprietary and confidential information that is protected by applicable intellectual property and other laws. Except as expressly permitted by applicable law or authorized by Get Fit Enterprises or applicable third party service providers or advertisers, you agree not to modify, rent, lease, loan, sell, distribute or create derivative works based on the Site, the software or Content available on the Site (other than Content that you may submit), in whole or in part.</p>
+
+    <p>Get Fit Enterprises grants you a personal, non-transferable and non-exclusive right and license to access and use the Site; provided that you do not (and do not allow any third party to) copy, modify, create a derivative work from, reverse engineer, reverse assemble or otherwise attempt to discover any source code, sell, assign, sublicense, grant a security interest in or otherwise transfer any right in the Site. You agree not to access the Site by any means other than through the interface that is provided by Get Fit Enterprises for use in accessing the Site.</p>
+
+    <p>THE TERM GET FIT ENTERPRISES, THE GET FIT ENTERPRISES LOGO AND OTHER GET FIT ENTERPRISES LOGOS AND PRODUCT AND SERVICE NAMES ARE THE EXCLUSIVE TRADEMARKS OF, AND ARE OWNED BY, GET FIT ENTERPRISES, INC., AND YOU MAY NOT USE OR DISPLAY SUCH TRADEMARKS IN ANY MANNER WITHOUT GET FIT ENTERPRISES’S PRIOR WRITTEN PERMISSION. Any third party trademarks or service marks displayed on the Site are the property of their respective owners.</p>
+
+    <p>Get Fit Enterprises reserves all rights not expressly granted hereunder.</p>
+
+    <h4 class="margin-top-20">Claims of Copyright Infringement</h4>
+    <p>If you have reason to believe any part of the Content of the Site infringes the copyrights of others, please notify our Copyright Agent immediately using the contact information provided below. It is our policy to investigate any allegations of copyright infringement brought to our attention. We reserve the right in our sole discretion to immediately suspend and/or terminate access to the Site by any user who is alleged to have posted infringing materials or a link to infringing materials on the Site and to immediately remove or disable the allegedly infringing Content or link.</p>
+
+    <p>If you are the copyright owner (or are authorized to act on behalf of the copyright owner), please notify our Copyright Agent immediately if you believe that (a) any Content displayed on the Site infringes your copyright or (b) any link posted on the Site links to materials that infringe your copyright. As soon as we receive your notice of claimed infringement, in the form described below, we will promptly remove or disable access to the materials that are claimed to be infringing (or the subject of infringing activity). Your notice must be in writing and must include the following: a description of the copyrighted work you believe has been infringed (or if you believe multiple copyrighted works have been infringed, a representative list); a description of the material you believe is infringing or the subject of infringing activity, together with enough information to permit us to locate the material on the applicable Site; enough information to permit us to contact you, such as, your name, address, telephone number and, if available, e-mail address; a statement that you have a good faith belief that the allegedly infringing use of the material was not authorized by the owner of the exclusive right that is allegedly infringed (the “copyright owner”), an agent for the copyright owner, or by law; a statement that all of the information you have provided is accurate; and a statement, made under penalty of perjury, that you are the copyright owner or are authorized to act on behalf of the copyright owner. Your notice must be signed (physically or electronically) and must be addressed as follows:</p>
+
+    <p>
+        <i>Copyright Agent</i><br />
+        <i class="blueHeader" style="text-decoration: underline;">info@thefitexperience.com</i>
+    </p>
+
+    <h4 class="margin-top-20">Your Feedback</h4>
+    <p>We welcome your comments, feedback, suggestions, and other communications regarding the Site and the information and services we make available through the Site (collectively, “Feedback”). While you are not obligated to provide Feedback, in the event that you provide Feedback, you hereby grant to Get Fit Enterprises a worldwide, non-exclusive, transferrable, assignable, sub-licenseable, perpetual, irrevocable, royalty-free license to copy, distribute, create derivative works of, publicly display and perform and otherwise exploit such Feedback and to use, make, have made, sell, offer for sale, import and export products and services based on such Feedback. For this reason, we ask that you not send Get Fit Enterprises any Feedback that you do not wish to license to us as set forth above.</p>
+
+    <h4 class="margin-top-20">Disclaimer of Warranties and Liability</h4>
+    <p>THE INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND CONTENT AVAILABLE ON THE SITE IS PROVIDED TO YOU “AS IS” AND WITHOUT WARRANTY. GET FIT ENTERPRISES AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS AND LICENSORS HEREBY DISCLAIM ALL WARRANTIES WITH REGARD TO SUCH INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND CONTENT, INCLUDING, WITHOUT LIMITATION, ALL IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NONINFRINGEMENT. GET FIT ENTERPRISES AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS AND LICENSORS MAKE NO WARRANTY THAT (a) THE SERVICE WILL MEET YOUR REQUIREMENTS; (b) THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE; (c) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE WILL BE ACCURATE OR RELIABLE; (d) THE QUALITY OF ANY PRODUCTS, SERVICES, INFORMATION OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS; AND (e) ANY ERRORS IN THE SITE WILL BE CORRECTED.</p>
+
+    <p><strong>YOU EXPRESSLY AGREE THAT GET FIT ENTERPRISES IS NOT PROVIDING MEDICAL ADVICE VIA THE SITE. THE CONTENT PROVIDED THROUGH THE SITE, INCLUDING ALL TEXT, PHOTOGRAPHS, IMAGES, ILLUSTRATIONS, GRAPHICS, AUDIO, VIDEO AND AUDIO-VIDEO CLIPS, AND OTHER MATERIALS, WHETHER PROVIDED BY US OR BY OTHER ACCOUNT HOLDERS OR THIRD PARTIES IS NOT INTENDED TO BE AND SHOULD NOT BE USED IN PLACE OF (a) THE ADVICE OF YOUR PHYSICIAN OR OTHER MEDICAL PROFESSIONALS, (b) A VISIT, CALL OR CONSULTATION WITH YOUR PHYSICIAN OR OTHER MEDICAL PROFESSIONALS, OR (c) INFORMATION CONTAINED ON OR IN ANY PRODUCT PACKAGING OR LABEL. SHOULD YOU HAVE ANY HEALTH RELATED QUESTIONS, PLEASE CALL OR SEE YOUR PHYSICIAN OR OTHER HEALTHCARE PROVIDER PROMPTLY. SHOULD YOU HAVE AN EMERGENCY, CALL YOUR PHYSICIAN OR 911 IMMEDIATELY. YOU SHOULD NEVER DISREGARD MEDICAL ADVICE OR DELAY IN SEEKING MEDICAL ADVICE BECAUSE OF ANY CONTENT PRESENTED ON THIS SITE, AND YOU SHOULD NOT USE THE SITE OR ANY CONTENT ON THE SITE FOR DIAGNOSING OR TREATING A HEALTH PROBLEM. THE TRANSMISSION AND RECEIPT OF OUR CONTENT, IN WHOLE OR IN PART, OR COMMUNICATION VIA THE INTERNET, E-MAIL OR OTHER MEANS DOES NOT CONSTITUTE OR CREATE A DOCTOR-PATIENT, THERAPIST-PATIENT OR OTHER HEALTHCARE PROFESSIONAL RELATIONSHIP BETWEEN YOU AND GET FIT ENTERPRISES.</strong></p>
+
+    <p>YOU EXPRESSLY AGREE THAT YOUR COGNITIVE, EMOTIONAL, PHYSICAL, AND FINANCIAL. ACTIVITIES, WHICH GENERATE THE CONTENT YOU POST OR SEEK TO POST ON THE SITE CARRY CERTAIN INHERENT AND SIGNIFICANT RISKS OF PROPERTY DAMAGE, BODILY INJURY OR DEATH AND THAT YOU VOLUNTARILY ASSUME ALL KNOWN AND UNKNOWN RISKS ASSOCIATED WITH THESE ACTIVITIES EVEN IF CAUSED IN WHOLE OR PART BY THE ACTION, INACTION OR NEGLIGENCE OF GET FIT ENTERPRISES OR BY THE ACTION, INACTION OR NEGLIGENCE OF OTHERS. YOU ALSO EXPRESSLY AGREE THAT GET FIT ENTERPRISES DOES NOT ASSUME RESPONSIBILITY FOR THE INSPECTION, SUPERVISION, PREPARATION, OR CONDUCT OF ANY RACE, CONTEST, GROUP RIDE OR EVENT THAT UTILIZES GET FIT ENTERPRISES’S SITE.</p>
+
+    <p><strong>YOU EXPRESSLY AGREE TO RELEASE GET FIT ENTERPRISES, ITS SUBSIDIARIES, AFFILIATES, OFFICERS, AGENTS, REPRESENTATIVES, EMPLOYEES, PARTNERS AND LICENSORS (THE “RELEASED PARTIES”) FROM ANY AND ALL LIABILITY CONNECTED WITH YOUR COGNITIVE, EMOTIONAL, PHYSICAL, AND FINANCIAL. ACTIVITIES, AND PROMISE NOT TO SUE THE RELEASED PARTIES FOR ANY CLAIMS, ACTIONS, INJURIES, DAMAGES, OR LOSSES ASSOCIATED WITH YOUR COGNITIVE, EMOTIONAL, PHYSICAL, AND FINANCIAL. ACTIVITIES. YOU ALSO AGREE THAT IN NO EVENT SHALL THE RELEASED PARTIES BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN ANY WAY CONNECTED WITH (a) YOUR USE OR MISUSE OF THE SITE, (b) YOUR USE OR MISUSE OF EQUIPMENT OR PROGRAMS CREATED OR LICENSED BY GET FIT ENTERPRISES WHILE ENGAGED IN COGNITIVE, EMOTIONAL, PHYSICAL, AND FINANCIAL. ACTIVITIES, (c) YOUR DEALINGS WITH THIRD PARTY SERVICE PROVIDERS OR ADVERTISERS AVAILABLE THROUGH THE SITE, (d) ANY DELAY OR INABILITY TO USE THE SITE EXPERIENCED BY YOU, (e) ANY INFORMATION, SOFTWARE, PRODUCTS, SERVICES OR CONTENT OBTAINED THROUGH THE SITE, WHETHER BASED ON CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, EVEN IF GET FIT ENTERPRISES HAS BEEN ADVISED OF THE POSSIBILITY OF DAMAGES. BECAUSE SOME STATES/JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU.</strong></p>
+
+    <h4 class="margin-top-20">Indemnity</h4>
+
+    <p><strong>YOU AGREE TO INDEMNIFY, DEFEND AND HOLD HARMLESS GET FIT ENTERPRISES AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, AGENTS, REPRESENTATIVES, EMPLOYEES, PARTNERS AND LICENSORS FROM ANY CLAIM OR DEMAND, INCLUDING REASONABLE ATTORNEYS’ FEES, MADE BY ANY THIRD PARTY DUE TO OR ARISING OUT OF CONTENT YOU SUBMIT, POST, TRANSMIT OR OTHERWISE SEEK TO MAKE AVAILABLE THROUGH THE SITE, YOUR USE OF THE SITE, YOUR COGNITIVE, EMOTIONAL, PHYSICAL, AND FINANCIAL ACTIVITIES WHICH GENERATE THE CONTENT YOU POST OR SEEK TO POST ON THE SITE (INCLUDING, BUT NOT LIMITED TO, COGNITIVE, EMOTIONAL, PHYSICAL, AND FINANCIAL ACTIVITIES IN CONNECTION WITH ANY CONTESTS, RACES, OR OTHER EVENTS WHICH GET FIT ENTERPRISES SPONSORS, ORGANIZES, PARTICIPATES IN, OR WHOSE SITE IS USED IN CONNECTION WITH), YOUR CONNECTION TO THE SITE, YOUR VIOLATION OF THE TERMS, OR YOUR VIOLATION OF ANY RIGHTS OF ANOTHER PERSON OR ENTITY.</strong></p>
+
+    <h4 class="margin-top-20">Termination</h4>
+
+    <p>You agree that Get Fit Enterprises may, under certain circumstances and without prior notice, immediately terminate your account and/or access to the Site. Cause for such termination shall include, but not be limited to, (a) breaches or violations of the Terms or other incorporated agreements or guidelines, (b) requests by law enforcement or other government agencies, (c) a request by you (self-initiated account deletions), (d) discontinuance or material modification to the Site (or any portion thereof), (e) unexpected technical or security issues or problems, (f) extended periods of inactivity, and/or (g) nonpayment of any fees owed by you in connection with the Site. Termination of your account may include (x) removal of access to all offerings within the Site, (y) deletion of your information, files and Content associated with or included in your account, and (z) barring of further use of the Site. Further, you agree that all terminations shall be made in Get Fit Enterprises’s sole discretion and that Get Fit Enterprises shall not be liable to you or any third party for any termination of your account or access to the Site.</p>
+
+    <h4 class="margin-top-20">APPLICABLE LAWS</h4>
+
+    <p>This Site is controlled by Get Fit Enterprises from its offices within the United States of America. Get Fit Enterprises makes no representation that the Content in the Site or the Site are appropriate or available for use in other locations, and access to them from territories where their content or use is illegal is prohibited. Those who choose to access this Site from locations outside of the United States do so on their own initiative and are responsible for compliance with applicable local laws. You may not use or export the Content in violation of U.S. export laws and regulations. Any action related to the Site, the Content or the Terms shall be governed by Colorado law and controlling U.S. federal law, without regard to conflicts of laws thereof. You hereby consent and submit to the exclusive jurisdiction and venue in the state and federal courts located in Boulder County, Colorado for any legal proceedings related to the Site or the Terms. If any party hereto brings any suit or action against another for relief, declaratory or otherwise, arising out of these Terms, the prevailing party will have and recover against the other party, in addition to all court costs and disbursements, such sum as the court may adjudge to be reasonable attorneys’ fees. Except to the extent prohibited by applicable law, the parties agree that any claim or cause of action arising out of or related to use of the Site or the Terms must be filed within one (1) year after such claim or cause of action arose or be forever barred.</p>
+
+    <h4 class="margin-top-20">General</h4>
+
+    <p>You agree that no joint venture, partnership, employment, agency relationship, physician-patient, therapist-patient or healthcare professional relationship exists between you and Get Fit Enterprises as a result of the Terms or your use of the Site. THE TERMS CONSTITUTE THE ENTIRE AGREEMENT BETWEEN YOU AND GET FIT ENTERPRISES WITH RESPECT TO YOUR USE OF THE SITE. The failure of Get Fit Enterprises to exercise or enforce any right or provision of the Terms shall not constitute a waiver of such right or provision. If any provision of the Terms is found by a court of competent jurisdiction to be invalid, the parties nevertheless agree that the court shall endeavor to give effect to the parties’ intentions as reflected in the provision, and the other provisions of the Terms remain in full force and effect. You may not assign, delegate or otherwise transfer your account or obligations under these Terms without the prior written consent of Get Fit Enterprises. Get Fit Enterprises has the right, in its sole discretion, to transfer or assign all or any part of its rights under these Terms and will have the right to delegate or use third party contractors to fulfill its duties and obligations under these Terms and in connection with the Site. Get Fit Enterprises’s notice to you via email, notices or links on the Site shall constitute acceptable notice to you under the Terms. A printed version of the Terms and of any notice given in electronic form shall be admissible in judicial or administrative proceedings based upon or relating to the Terms to the same extent and subject to the same conditions as other business documents and records originally generated and maintained in printed form. Headings in the Terms are for convenience only and have no legal or contractual effect. Any rights not expressly granted herein are reserved.</p>
+
+    <h4 class="margin-top-20">Support and Questions</h4>
+
+    <p>We strive to respond to support requests within 48 hours after the request is placed.</p>
+
+    <p class="margin-bottom-40">If you have any questions regarding these Terms, please contact us by email at <span class="blueHeader" style="text-decoration: underline;">info@thefitexperience.com</span>.</p>
+</div>
+
+   
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 checkbox col-sm-offset-2 col-md-6 col-md-offset-3 ">
+            <span style="color: red; font-weight: bold;">{{error}}</span>
+        </div>
+    </div>
+
+    <div class="termsWrapper">
+    <div class="row">
+        <form method="POST" action="{% url 'fit:survey_demographic' %}">
+            {% csrf_token %}
+            <div class="col-xs-12 col-sm-5 checkbox col-sm-offset-2 col-md-4 col-md-offset-3">
+                <label>
+                    <input type="checkbox" name="checkbox" value="check" ng-click="toggleTerms();" />I agree to <a href="/home/Terms_Of_Service" class="color-green">Terms and Conditions</a>
+                </label>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-4 text-center" style="margin-bottom: 30px;">
+                <button class="btn btn-blue terms-continueButton" ng-click="validate($event);">Continue</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+<script>
+    fitApp.controller('WelcomeCtrl', function ($scope) {
+        $scope.error = "";
+        $scope.terms = false;
+
+        $scope.validate = function (event) {
+      
+            if (!$scope.terms) {
+                $scope.error = ('You must agree to Terms and Conditions first.');
+                event.preventDefault();
+            } 
+        }
+
+        $scope.toggleTerms = function () {
+             
+            $scope.terms = !$scope.terms;
+        }
+    });
+</script>
+
+        <style>
+    .footer-v1 .footer {
+       padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+        position: relative;
+        bottom: 0;
+        left: 0;
+    }
+    .footer-v1 .footer-socials {
+        text-align: center;
+    }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href="https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                            </li>
+                      </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/#">Privacy Policy</a> | <a href="/#">Terms of Service</a> | <a href="/#">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>  
+    <!-- JS Customization -->
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="/assets/js/app.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    
+    <!--[if lt IE 9]>
+            <script src="/assets/plugins/respond.js"></script>
+            <script src="/assets/plugins/html5shiv.js"></script>
+            <script src="/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">       
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+
+
+
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            var windowSize = $(window).width();
+            if (windowSize <= 1023) {
+                $('.loginDivider').hide();
+                //$('.signUpMenuLink').css('padding', '9px 10px 9px 10px;')
+            }
+        });
+
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            var windowSize = $(window).width();
+            if (windowSize >= 1024) {
+                $('#secureHamDropdown').addClass("showHamburger");
+            }
+            else {
+                document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+            }
+            
+        }
+        
+
+        $(document).ready(function (){
+            hamburgerDisplay()
+        });
+
+        $(window).resize(function (){
+            hamburgerDisplay()
+        });
+
+        function hamburgerDisplay() {
+            var windowSize = $(window).width();
+            if (windowSize >= 1024) {
+                $('.hamburgerSecure').hide();
+                $('#secureHamDropdown').addClass("showHamburger");                
+            }
+            else {
+                $('#secureHamDropdown').removeClass("showHamburger");
+                $('.hamburgerSecure').show();                
+            }
+        }
+
+        //disable hamburger button based on url
+        $(document).ready(function () {
+            if (window.location.href.indexOf("/survey/demographic") > -1 ||
+                window.location.href.indexOf("/survey/welcome") > -1) {
+                $('.hiddenOnSurveyPages').css("display", "none");
+            }
+            if (window.location.href.indexOf("/survey/FITassessment") > -1) {                
+                $('.hiddenOnSurveyPages').css("display", "none");
+                document.getElementById("logoAnchor").href = "{% url 'fit:dashboard' %}";
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.redefiningFitnessBoxParagraph');
+            heightsEqualizer('.aboutTab');
+        });
+
+        $(window).resize(function () {            
+            heightsEqualizer('.redefiningFitnessBoxParagraph');
+            heightsEqualizer('.aboutTab');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+            
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 992) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }       
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.redefiningFitnessBoxParagraph');
+            heightsEqualizer('.aboutTab');
+        }, 1000);
+    </script>
+    <script type="text/javascript">mixpanel.track("view-page");</script>
+</body>
+</html>

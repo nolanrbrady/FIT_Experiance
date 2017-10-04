@@ -1,0 +1,193 @@
+{% extends "core/fit/base_fitfor.html" %}
+{% load staticfiles %}
+
+{% block title %}Organizations{% endblock %}
+{% block header_title %}Organizations{% endblock %}
+{% block page_title %}How FIT is your organization in 4D?{% endblock %}
+{% block page_content %}
+<p>The FIT process is a holistic approach that enables you to identify where your organization is at (Current State), determine where you desire your organization to be (Desired Future State), and provide a pathway to achieving your organizational goals (Strategic Process). <br /><br /> <p class='pageTitle paragraphTitle'>Current State </p> Becoming FIT begins with two comprehensive FIT Assessments that provide a clear picture of your current state. The Individual FIT Assessment measures each employee’s FITness across the four key life dimensions: Cognitive, Emotional, Physical, and Financial, which is 'FIT in 4-D.' Alongside the Individual FIT Assessments, the Organizational FIT Assessment provides a clear picture of the current state of alignment across the four critical areas of business and organizational health: Engagement, Alignment, Environment, and Productivity . As a result of these assessments, you will know how integrated, aligned, and balanced your organization is, which will enable your organizational leaders to effectively engage in the right areas for improvement. <br /><br /> <p class='pageTitle paragraphTitle'>Future Desired State </p> After analyzing your assessment results, FIT assists you in identifying your organization’s Future Desired State. We do this by using the results from the Organizational FIT Assessment to help identify the areas that your organization desires to improve. For example, based on the FIT Assessment results, your organization might decide to develop an action plan for improving your work environment. This Future Desired State might include improving your organization’s environment by promoting healthy lifestyle choices such as physical activity and a toxin-free environment. <br /><br /> <p class='pageTitle paragraphTitle'>Strategic Process </p>Finally, FIT helps you develop your Strategic Process, bridging the gap between Current and Desired Future States. Essentially, this is building your FIT organization, or as we call it, your FIT house. This best ensures you effectively remove barriers and helps you best achieve your desired results. <br /><br />Building a FIT house involves aligning your organization around the right things, at the right time, for the right reasons. That is, making sure your organization is aligned around one Purpose and operating with non-negotiable shared Principles. FIT helps organizations deliver the best Promise to internal and external customers. We have extensive experience in developing realistic and sustainable programs to promote the wellness of your organization. This includes maximizing your productivity and profitability through sustainable measures and efforts. <br /><br />An organization is only as FIT as the people who make up the organization. The FIT process challenges individuals to become integrated across the key life dimensions and includes identifying and applying purposeful actions for optimal health and fulfillment. Living FIT necessitates growth and development across these dimensions. Improvement in one dimension unleashes further growth in other dimensions, creating a nutrient-rich environment for ongoing progress and improvement. <br /><br />Welcome to the FIT Experience. We invite you and your organization to begin your journey to Getting FIT by taking the Organizational FIT Assessment. We believe your greatest days are still ahead.  Click below to begin your journey to Organizational FITness in 4D. <br /><br /></p> 
+{% endblock page_content %}
+{% block slides %}
+<div class="carousel-inner" role="listbox">
+    <div class="item active">
+        <div class="carousel-content">
+            <h3><span class="tesimonial-firstline">"Jim Leighton shows the importance of living a life intentionally ... purposefully aligned with your passion, vision and action to improve all aspects of one's life. We leverage Getting FIT in our Leadership Program as an influential way to FIT-fully engage, align & optimize talent, both teams and individuals, to greater levels of performance and achievement! And guess what? It works and will for you too!"</h3>
+            <p class="testimonial-author">-<span>Karen A. Pfeifer</span></p>
+        </div>
+    </div>
+    
+    <div class="item">
+        <div class="carousel-content">
+            <h3><span class="tesimonial-firstline">“Practical experience-based wisdom for helping teams </span>realize their full potential."</h3>
+            <p class="testimonial-author">-<span> Douglas R. Conant, </span> Author of New York Times best-selling, TouchPoints</p>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="carousel-content">
+            <h3><span class="tesimonial-firstline">"Clearly, Mr. Leighton sees the power of optimizing people and teams and aligning them behind a compelling vision and goals. His personal stories bring life to the subject. It is clear to see that he has lived in and managed FIT organizations. He sees the power of growing the right people capabilities and then aligning and engaging them in the mission."</h3>
+            <p class="testimonial-author">-<span> William A. Schiemann, </span>CEO, Metrus Group</p>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="carousel-content">
+            <h3><span class="tesimonial-firstline">"Jim is a student of life </span> and brings together many significant lessons about meaning,work, leadership and happiness. He links keen insights to a series of steps for bringing almost any kind of team together for greater purpose, effort, outcome and personal well-being.”</h3>
+            <p class="testimonial-author">-<span>John Delany, Founder, </span>Giraffe LLC, Author of Piloting Strategy</p>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="carousel-content">
+            <h3><span class="tesimonial-firstline">“I greatly enjoy the whole FIT process </span>and evaluating how my passions can positively influence any team I am on."</h3>
+            <p class="testimonial-author">-<span>Mike Lindsay, </span>Sr. Director of Manufacturing Systems at Perdue Farms</p>
+        </div>
+    </div>
+</div>
+{% endblock slides %}
+
+{% block page_action %}
+<div style="background: #0084b1;">
+    
+<div class="container" ng-controller="fitEmailStartTheConversationCtrl">
+        <div class="startTheConversationWrapper content ">
+            <div class="row" ng-show="response" ng-cloak>
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="alert alert-success" role="alert"> <span style="color: green; font-weight: bold;">{{response}}</span></div>
+                </div>
+            </div>
+            <h2 class="startConverstationTitle">Start the Converstation</h2>
+            <form class="form-inline" id="startTheConversationForm" ng-submit="send()">
+                <div class="row">
+
+                    <div ng-show="!error.isValidated" class="alert alert-danger" style="text-align:center; ">
+                       {{error.message}}
+                    </div>
+                    <div class="col-md-6  col-xs-12">
+                        <div class="form-group inputboxWrapper col-md-6 col-xs-12">
+                            <input type="text" ng-model="form.FirstName" class="form-control inputbox" placeholder="First Name" >
+                        </div>
+                        <div class="form-group inputboxWrapper col-md-6 col-xs-12">
+                            <input type="text" ng-model="form.LastName" class="form-control inputbox" placeholder="Last Name" >
+                        </div>
+                        <div class="form-group emailBoxWrapper col-md-12 col-xs-12">
+                            <input type="email" ng-model="form.EmailAddress" class="form-control emailBox" placeholder="Your Email" >
+                        </div>
+                    </div>
+                    <div class="col-md-6  col-xs-12">
+                        <div class="form-group textBoxWrapper col-md-6  col-xs-12">
+                            <textarea class="form-control " ng-model="form.EmailMessage" id="InputMessage" rows="8" placeholder="Message" ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xs-12" style="text-align:center">
+                        <div class="form-group">
+                            <input  ng-click="send(form, $event)" class="btn btn-primary secondaryBtn conversationSubmitBtn" value="Start the Conversation" style="width:175px">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+<script>
+    fitApp.factory('fitEmailStartTheConversationFactory', function ($http) {
+        return {
+            capture: function (form, callback) {
+
+              
+
+                var url = "/emails/CaptureStartTheConversation";
+                
+                $http({ method: 'POST', url: url, data: { FirstName: form.FirstName, LastName: form.LastName, EmailAddress: form.EmailAddress, EmailMessage: form.EmailMessage }, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        data = angular.fromJson(data);
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+                        console.log("error")
+                    });
+            },
+        }
+    })
+
+    fitApp.controller('fitEmailStartTheConversationCtrl', function ($scope, fitEmailStartTheConversationFactory) {
+
+        $scope.form = {
+            FirstName: "",
+            LastName: "",
+            EmailAddress: "",
+            EmailMessage: ""
+            
+        }
+        $scope.error = {
+            message: "",
+            isValidated:true
+        }
+        $scope.send = function (form , e) {
+
+            if ($scope.validateForm(form)) {
+
+                fitEmailStartTheConversationFactory.capture(form, function (response) {
+
+
+                    if (response.status == 200) {
+                        $scope.response = "Email Sent";
+                        $scope.reset();
+                    }
+
+                });
+            }
+        }
+
+        $scope.isValidEmailAddress = function(emailAddress) {
+            var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+            return pattern.test(emailAddress);
+        };
+        $scope.validateForm = function (form) {
+
+            $scope.error.isValidated = true;
+
+            if (form.FirstName == "" && $scope.error.isValidated) {
+
+                $scope.error.message = "Please fill out first name field"
+                $scope.error.isValidated = false;
+            }
+            if (form.LastName == "" && $scope.error.isValidated) {
+                $scope.error.message = "Please fill out last name field"
+                $scope.error.isValidated = false;
+            }
+            if (form.EmailAddress == "" && $scope.error.isValidated) {
+
+                $scope.error.message = "Please fill out email address field"
+                $scope.error.isValidated = false;
+            }
+
+            if ( !$scope.isValidEmailAddress(form.EmailAddress) && $scope.error.isValidated) {
+
+                $scope.error.message = "Please include an '@' in the email address"
+                $scope.error.isValidated = false;
+            }
+            if (form.EmailMessage == "" && $scope.error.isValidated) {
+
+                $scope.error.message = "Please fill out message field"
+                $scope.error.isValidated = false;
+            }
+
+            return $scope.error.isValidated;
+
+        }
+
+        $scope.reset = function () {
+            $("#startTheConversationForm")[0].reset();
+
+            $scope.form.FirstName = "";
+            $scope.form.LastName = "";
+            $scope.form.EmailAddress = "";
+            $scope.form.EmailMessage = "";
+        };
+    });
+</script>
+</div>
+{% endblock page_action %}
+

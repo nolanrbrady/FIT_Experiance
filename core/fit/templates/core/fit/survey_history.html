@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title></title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="/assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="/assets/css/footers/footer-v1.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/animate.css">
+    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="/assets/css/pages/page_about.css">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="/assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="/assets/css/theme-skins/dark.css">
+    <link href="/assets/plugins/owl-carousel/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link href="/assets/css/layouts/white_layout.css" rel="stylesheet" /> 
+    <link href="/assets/css/headers/Custom_Header.css" rel="stylesheet" />
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="/assets/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/main.js"></script>
+    <script src="/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+
+    <style>
+         .cancelBtn {
+    background: transparent;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #515151;
+    line-height: 17px;
+}
+    .cancelBtn:hover {
+    background: #515151;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #FFFFFF;
+    line-height: 17px;
+}
+
+        .header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a {
+            bottom: -2px;
+            position: relative;
+            border-bottom: none;
+        }
+    </style>
+ 
+</head>
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper">
+
+        
+
+
+<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            <a class="logo" href="/secure/IndividualDashboard">
+                <img class="secureAdminLogo" src="/assets/img/icons/dimension-icons/FIT-logo-sm.png" />
+            </a>
+        </div>
+
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+
+
+
+            <a href="/secure/IndividualDashboard">Dashboard</a>
+            <a href="/secure/IndividualSurvey">FIT Assessment</a>
+            <a href="/secure/MySurveys">My History</a>
+            <a href="/secure/account">My Account</a>
+            <a href="{{takeFitLink}}">{{takeFitText}}</a>
+            <a href="/home/logout">Log Out</a>
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<script>
+
+
+    fitApp.factory('TakeFitfactory', function ($http) {
+        return {
+
+            getFItButtonData: function (callback) {
+                var url = "/secure/takeFitButtonCheck";
+
+                $http({ method: 'GET', url: url, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+            },
+        }
+    });
+
+    fitApp.controller('TakeFitCtrl', function ($scope, TakeFitfactory) {
+
+        $scope.takeFitLink = "/secure/NewSurvey";
+        $scope.takeFitText = "Take FIT Assessment";
+        $scope.keyword = "";
+
+        TakeFitfactory.getFItButtonData(function (response) {
+            data = response;
+
+            $scope.takeFitLink = data.link;
+            $scope.takeFitText = data.text;
+        })
+
+        $scope.checkSearch = function (event) {
+            if (event.keyCode == 13) {
+                window.location = "/f2/search/?q=" + $scope.keyword;
+            }
+        }
+    }); 
+</script>
+<!--=== End Header ===-->
+        
+
+        
+
+<div class="container">
+
+</div>
+
+<!--=== Content Part ===-->
+
+<div class="container" style="min-height: 800px;">
+    <div class="row">
+        <div class="bg-color-white dashboardDisplay">
+
+            <div class="col-md-3 profileContainer">
+                <style>
+    .blackBar {
+        background-color: #373737;
+        height: 40px;
+        text-align: center;
+        margin-left:-15px;
+        margin-right:-15px;
+    }
+    .profile-header{
+        color: #fff;
+        font-size: 25px;
+    }
+        .profilePadding {
+        margin-top: 15px;
+        margin-bottom: 50px;
+    }
+
+    .stick-to-bottom{
+             position: relative;
+    top: 10px;
+    margin: 0 auto;
+    width: 100%;
+        border-top: 1px solid #ccc;
+    }
+</style>
+
+
+<div class="blackBar">
+    <div class="col-md-12">
+        <span class="profile-header">Profile</span>
+    </div>
+</div>
+<br />
+<div class="row profilePhoto">
+    <div class="col-md-12">
+        <style>
+    .profileContainer svg{
+      width:170px;
+    }
+    .profileContainer .name {
+        color: #515151;
+    }
+</style>
+
+<div class="row">
+    <div style="width:160px; margin: auto;">
+        <svg viewbox="0 0 100 100" version="1.1" xmlns="//www.w3.org/2000/svg">
+            <defs>
+                <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+                    <image xlink:href="https://s3-us-west-2.amazonaws.com/fitprofiles/70_131074712036378485" x="-25" width="150" height="100" />
+                </pattern>
+            </defs>
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)" />
+        </svg>
+    </div>
+    
+    <h2 style="text-align:center;"><a href="/secure/account" class="name">R H</a></h2>
+</div>
+
+    </div>
+</div>
+
+ <div class="row hiddenTablet">
+    <div class="col-md-12">
+        
+<div class="margin-top-40" ng-controller="TakeFitCtrl">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="col-xs-12">
+        <div style="text-align:center;  ">
+            <h4 class="title" style="">MY FIT PLAN</h4>
+        </div>
+    </div>
+    
+    
+    <div class="buttonWrapper">
+
+
+        <div>
+            <a href="/secure/account" class="btn btn-primary primaryBtn text-uppercase ">MY ACCOUNT</a>
+        </div>
+        <br />
+
+        <div>
+            <a href="/secure/IndividualDashboard" class="btn btn-primary primaryBtn text-uppercase ">MY FIT SCORE</a>
+        </div>
+        <br />
+
+        <div ng-cloak>
+            
+            <a href="{{takeFitLink}}" class="btn btn-primary primaryBtn text-uppercase ">{{takeFitText}}</a>
+        </div>
+        <br />
+        
+        <br />
+
+
+        <br/>
+
+       
+        <br/>
+
+        <br/>
+
+    </div>
+
+</div>
+
+<style>
+    .profileContainer .buttonWrapper .btn{
+        width:80%;
+        margin:auto;
+        font-size:14px
+    }
+    .profileContainer .buttonWrapper{
+         text-align: center;
+    }    
+    .profileContainer .title{
+        text-transform: uppercase;  
+        font-weight: bolder;    
+        color: #515151;
+    }
+</style>
+
+
+
+    </div>
+</div>
+ 
+<div class="row hiddenTablet" style="display: none;">
+    <div class="col-md-12 ">
+        
+<div class="margin-top-40">
+    <div class="profileFitPlanWrapper"></div>
+        <br />
+        <h4 class="title" style="text-align:center;">
+            SHARE YOUR JOURNEY
+        </h4>
+
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <ul class="footer-socials list-inline">
+
+
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                            <i class="profileSocialIcons fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                            <i class="profileSocialIcons fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                            <i class="profileSocialIcons fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                            <i class="profileSocialIcons fa fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    
+</div>
+
+ 
+    </div>
+</div>
+
+<div class="row hiddenTablet">
+    <div class="col-md-12 ">
+        <div class="margin-top-40 buttonWrapper">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="text-center margin-bottom-50">
+        <a href="{% url 'fit:about' %}" class="btn btn-primary primaryBtn text-uppercase ">About FIT Assessment</a>
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                        <h2 class="accountTitle">My Surveys</h2>
+                    </div>
+                </div>
+                <hr />
+                <div class="row" style="min-height: 800px;">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="tabletAndDesktopNonStacking">
+                                    <th>SurveyId</th>
+                                    <th>Created</th>
+                                    <th>Cog</th>
+                                    <th>Fin</th>
+                                    <th>Emo</th>
+                                    <th>Phy</th>
+                                    <th>Fit Score</th>
+                                    <th>Balance Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="mobileStacking text-bold">SurveyId: </span>
+                                            <span class="mobileSurveysData">475</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Created: </span>
+                                            <span class="mobileSurveysData">12/22/2016</span>                                            
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Cog: </span>
+                                            <span class="mobileSurveysData">15</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Fin: </span>
+                                            <span class="mobileSurveysData">15</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Emo: </span>
+                                            <span class="mobileSurveysData">15</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Phy: </span>
+                                            <span class="mobileSurveysData">15</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Fit Score: </span>
+                                            <span class="mobileSurveysData">60</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Balance Score: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td class="mobileStacking">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="mobileStacking text-bold">SurveyId: </span>
+                                            <span class="mobileSurveysData">477</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Created: </span>
+                                            <span class="mobileSurveysData">12/28/2016</span>                                            
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Cog: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Fin: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Emo: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Phy: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Fit Score: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td>
+                                            <span class="mobileStacking text-bold">Balance Score: </span>
+                                            <span class="mobileSurveysData">0</span>
+                                        </td>
+                                        <td class="mobileStacking">&nbsp;</td>
+                                    </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div><!--/container-->
+            <!--=== End Content Part ===-->
+        </div>
+        </div>
+    </div>
+
+
+
+         
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+       
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href=" https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="/assets/plugins/respond.js"></script>
+            <script src="/assets/plugins/html5shiv.js"></script>
+            <script src="/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        //$(".owl-carousel").owlCarousel();
+        $(document).ready(function () {
+            
+            $("#lastViewed").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var lastViewed = $("#lastViewed");
+            $('.lastViewed-next').click(function () {
+                lastViewed.trigger('owl.next');
+            })
+
+            $('.lastViewed-prev').click(function () {
+                lastViewed.trigger('owl.prev');
+            })
+
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var owl = $("#owl-demo");
+            $('.recomended-next').click(function () {
+                owl.trigger('owl.next');
+            })
+            
+            $('.recomended-prev').click(function () {
+                owl.trigger('owl.prev');
+            })
+            
+            $("#popularTiles").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var popularTiles = $("#popularTiles");
+            $('.popular-next').click(function () {
+                popularTiles.trigger('owl.next');
+            })
+
+            $('.popular-prev').click(function () {
+                popularTiles.trigger('owl.prev');
+            })
+
+            
+        });
+
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+         
+            $(document).on("keyup", function (event) {
+               
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+                    
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78694145-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MNW54K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MNW54K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</body>
+</html>

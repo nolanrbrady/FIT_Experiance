@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            <a class="logo" href="{% url 'fit:dashboard' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+        </div>
+
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+            <a href="/secure/IndividualDashboard">Dashboard</a>
+            <a href="/secure/IndividualSurvey">FIT Assessment</a>
+            <a href="/secure/MySurveys">My History</a>
+            <a href="/secure/account">My Account</a>
+            <a href="{{takeFitLink}}">{{takeFitText}}</a>
+            <a href="/home/logout">Log Out</a>
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<script>
+
+
+    fitApp.factory('TakeFitfactory', function ($http) {
+        return {
+
+            getFItButtonData: function (callback) {
+                var url = "{% url 'fit:survey_check' %}";
+                
+                $http({ method: 'GET', url: url, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+            },
+        }
+    });
+
+    fitApp.controller('TakeFitCtrl', function ($scope, TakeFitfactory) {
+
+        $scope.takeFitLink = "/secure/NewSurvey";
+        $scope.takeFitText = "Take FIT Assessment";
+        $scope.keyword = "";
+
+        TakeFitfactory.getFItButtonData(function (response) {
+            data = response;
+
+            $scope.takeFitLink = data.link;
+            $scope.takeFitText = data.text;
+        })
+
+        $scope.checkSearch = function (event) {
+            if (event.keyCode == 13) {
+                window.location = "/f2/search/?q=" + $scope.keyword;
+            }
+        }
+    }); 
+</script>
+<!--=== End Header ===-->

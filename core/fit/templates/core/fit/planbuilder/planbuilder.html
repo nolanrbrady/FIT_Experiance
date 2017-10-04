@@ -1,0 +1,899 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="fitApp">
+  <head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdn.rawgit.com/jkbrzt/rrule/v2.1.0/lib/rrule.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="//mattlewis92.github.io/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/angular-bootstrap-colorpicker/3.0.25/css/colorpicker.min.css" rel="stylesheet">
+    <link href="//mattlewis92.github.io/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    
+    <!-- Tasks  -->
+    
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/pages/page_about.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-colors/default.css' %}" id="style_color">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/layouts/white_layout.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/headers/Custom_Header.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-checkbox.css' %}" />
+    
+    <!-- tmp -->
+    <script src="{% static 'app/app.js' %}"></script>
+    <script src="{% static 'app/tmp-TakeFitfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-TakeFitCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-PlanBuilderGoalsFactory.js' %}"></script>
+    <script src="{% static 'app/tmp-PlanBuilderGoalsCtrl.js' %}"></script>
+    
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("{{ MIXPANEL_TOKEN }}");</script><!-- end Mixpanel -->
+</head>
+<body ng-app="fitApp">
+    <div class="wrapper fitApp-wrapper">
+
+<!--<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            {% if user and not user.is_anonymous %}
+            <a class="logo" href="{% url 'fit:dashboard' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% else %}
+            <a class="logo" href="{% url 'fit:index' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+            {% if user and not user.is_anonymous %}
+            <a href="{% url 'fit:dashboard' %}">Dashboard</a>
+            <a href="{% url 'fit:assessment' %}">FIT Assessment</a>
+            <a href="{% url 'fit:calendar' %}">My Calendar</a>
+            <a href="{% url 'account_settings' %}">My Account</a>
+            <a href="{% url 'account_logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Sign In</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<!--=== End Header ===-->
+
+<link href="{% static 'assets/css/bootstrap-checkbox.css' %}" rel="stylesheet" />
+{% verbatim %}
+<style>
+    .align-center {
+        text-align: center;
+    }
+    
+    .panel-heading:hover {
+        background-color: #D7D7D7;
+    }
+
+    .panel-default {
+        margin-bottom: -3px !important;
+    }
+
+    #dimensionsD3Object .aster-score {
+        font-size: 200% !important;
+    }
+    #d3Object {
+        font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .bar {
+        fill: orange;
+    }
+
+    .solidArc:hover {
+        fill: orangered;
+    }
+
+    .solidArc {
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .x.axis path {
+        display: none;
+    }
+
+    .aster-score {
+        line-height: 1;
+        font-weight: bold;
+        font-size: 500%;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+
+        .d3-tip.n:after {
+            margin: -1px 0 0 0;
+            top: 100%;
+            left: 0;
+        }
+
+/*.icon-financial, .icon-Financial {
+    background-position: -394px -78px;
+    width: 62px;
+    transform: scale(0.8);
+}
+.icon-physical, .icon-Physical {
+    background-position: -392px 0px;
+    width: 62px;
+    transform: scale(0.8);
+}*/
+.icon-cognitive, .icon-Cognitive, .icon-emotional, .icon-Emotional, .icon-physical, .icon-Physical, .icon-financial, .icon-Financial {
+    transform: scale(0.8);
+    height: 68px;
+    width: 58px;
+}
+.icon-cognitive, .icon-Cognitive {
+    background-position: -395px -242px;
+}
+.icon-emotional, .icon-Emotional {
+    background-position: -395px -163px;
+}
+.icon-physical, .icon-Physical {
+    background-position: -395px -9px;
+}
+.icon-financial, .icon-Financial {
+    background-position: -395px -85px;
+}
+.dimensionsButtonWrapper h5 {
+    margin-top: -9px; text-align: center;
+}
+</style>
+
+<div class="row container auto-Margin">
+    <br />
+    <h2>Build your FIT plan</h2>
+</div>
+<hr/>
+
+<div class="container margin-bottom-40">
+    
+<div class="col-md-12">
+
+    <h3 class="text-uppercase text-bold">Getting Started</h3>
+    <p>
+        Whether you have built your FIT house, or if you just want to start working on improving individual dimensions and sub-categories, we want you to engage in the Plan Builder. Here you can select up to four sub categories to work on by picking goals within each sub-category. That doesn’t mean you have to select four, you may only choose to select one, but no more than four. These goals or sub categories can be within one dimension or one in each of the four dimensions. After the goals have been selected, pick up to two tasks in each, for a maximum of eight tasks. We ask to limit the amount of tasks you can work on within a week so not to overwhelm you and allow proper focus on the tasks you have selected. Once the week has finished, go back and select new tasks, or stay with the same tasks. We suggest you let your CIRCUMFIT guide your selection of goals and tasks.
+    </p>
+    <p>
+        These goals and tasks have been specifically designed to help you grow within each sub - category and dimension.Changing habits is hard and requires dedication and patience.Following the plan will help you develop new habits which will improve your FIT score as well as your quality of life.Effort and focus will help you move from where you are to where you want to be.
+    </p>
+</div>
+</div>
+
+<div class="dreamBuilderContent PB-dashboard-wrapper" style="min-height: 850px;" ng-controller="PlanBuilderDashboardCtrl">
+    <div class="container content">
+        <div class="col-md-10 col-md-offset-1 text-center">
+            <h2>Select your Subcategories</h2>
+            <div class="PB-horizontal-line margin-top-20"></div>
+            <span class="font-size-12">Select up to 4 subcategories for which to set goals</span>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-md-offset-3 dimensionsButtonWrapper" style="margin-bottom: 50px">
+
+
+            <a class="col-xs-3" href="#">
+                <div ng-click="filterGraph($event, 'cognitive')" class="icon-cognitive"></div>
+                <h5>Cognitive</h5>
+            </a>
+            <a class="col-xs-3 " href="#">
+                <div ng-click="filterGraph($event , 'emotional')" class="icon-emotional"></div>
+                <h5>Emotional</h5>
+            </a>
+            <a class="col-xs-3 " href="#">
+                <div ng-click="filterGraph($event, 'physical')" class="icon-physical"></div>
+                <h5>Physical</h5>
+            </a>
+            <a class="col-xs-3 " href="#">
+                <div ng-click="filterGraph($event, 'financial')" class="icon-financial"></div>
+                <h5>Financial</h5>
+            </a>
+
+
+            <div class="text-center" id="dimensionsD3Object"> </div>
+        </div>
+
+        
+
+        <div class="col-xs-12">
+            <div class="col-xs-12 alert alert-danger" style="display: none;">
+                <strong>Error!</strong> Cannot choose more than 4, must choose 1.
+            </div>
+        </div>
+
+            <div class="col-xs-12 padding-0">
+                <div class="col-sm-6 col-md-3" ng-repeat="item in data" ng-show="item.color != '#D3D3D3'">
+                    <div class="margin-bottom-20 PB-sub-category" style="padding: 20px;">
+                        <h4 class="text-uppercase text-bold">{{item.label}}</h4>
+                        <div ng-repeat="sub in item.subScores">
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input id="PB-subcat-{{sub.SubCategory.Id}}" ng-checked="selectedSubcategory(sub.SubCategory.Id)" ng-click="clickedCheckBox($event, sub.SubCategory.Id)" type="checkbox" class="styled PB-checkbox" />
+                                <label class="font-size-13" for="PB-subcat-{{sub.SubCategory.Id}}">{{sub.SubCategory.Name}}: {{Math.round(sub.Score)}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="row PBB-hide-on-print">
+        <div class="col-xs-6">
+            <br/><br/>
+            {% endverbatim %}
+            <a href="{% url 'fit:dashboard' %}"><button class="btn btn-primary primaryBtn buildYourDreamBtn text-uppercase gray-back-btn">Dashboard</button></a>
+            {% verbatim %}
+        </div>
+                    <div class="col-xs-6">
+                <br /><br />
+                <a class="pull-right btn btn-primary primaryBtn buildYourDreamBtn text-uppercase margin-bottom-30" ng-click="goalGate()">Build Plan</a>
+            </div>
+    </div>
+    
+            <div class="col-xs-12 pull-right">
+            
+                
+            </div>
+        </div>
+    
+</div>
+
+{% endverbatim %}
+<script src="{% static 'Scripts/d3.min.js' %}"></script>
+<script src="{% static 'assets/js/d3.v3.min.js' %}"></script>
+<!-- <script src="//labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
+<link href="{% static 'assets/css/c3.css' %}" rel="stylesheet" />
+<script src="{% static 'Scripts/c3.js' %}"></script>
+<script src="{% static 'assets/js/d3.v3.min.js' %}"></script>
+<script src="{% static 'Scripts/d3Tip.js' %}"></script>
+{% verbatim %}
+<script>
+    fitApp.factory('PlanBuilderDashboardfactory', function ($http) {
+        return {
+
+            getQuestions: function (items, callback) {
+            	{% endverbatim %}
+                var url = "{% url 'fit:answers' %}" + "?cognitive=" + items.cognitive + "&financial=" + items.financial + "&emotional=" + items.emotional + "&physical=" + items.physical;
+                {% verbatim %}
+                $http({ method: 'GET', url: url, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+            },
+
+            addPlanBuilderObject: function(subCategoryId, callback) {
+                {% endverbatim %}
+                var url = "{% url 'fit:plan_create' %}" + "?SubdimensionId=" + subCategoryId;
+                {% verbatim %}
+                $http({
+                        method: 'POST',
+                        url: url,
+                        data: subCategoryId,
+                        headers: {
+                            'Content-Type':
+                                'application/json'
+                        }
+                    })
+                    .success(function(data, status, headers, config) {
+                        data = angular.fromJson(data);
+                        callback(data);
+                    })
+                    .error(function(data, status, headers, config) {
+                        console.log("error: addPlanBuilderObject");
+                    });
+            },
+
+            removePlanBuilderObject: function(subCategoryId, callback) {
+            	{% endverbatim %}
+                var url = "{% url 'fit:plan_remove' %}" + "?SubdimensionId=" + subCategoryId;
+                {% verbatim %}
+                $http({ method: 'POST', url: url, data: subCategoryId, headers: { 'Content-Type': 'application/json' } })
+                    .success(function(data, status, headers, config) {
+                        data = angular.fromJson(data);
+                        callback(data);
+                    })
+                    .error(function(data, status, headers, config) {
+
+                    });
+            }
+        }
+    });
+
+    fitApp.controller('PlanBuilderDashboardCtrl', function ($scope, PlanBuilderDashboardfactory) {
+        $scope.Math = window.Math;
+        $scope.data = [];
+        $scope.allData = [];
+        $scope.filter = {
+            cognitive: 1,
+            financial: 1,
+            emotional: 1,
+            physical: 1
+        }
+        $scope.numSelectedCheckbox = 0;
+
+        $scope.updateFilter = function (eventType) {
+
+            if (eventType == 'cognitive') {
+                if ($scope.filter.cognitive == 1 && $scope.filter.financial == 0 && $scope.filter.emotional == 0 && $scope.filter.physical == 0) {
+                    $scope.filter.cognitive = 1;
+                    $scope.filter.financial = 1;
+                    $scope.filter.emotional = 1;
+                    $scope.filter.physical = 1;
+                    $(".dimensionsButtonWrapper a div").css('opacity', function (i, o) {
+                        return 1;
+                    });
+                }
+                else {
+                    $scope.filter.cognitive = 1;
+                    $scope.filter.financial = 0;
+                    $scope.filter.emotional = 0;
+                    $scope.filter.physical = 0;
+                }
+
+            }
+
+            else if (eventType == 'financial') {
+                if ($scope.filter.cognitive == 0 && $scope.filter.financial == 1 && $scope.filter.emotional == 0 && $scope.filter.physical == 0) {
+                    $scope.filter.cognitive = 1;
+                    $scope.filter.financial = 1;
+                    $scope.filter.emotional = 1;
+                    $scope.filter.physical = 1;
+                    $(".dimensionsButtonWrapper a div").css('opacity', function (i, o) {
+                        return 1;
+                    });
+                }
+                else {
+                    $scope.filter.cognitive = 0;
+                    $scope.filter.financial = 1;
+                    $scope.filter.emotional = 0;
+                    $scope.filter.physical = 0;
+                }
+
+            }
+            else if (eventType == 'emotional') {
+                if ($scope.filter.cognitive == 0 && $scope.filter.financial == 0 && $scope.filter.emotional == 1 && $scope.filter.physical == 0) {
+                    $scope.filter.cognitive = 1;
+                    $scope.filter.financial = 1;
+                    $scope.filter.emotional = 1;
+                    $scope.filter.physical = 1;
+                    $(".dimensionsButtonWrapper a div").css('opacity', function (i, o) {
+                        return 1;
+                    });
+                }
+                else {
+                    $scope.filter.cognitive = 0;
+                    $scope.filter.financial = 0;
+                    $scope.filter.emotional = 1;
+                    $scope.filter.physical = 0;
+                }
+
+            }
+            else if (eventType == 'physical') {
+                if ($scope.filter.cognitive == 0 && $scope.filter.financial == 0 && $scope.filter.emotional == 0 && $scope.filter.physical == 1) {
+                    $scope.filter.cognitive = 1;
+                    $scope.filter.financial = 1;
+                    $scope.filter.emotional = 1;
+                    $scope.filter.physical = 1;
+                    $(".dimensionsButtonWrapper a div").css('opacity', function (i, o) {
+                        return 1;
+                    });
+                }
+                else {
+                    $scope.filter.cognitive = 0;
+                    $scope.filter.financial = 0;
+                    $scope.filter.emotional = 0;
+                    $scope.filter.physical = 1;
+                }
+
+            }
+        }
+
+        $scope.filterGraph = function (e, eventType) {
+            e.preventDefault();
+            $scope.allData = [];
+
+            $(".dimensionsButtonWrapper a div").css('opacity', function (i, o) {
+                return 0.4;
+            });
+
+            if ($(e.toElement).is('h5')) {
+                $(e.toElement).parent().css('opacity', function (i, o) {
+                    return 1;
+                });
+            }
+            else {
+                $(e.toElement).css('opacity', function (i, o) {
+                    return 1;
+                });
+            }
+
+
+
+            $scope.updateFilter(eventType);
+
+
+            PlanBuilderDashboardfactory.getQuestions($scope.filter,
+                function(response) {
+                    $scope.data = response;
+                    $('#dimensionsD3Object').empty();
+                    $scope.displayGraph();
+                });
+        };
+
+        $scope.displayGraph = function () {
+            var width = 250, height = 250, radius = Math.min(width, height) / 2, innerRadius = 0.3 * radius;
+            $scope.fitScore = $scope.data[0].score + $scope.data[1].score + $scope.data[2].score + $scope.data[3].score;
+
+
+            $scope.balanceScore = $scope.data[0].balance;
+
+            var pie = d3.layout.pie()
+                .sort(null)
+                .value(function (d) { return d.width; });
+
+            var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([0, 0])
+                .html(function (d) {
+                    return d.data.label + ": <span style='color:orangered; '>" + d.data.score + "</span>" + "<br/> <p style='width: 450px; font-weight:normal;'>" + d.data.description + "</p>";
+
+                });
+
+            var arc = d3.svg.arc()
+                .innerRadius(innerRadius)
+                .outerRadius(function (d) {
+                    return (radius - innerRadius) * (d.data.score / 25.0) + innerRadius;
+                });
+
+            var outlineArc = d3.svg.arc()
+                    .innerRadius(innerRadius)
+                    .outerRadius(radius);
+
+            var svg = d3.select("#dimensionsD3Object").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+            svg.call(tip);
+
+            var item = [];
+            $scope.data.forEach(function (d) {
+                d.subScores.forEach(function (s) {
+                    item = [];
+                    item.id = d.id;
+                    item.order = d.order;
+                    item.color = s.Color;
+                    item.weight = d.weight;
+                    item.score = s.Score;
+                    item.width = d.weight;
+                    item.label = s.SubCategory.Name;
+                    item.description = s.Description;
+                    $scope.allData.push(item);
+
+                });
+            });
+
+            // for (var i = 0; i < data.score; i++) { console.log(data[i].id) }
+
+            var path = svg.selectAll(".solidArc")
+                .data(pie($scope.allData))
+                .enter().append("path")
+                .attr("fill", function (d) { return d.data.color; })
+                .attr("class", "solidArc")
+                .attr("stroke", "gray")
+                .attr("d", arc)
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
+
+            var outerPath = svg.selectAll(".outlineArc")
+                .data(pie($scope.allData))
+                .enter().append("path")
+                .attr("fill", "none")
+                .attr("stroke", "gray")
+                .attr("class", "outlineArc")
+                .attr("d", outlineArc);
+
+
+            // calculate the weighted mean score
+            var score = 0;
+            // calculate the weighted mean score
+            if ($scope.filter.cognitive == 1 && $scope.filter.financial == 1 && $scope.filter.emotional == 1 && $scope.filter.physical == 1) {
+                score = $scope.fitScore;
+            }
+            else if ($scope.filter.cognitive == 1) {
+                score = $scope.data[0].score;
+            }
+            else if ($scope.filter.emotional == 1) {
+                score = $scope.data[1].score;
+            }
+            else if ($scope.filter.financial == 1) {
+                score = $scope.data[3].score;
+            }
+
+            else if ($scope.filter.physical == 1) {
+                score = $scope.data[2].score;
+            }
+
+
+            svg.append("svg:text")
+                .attr("class", "aster-score")
+                .attr("dy", ".35em")
+                .attr("text-anchor", "middle") // text-align: right
+                .text(Math.round(score));
+
+        }
+
+        PlanBuilderDashboardfactory.getQuestions($scope.filter, function (response) {
+            $scope.data = response;
+            $scope.displayGraph();
+        });
+
+        //convert model data to json
+        // {"Id":243,"UserId":331,"GoalId":24,"Task1Id":167,"Task2Id":169,"DimensionId":2,"SubDimensionId":8},{"Id":245,"UserId":331,"GoalId":65,"Task1Id":482,"Task2Id":0,"DimensionId":4,"SubDimensionId":20},{"Id":246,"UserId":331,"GoalId":1,"Task1Id":2,"Task2Id":0,"DimensionId":1,"SubDimensionId":1},{"Id":249,"UserId":331,"GoalId":45,"Task1Id":0,"Task2Id":0,"DimensionId":3,"SubDimensionId":15},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":8},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":9},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":10},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":11},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":12},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":13},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":14},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":15},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":16},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":17},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":18},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":19},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":20},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":21},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":22},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":32},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":33},{"Id":0,"UserId":0,"GoalId":0,"Task1Id":0,"Task2Id":0,"DimensionId":0,"SubDimensionId":34}
+        $scope.planBuilderObjects = [];
+
+        for (var n = 0; n < $scope.planBuilderObjects.length; n++) {
+            if ($scope.planBuilderObjects[n].Id > 0) {
+                $scope.numSelectedCheckbox++;
+            }
+        }
+
+        //check for selected subcategories
+        $scope.selectedSubcategory = function(subCatId) {
+            $scope.checked = false;
+            for (var i = 0; i < $scope.planBuilderObjects.length; i++) {
+                if ($scope.planBuilderObjects[i].SubDimensionId == subCatId) {
+                    if ($scope.planBuilderObjects[i].Id > 0) {
+                        $scope.checked = true;
+                        break;
+                    } else {
+                        $scope.checked = false;
+                    }
+                }
+            }
+            return $scope.checked;
+        }
+
+        $scope.clickedCheckBox = function (e, subCatId) {
+            $scope.subCategoryId = subCatId;
+
+            if (e.target.checked) {
+                if ($scope.numSelectedCheckbox >= 4) {
+                    e.target.checked = false;
+
+                    $('.alert-danger').fadeIn();
+
+                    setTimeout(function() { $('.alert-danger').fadeOut(); }, 5000);
+                } else {
+                    e.target.checked = true;
+                    $scope.numSelectedCheckbox++;
+
+                    //save SubDimensionId and according DimensionId, use the same UserId value
+                    PlanBuilderDashboardfactory.addPlanBuilderObject($scope.subCategoryId, function(response) {
+
+                    });
+                }
+            }
+            else {
+                e.target.checked = false;
+                $scope.numSelectedCheckbox--;
+
+                //remove SubDimensionId from Custom_PlanBuilderObjects
+                PlanBuilderDashboardfactory.removePlanBuilderObject($scope.subCategoryId,
+                    function(response) {
+
+                    });
+            }
+
+        }
+
+
+        $scope.goalGate = function() {
+             
+            if ($scope.numSelectedCheckbox > 0) {
+            	{% endverbatim %}
+                window.location.href = "{% url 'fit:plan_builder_goals' %}";
+                {% verbatim %}
+            } else {
+                $('.alert-danger').fadeIn();
+                setTimeout(function() { $('.alert-danger').fadeOut(); }, 5000);
+            }
+        };
+
+    });
+
+
+</script>
+
+         
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+       
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href=" https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+    {% endverbatim %}
+    <script type="text/javascript" src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="{% static 'assets/plugins/back-to-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/smoothScroll.js' %}"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="{% static 'assets/js/app.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="{% static 'assets/plugins/respond.js' %}"></script>
+        <script src="{% static 'assets/plugins/html5shiv.js' %}"></script>
+        <script src="{% static 'assets/plugins/placeholder-IE-fixes.js' %}"></script>
+    <![endif]-->
+    {% verbatim %}
+    <script type="text/javascript">
+        
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+         
+            $(document).on("keyup", function (event) {
+               
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+                    
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script type="text/javascript">mixpanel.track("view-page");</script>
+</body>
+</html>
+{% endverbatim %}

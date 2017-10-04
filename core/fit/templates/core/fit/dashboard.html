@@ -1,0 +1,1582 @@
+{% load staticfiles %}
+{% load angular %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title></title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footers/footer-v1.css' %}">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/line-icons/line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.css' %}">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/pages/page_about.css' %}">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme-colors/default.css' %}" id="style_color">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+    <link href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.theme.css' %}" rel="stylesheet" />
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link href="{% static 'assets/css/layouts/white_layout.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/headers/Custom_Header.css' %}" rel="stylesheet" />
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'Scripts/angular.min.js' %}"></script>
+    <script src="{% static 'Scripts/main.js' %}"></script>
+    <script src="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+    <!-- tmp -->
+    <script src="{% static 'app/tmp-TakeFitfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-TakeFitCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Overviewfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-OverviewCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-DimensionsCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HistoricalCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingFactory.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-AdvancedMetricsCtrl.js' %}"></script>
+
+    <style>
+         .cancelBtn {
+    background: transparent;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #515151;
+    line-height: 17px;
+}
+    .cancelBtn:hover {
+    background: #515151;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #FFFFFF;
+    line-height: 17px;
+}
+
+        .header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a {
+            bottom: -2px;
+            position: relative;
+            border-bottom: none;
+        }
+    </style>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("{{ MIXPANEL_TOKEN }}");</script><!-- end Mixpanel -->
+</head>
+
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper">
+
+
+<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            {% if user and not user.is_anonymous %}
+            <a class="logo" href="{% url 'fit:index' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% else %}
+            <a class="logo" href="{% url 'fit:index' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+            {% if user and not user.is_anonymous %}
+            <a href="{% url 'fit:dashboard' %}">My Dashboard</a>
+            <a href="{% url 'fit:assessment' %}">FIT Assessment</a>
+            <a href="{% url 'fit:dream_builder' %}">My Dream Builder</a>
+            <a href="{% url 'fit:plan_builder' %}">My Plan Builder</a>
+            <a href="{% url 'fit:calendar' %}">My Calendar</a>
+            <a href="{% url 'account_settings' %}">My Account</a>
+            <a href="{% url 'account_logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Sign In</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<!--=== End Header ===-->
+
+
+
+
+
+<style>
+    .tooltip-inner {
+    text-align:left;
+}
+    h3 {
+    text-align:center;
+}
+</style>
+
+
+<link rel="stylesheet" href="{% static 'assets/css/pages/page_log_reg_v1.css' %}">
+
+
+<div class="container dashboardContainer" >
+    <div class="">
+        <div class="bg-color-white dashboardDisplay">
+            <div class="col-md-3 profileContainer fullWidth">
+                <style>
+    .blackBar {
+        background-color: #373737;
+        height: 40px;
+        text-align: center;
+        margin-left:-15px;
+        margin-right:-15px;
+    }
+    .profile-header{
+        color: #fff;
+        font-size: 25px;
+    }
+        .profilePadding {
+        margin-top: 15px;
+        margin-bottom: 50px;
+    }
+
+    .stick-to-bottom{
+    position: relative;
+    top: 10px;
+    margin: 0 auto;
+    width: 100%;
+        border-top: 1px solid #ccc;
+    }
+</style>
+
+
+<div class="blackBar">
+    <div class="col-md-12">
+        <span class="profile-header">Profile</span>
+    </div>
+</div>
+<br />
+<div class="row profilePhoto">
+    <div class="col-md-12">
+        <style>
+    .profileContainer svg{
+      width:170px;
+    }
+    .profileContainer .name {
+        color: #515151;
+    }
+</style>
+
+<!-- User name and icon section -->
+<div class="row">
+    <div style="width:160px; margin: auto;">
+        <svg viewbox="0 0 100 100" version="1.1" xmlns="//www.w3.org/2000/svg">
+            <defs>
+                <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+                    <image xlink:href="https://s3-us-west-2.amazonaws.com/fitprofiles/70_131074712036378485" x="-25" width="150" height="100" />
+                </pattern>
+            </defs>
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)" />
+        </svg>
+    </div>
+
+    <h2 style="text-align:center;"><a href="{% url 'account_settings' %}" class="name">{{user.first_name}} {{user.last_name}}</a></h2>
+
+</div>
+
+    </div>
+</div>
+
+ <div class="row hiddenTablet">
+    <div class="col-md-12">
+
+<!-- Bottom of left nav section "MY FIT PLAN"-->
+<div class="margin-top-40" ng-controller="TakeFitCtrl">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="col-xs-12">
+        <div style="text-align:center;  ">
+            <h4 class="title" style="">MY FIT PLAN</h4>
+        </div>
+    </div>
+
+    <div class="buttonWrapper">
+        <div>
+            <a href="{% url 'account_settings' %}" class="btn btn-primary primaryBtn text-uppercase ">MY ACCOUNT</a>
+        </div>
+        <br />
+
+        <div>
+            <a href="{% url 'fit:assessment' %}" class="btn btn-primary primaryBtn text-uppercase ">FIT Assessment</a>
+        </div>
+        <br />
+            <div>
+                <a href="{% url 'fit:dream_builder' %}" class="btn btn-primary primaryBtn text-uppercase ">My Dream Builder</a>
+            </div>
+        <br />
+
+            <div>
+                <a href="{% url 'fit:plan_builder' %}" class="btn btn-primary primaryBtn text-uppercase ">My Plan Builder</a>
+            </div>
+        <br/>
+
+            <div>
+                <a href="{% url 'fit:calendar' %}" class="btn btn-primary primaryBtn text-uppercase ">MY CALENDAR</a>
+            </div>
+        <br/>
+            <div>
+                <a href="https://thefitexperience.com/f2/library/dimension/1" class="btn btn-primary primaryBtn text-uppercase ">FIT Library</a>
+            </div>
+    </div>
+
+</div>
+
+<style>
+    .profileContainer .buttonWrapper .btn{
+        width:80%;
+        margin:auto;
+        font-size:14px
+    }
+    .profileContainer .buttonWrapper{
+         text-align: center;
+    }
+    .profileContainer .title{
+        text-transform: uppercase;
+        font-weight: bolder;
+        color: #515151;
+    }
+</style>
+
+
+
+    </div>
+</div>
+
+<div class="row hiddenTablet" style="display: none;">
+    <div class="col-md-12 ">
+
+<!-- social profile icons at the footer -->
+<div class="margin-top-40">
+    <div class="profileFitPlanWrapper"></div>
+        <br />
+        <h4 class="title" style="text-align:center;">
+            SHARE YOUR JOURNEY
+        </h4>
+
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <ul class="footer-socials list-inline">
+
+
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                            <i class="profileSocialIcons fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                            <i class="profileSocialIcons fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                            <i class="profileSocialIcons fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                            <i class="profileSocialIcons fa fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+</div>
+
+
+    </div>
+</div>
+
+<div class="row hiddenTablet">
+    <div class="col-md-12 ">
+        <div class="margin-top-40 buttonWrapper">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="text-center margin-bottom-50">
+        <a href="{% url 'fit:about' %}" class="btn btn-primary primaryBtn text-uppercase ">About FIT Assessment</a>
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+            </div>
+
+            <div class="col-md-9 fullWidth dashboardContent">
+
+
+
+<style>
+    .nav.nav-tabs li a {
+    color: #515151;
+     border: none;     font-size: 12px;
+
+
+    }
+    .nav.nav-tabs li {
+        padding: 0px;
+    text-align: center;
+        background: #dddddd;
+        border: none;
+    }
+     .nav.nav-tabs li.active {
+        background: #fff;
+         border: none;
+    }
+     .nav.nav-tabs li.active a {
+             border: none;
+        }
+        .nav.nav-tabs li.active a:hover {
+             border: none;
+             background: #fff;
+        }
+
+    .overviewMembershipDetails .margin-bottom-40{
+        margin-bottom: 0;
+    }
+
+    .overviewMembershipDetails .primaryBtn, .overviewMembershipDetails .primaryBtn:hover, .overviewMembershipDetails .secondaryBtn, .overviewMembershipDetails .secondaryBtn:hover {
+        font-size: 11px;
+    }
+
+    .overviewMembershipDetails .btn {
+        padding: 6px 9px;
+    }
+</style>
+
+<!-- top nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active col-xs-3"><a data-toggle="tab" href="#overviewTab">OVERVIEW</a></li>
+            <li class="col-xs-3"><a data-toggle="tab" href="#physicalTab">DIMENSIONS</a></li>
+            <li class="col-xs-3"><a data-toggle="tab" href="#historicalTab">HISTORICAL DATA</a></li>
+            <li class="col-xs-3"><a data-toggle="tab" href="#cognitiveTab">ADVANCED METRICS</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="overviewTab" class="tab-pane fade in active">
+                <div style="min-height:500px">
+    <div class="overviewWrappper" id="OverviewCtrl" ng-controller="OverviewCtrl" ng-cloak>
+        <div class="row" ng-show="!filter.isLoading">
+
+<div class="col-xs-12 margin-top-20">
+    <h2>
+        Overview
+    </h2>
+    <div style="border-bottom: 1px solid #9B9B9B;  margin: auto;  width: 100%;"></div>
+</div>
+<div class="col-xs-12 margin-bottom-20">
+    <p>
+        Below, your CircumFIT provides your FIT and BALANCE scores. Higher FIT scores indicate higher levels of FITness. Lower BALANCE scores indicate more BALANCE across the four dimensions. Click below for more detailed information about the CircumFIT.
+    </p>
+</div>
+
+<div class="graphWrapper" style="text-align:center; margin: auto;">
+    <a href="#">
+        <div ng-click="filterGraph($event, 'financial')" style="float:left" class="icon-financial"><h5 style="margin-top:75px">Financial</h5></div>
+    </a>
+    <a href="#">
+        <div ng-click="filterGraph($event, 'cognitive')" style="float:right" class="icon-cognitive"><h5 style="margin-top:75px">Cognitive</h5></div>
+    </a>
+    <div id="d3Object"> </div>
+    <a href="#">
+        <div ng-click="filterGraph($event , 'physical')" style="float:left; margin-top: -90px;" class=" icon-physical"> <h5 style="margin-top:75px">Physical</h5></div>
+    </a>
+    <a href="#">
+        <div ng-click="filterGraph($event, 'emotional')" style="float:right;  margin-top: -90px;" class="icon-emotional"><h5 style="margin-top:75px">Emotional</h5></div>
+    </a>
+</div>
+<div class="col-xs-12 margin-top-40">
+    {% verbatim %}
+    <div style="text-align:center; margin-bottom:20px">
+        <h3>Your FIT Score: {{fitScore}}</h3>
+        <br />
+        <h3>Balance Score: {{balanceScore}}</h3>
+    </div>
+    {% endverbatim %}
+
+<!-- understand the graph -->
+    <div style="float:right;">
+        <div>
+            <div style="border: 1px solid #9B9B9B; padding: 0px 10px; border-radius: 10px; position: absolute; top: 50px; right: 20px;  border-radius: 10px; cursor: pointer!important;">
+                <div data-toggle="tooltip" data-placement="left" data-animation="true" data-container="body" title="<H3>Overview</H3>Your CircumFIT is scored from 0 to 100. It is broken into four dimensions: Cognitive (orange), Emotional (blue), Physical (red), and Financial (green). Each dimension is scored out of 25, and your FIT score is the sum of the dimensions, for a maximum score of 100. The FIT, BALANCE, and DIMENSION scores are shown in the middle of the CircumFIT when you click on each icon.
+                <br/><br/>
+                Within each dimension are individual pie pieces that represent the subcategories. The color of each pie piece corresponds to the color and subcategory on the legend to right of the CircumFIT. Subcategories are scored out of 25, and the dimension score is the average of the subcategories. Consequently, higher subcategory scores produce higher dimension scores, which result in higher FIT scores. Finally, your BALANCE score is the deviation across the dimensions. Because this is a deviation score, lower BALANCE scores are associated with greater balance across the four dimensions of your life." data-html="true" href="#"><h5>UNDERSTAND THE GRAPH  <span class="glyphicon glyphicon-info-sign"></span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+        </div>
+
+
+
+
+    </div>
+</div>
+<style>
+    .cognitiveArc, .financialArc, .emotionalArc,.physicalArc,.testArc
+    {
+        stroke-width: 3px;
+        stroke-opacity:.6;
+    }
+</style>
+
+<style>
+#d3Object {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.bar {
+    fill: orange;
+}
+
+.solidArc:hover {
+    fill: orangered;
+}
+
+.solidArc {
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.x.axis path {
+    display: none;
+}
+
+.aster-score {
+    line-height: 1;
+    font-weight: bold;
+    font-size: 500%;
+}
+
+  .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+
+
+body .n {
+    padding: 12px !important;
+}
+
+    .dashboardContent .planLabel{
+        font-size: 11px;
+    }
+</style>
+            </div>
+            <div id="physicalTab" class="tab-pane fade">
+                <div ng-controller="DimensionsCtrl">
+
+    <div class="row">
+
+
+<div class="col-xs-12 margin-top-20">
+    <p>Dashboard</p>
+    <h2>
+        FIT Dimensions
+    </h2>
+    <div style="border-bottom: 1px solid #9B9B9B;  margin: auto;  width: 100%;"></div>
+</div>
+<div class="row">
+
+    <div class="col-xs-12 col-md-6 dimensionsButtonWrapper" style="margin-bottom:40px">
+        <div style="padding-left:40px;">
+            <h5 style="padding-top:20px; margin-bottom:-10px"><b>YOUR GRAPH</b></h5>
+            <p style="padding-top:20px; margin-bottom:-10px">CLICK TO FILTER BY DIMENSION</p>
+
+        </div>
+
+        <a class="col-xs-3" href="#">
+            <div ng-click="filterGraph($event, 'cognitive')" class="icon-cognitive"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Cognitive</h5></div>
+        </a>
+        <a class="col-xs-3 " href="#">
+            <div ng-click="filterGraph($event , 'emotional')" class="icon-emotional"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Emotional</h5></div>
+        </a>
+        <a class="col-xs-3 " href="#">
+            <div ng-click="filterGraph($event, 'physical')" class="icon-physical"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Physical</h5></div>
+        </a>
+        <a class="col-xs-3 " href="#">
+            <div ng-click="filterGraph($event, 'financial')" class="icon-financial"><h5 style="margin-top:75px;  position:absolute; margin-left:20px">Financial</h5></div>
+        </a>
+    </div>
+
+
+</div>
+
+
+{% verbatim %}
+<div class="row">
+    <div class="col-xs-12 col-md-5 margin-bottom-20" style="text-align:center; ">
+
+        <div id="dimensionsD3Object"> </div>
+
+        <h3>Balance Score: {{balanceScore}}</h3>
+
+
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-offset-0 col-md-7">
+        <div class="col-xs-6" ng-repeat="item in data" style="height:300px" ng-show="item.color != '#D3D3D3'">
+
+            <h3>{{item.label}}</h3>
+            <div ng-repeat="sub in item.subScores">
+
+
+                <div style="float: left;  margin-right: 5px; margin-top: 5px; width: 30px; height: 10px; background:{{sub.Color}} "></div><p style="font-size:13px">{{sub.SubCategory.Name}}: {{Math.round(sub.Score)}}</p>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col-xs-12">
+    <div style="border-bottom: 1px solid #9B9B9B;  margin: auto;  width: 100%;"></div>
+    <br />
+    <h3>
+        DIMENSION DESCRIPTIONS
+    </h3>
+    <br />
+
+</div>
+
+        <!-- tab #2 Dimensions -->
+<div class="col-xs-12">
+
+    <accordion>
+        <accordion-group ng-repeat="item in data" ng-show="item.color != '#D3D3D3'">
+            <accordion-heading> <div style=" white-space:nowrap; margin:0px; zoom:1;" class="icon-{{item.id}}"><h3 style="position: absolute; top: 25px; left: 100px;">{{item.label}}: {{item.score}}</h3></div>  </accordion-heading>
+            <div class="row" style="margin:0px">
+                <div class="col-xs-12" style="padding:0px">
+                    <div class="col-md-3 col-xs-12 dimensionsWrapper">
+                        <div class="col-xs-12" style="background: {{item.color}}; opacity: .7; text-align:center;">
+                            <p> < 10</p>
+                            <p>Ramping UP</p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                {{item.rampingUp}}
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 dimensionsWrapper">
+                        <div class="col-xs-12" style="background: {{item.color}};     opacity: .8; text-align:center;">
+                            <p>10-15</p>
+                            <p>Developer</p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                {{item.developer}}
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 dimensionsWrapper">
+                        <div class="col-xs-12" style="background: {{item.color}};    opacity: .9; text-align:center;">
+                            <p>15-20</p>
+                            <p>Experienced</p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                {{item.experienced}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 dimensionsWrapper">
+                        <div class="col-xs-12" style="background: {{item.color}}; text-align:center;">
+                            <p>20-25</p>
+                            <p>FITastic</p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>
+                                {{item.FITastic}}
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+<style>
+    accordion .panel-body {
+        padding: 0px;
+    }
+
+    .panel-heading:hover {
+        background-color: #D7D7D7;
+    }
+
+    .panel-default {
+        margin-bottom: -3px !important;
+    }
+      #dimensionsD3Object  .aster-score{
+        font-size:200%!important;
+    }
+</style>
+
+    </div>
+</div>
+
+<style>
+
+</style>
+
+
+
+
+<script>
+
+
+
+
+
+</script>
+
+<style>
+    #d3Object {
+        font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .bar {
+        fill: orange;
+    }
+
+    .solidArc:hover {
+        fill: orangered;
+    }
+
+    .solidArc {
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .x.axis path {
+        display: none;
+    }
+
+    .aster-score {
+        line-height: 1;
+        font-weight: bold;
+        font-size: 500%;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+
+        .d3-tip.n:after {
+            margin: -1px 0 0 0;
+            top: 100%;
+            left: 0;
+        }
+</style>
+            </div>
+
+<!-- Historical tab -->
+            <div id="historicalTab" class="tab-pane fade">
+                <div ng-controller="HistoricalCtrl">
+    <div ng-show="surveryAwnsers.length >= 2">
+        <div class="row">
+            <div class="col-xs-12">
+    <p>&nbsp;</p>
+    <h2> Historical Data </h2>
+    <div style="border-bottom: 1px solid #9B9B9B;  margin: auto;  width: 100%;"></div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6 historicalButtonWrapper" style="margin-bottom:40px">
+        <div style="padding-left:40px;">
+            <h5 style="padding-top:20px; margin-bottom:-10px"><b>FILTER BY</b></h5>
+            <p style="padding-top:20px; margin-bottom:-10px">DIMENSION</p>
+        </div>
+        <a class="col-xs-3" href="#">
+            <div ng-click="filterGraph($event, 'cognitive')" class="icon-cognitive"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Cognitive</h5></div>
+        </a>
+        <a class="col-xs-3 " href="#">
+            <div ng-click="filterGraph($event , 'emotional')" class="icon-emotional"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Emotional</h5></div>
+        </a>
+        <a class="col-xs-3 " href="#">
+            <div ng-click="filterGraph($event, 'physical')" class="icon-physical"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Physical</h5></div>
+        </a>
+        <a class="col-xs-3 " href="#">
+            <div ng-click="filterGraph($event, 'financial')" class="icon-financial"><h5 style="margin-top:75px;  position:absolute; margin-left:20px">Financial</h5></div>
+        </a>
+    </div>
+    <div class="col-xs-12 col-md-6" style="margin-bottom:40px">
+        <div style="padding-left:40px;">
+            <h5 style="padding-top:20px; margin-bottom:-10px">&nbsp;</h5>
+            <h5 style="padding-top:20px; margin-top:20px"><b>MONTH</b></h5>
+            <div class="col-xs-5">
+                <select style=" width: 125px; padding: 3px;" ng-model="selectedOne" ng-change="updateHistoricalGraphs(selectedOne, 0)" ng-options="awnser as awnser.CreateDate for awnser in surveryAwnsers"></select>
+            </div>
+            <span class="col-xs-2" style="text-align:center"> to </span>
+            <div class="col-xs-5">
+                <select style=" width: 125px; padding: 3px;" ng-model="selectedTwo" ng-change="updateHistoricalGraphs(selectedTwo, 1)" ng-options="awnserTwo as awnserTwo.CreateDate for awnserTwo in surveryAwnsers"></select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin: 0px 5px;">
+    <div class="col-xs-6" style="background-color:#F0F0F2;  border:1px solid #D7D7D7;   min-height: 200px;">
+        <div class="col-xs-12" style="text-align:center; ">
+            <div id="historicalD3Object" style="margin-top: 20px;"> </div>
+            <h4 style="white-space:nowrap">Your FIT Score: {{firstGraphData['Score']}}</h4>
+            <h4 style="white-space:nowrap">Balance Score: {{firstGraphData['Balance']}}</h4>
+        </div>
+        <div class="col-xs-12 col-md-6" ng-repeat="item in subdata" style="height:215px" ng-show="item.color != '#D3D3D3'">
+            <h3>{{item.label}}</h3>
+            <div ng-repeat="sub in item.subScores">
+                <div style="float: left;  margin-right: 5px; margin-top: 5px; width: 30px; height: 10px; background:{{sub.Color}} "></div><p style="font-size:12px; white-space:nowrap; margin-bottom:2px">{{sub.SubCategory.Name}}: {{Math.round(sub.Score)}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6" style="background-color:#F0F0F2; border:1px solid #D7D7D7;  min-height: 200px;">
+        <div class="col-xs-12" style="text-align:center; ">
+            <div id="historicalSecondD3Object" style="margin-top: 20px;"> </div>
+            <h4 style="white-space:nowrap">Your FIT Score: {{secondGraphData['Score']}}</h4>
+            <h4 style="white-space:nowrap">Balance Score: {{secondGraphData['Balance']}}</h4>
+        </div>
+        <div class="col-xs-12 col-md-6" ng-repeat="item in subDataTwo" style="height:215px" ng-show="item.color != '#D3D3D3'">
+            <h3>{{item.label}}</h3>
+            <div ng-repeat="sub in item.subScores">
+                <div style="float: left;  margin-right: 5px; margin-top: 5px; width: 30px; height: 10px; background:{{sub.Color}} "></div><p style="font-size:12px; width:200px; margin-bottom:2px">{{sub.SubCategory.Name}}: {{Math.round(sub.Score)}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+
+        <div class="row">
+
+{% endverbatim %}
+<link href="{% static 'assets/css/c3.css' %}" rel="stylesheet" />
+<script src="{% static 'Scripts/d3.min.js' %}"></script>
+<script src="{% static 'Scripts/c3.min.js' %}"></script>
+
+
+            <!-- historical chart-->
+<div class="col-xs-12">
+    <p>&nbsp;</p>
+    <h2>
+        Historical Chart
+    </h2>
+    <div class="col-xs-12 col-md-6 " style="margin-top: -35px;  padding-bottom: 20px; float:right;">
+        <div style="width: 275px; margin-right:20px" class="FitBalanceButton btn-group btn-group-justified" role="group" aria-label="..." data-toggle="buttons">
+            <label class="btn toggleFuture" id="fitButtonHistroical" ng-click="filterHistoricalGraph($event,'fit')">
+                <a>Fit</a>
+            </label>
+            <label id="balanceButtonHistroical" class="btn toggleFuture" ng-click="filterHistoricalGraph($event,'balance')">
+                <a>Balance</a>
+            </label>
+        </div>
+    </div>
+    <div id="historicalChart"></div>
+</div>
+
+
+<style>
+
+
+    #historicalChart.c3-tooltip-container{
+        visibility:visible!important;
+    }
+</style>
+
+        </div>
+    </div>
+    <div ng-show="surveryAwnsers.length <= 1 ">
+        <div class="row" style="text-align: center;">
+    <h2 style="width:70%; margin:auto; margin-top:50px;  line-height:50px">Please complete an additional FIT assessment in order to view historical data.</h2>
+    <div class="padding-20 vertical-bottom">
+        <a href="{% url 'fit:assessment' %}" class="btn btn-primary primaryBtn text-uppercase ">Take FIT Assessment</a>
+    </div>
+</div>
+
+    </div>
+
+</div>
+
+<style>
+    #d3Object {
+        font: 10px sans-serif;
+    }
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+    .bar {
+        fill: orange;
+    }
+    .solidArc:hover {
+        fill: orangered;
+    }
+    .solidArc {
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    .x.axis path {
+        display: none;
+    }
+    .aster-score {
+        line-height: 1;
+        font-weight: bold;
+        font-size: 500%;
+    }
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+    .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+    }
+    #historicalD3Object .aster-score,  #historicalSecondD3Object .aster-score{
+        font-size: 150% !important;
+    }
+</style>
+            </div>
+
+<!-- ADVANCED METRICS -->
+<!-- ADVANCED METRICS -->
+
+            <div id="cognitiveTab" class="tab-pane fade">
+                <div ng-controller="AdvancedMetricsCtrl" class="advancedMetricsWrapper">
+
+    <ul class="nav nav-tabs" >
+
+
+
+        <li class="active col-xs-3"><a data-toggle="tab"  href="#heatMapTab"> <span>STRENGTH MAPPING</span></a></li>
+        <li class=" col-xs-3"><a data-toggle="tab" ng-click="loadCurrentStanding()" href="#currentStandingTab"> <span> CURRENT STANDING</span></a></li>
+    </ul>
+
+    <div class="tab-content">
+
+
+        <div id="heatMapTab" class="tab-pane fade in active">
+
+{% verbatim %}
+<div ng-controller="HeatMapCtrl" class="heatMapWrapper col-xs-12">
+
+    <div class="row">
+        <h2>Your Advanced Metrics</h2>
+        <br />
+        <div style="border-bottom: 1px solid #9B9B9B;  margin: auto;  width: 100%;"></div>
+        <br />
+        <h4 style="margin-bottom:0px"><b>STRENGTH MAPPING</b></h4>
+        <p>The Strength Map is color-and size-coded to illustrate which dimensions and subcategories show areas of strength versus areas providing opportunities for development.</p>
+        <div class="col-xs-12" style="padding:0px;">
+            <div style=" float: right">
+                <div style="display:inline-flex;">
+                    <p style="padding:0px 20px;"> Weak 5-10</p>
+                    <p style="padding:0px 20px;"> Moderate 10-15</p>
+                    <p style="padding:0px 20px;">  Strong 15-25 </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+
+            <div style="background:black;width:25px; height:25px; float:right; margin: 0px 20px;">
+
+            </div>
+
+            <div style="background:black;width:25px; height:25px; opacity:.8; float:right; margin: 0px 20px;">
+            </div>
+            <div style="background:black;width:25px; height:25px; opacity:.6; float:right; margin: 0px 20px;">
+
+            </div>
+            <div style="background:black;width:25px; height:25px; opacity:.4; float:right; margin: 0px 20px;">
+            </div>
+            <div style="background:black;width:25px; height:25px; opacity:.2; float:right; margin: 0px 20px;">
+
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+
+            <b>BY DIMENSION</b>
+            <div ng-repeat="item in allData">
+                <div ng-if="item.score < 10" class="col-xs-12 col-md-6" style="height:100px; text-align:center; padding-top:30px; opacity:.3; background: {{item.color}};">
+                    <h5 style="color:white;font-weight:bold ">{{item.label}}: {{Math.round(item.score)}}</h5>
+                </div>
+                <div ng-if="item.score >= 10 && item.score < 15 " class="col-xs-12 col-md-6" style="height:100px; text-align:center; opacity:.5; padding-top:30px; background: {{item.color}};">
+                    <h5 style="color:white;font-weight:bold ">{{item.label}}: {{Math.round(item.score)}}</h5>
+                </div>
+                <div ng-if="item.score >= 15 && item.score < 20" class="col-xs-12 col-md-6" style="height:100px; text-align:center; opacity:.8; padding-top:30px; background: {{item.color}};">
+                    <h5 style="color:white;font-weight:bold ">{{item.label}}: {{Math.round(item.score)}}</h5>
+                </div>
+                <div ng-if="item.score >= 20" class=" col-xs-12 col-md-6" style="height:100px; text-align:center; padding-top:30px; background: {{item.color}};">
+                    <h5 style="color:white;font-weight:bold ">{{item.label}}: {{Math.round(item.score)}}</h5>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="col-xs-12">
+            <div style="text-align:center; width:60%; margin:auto">
+                <h5>CLICK TO FILTER BY DIMENSION</h5>
+                <a class="col-xs-3" href="#">
+                    <div ng-click="filterGraph($event, 'cognitive')" class="icon-cognitive"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Cognitive</h5></div>
+                </a>
+                <a class="col-xs-3 " href="#">
+                    <div ng-click="filterGraph($event , 'emotional')" class="icon-emotional"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Emotional</h5></div>
+                </a>
+                <a class="col-xs-3 " href="#">
+                    <div ng-click="filterGraph($event, 'physical')" class="icon-physical"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Physical</h5></div>
+                </a>
+                <a class="col-xs-3 " href="#">
+                    <div ng-click="filterGraph($event, 'financial')" class="icon-financial"><h5 style="margin-top:75px;  position:absolute; margin-left:20px">Financial</h5></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div id="heatMap" style="margin: 35px auto; width:{{width -22}}px; ">
+
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div style="float:right;">
+                <div>
+                    <div style="border: 1px solid #9B9B9B; padding: 0px 10px; border-radius: 10px; width: 235px;cursor: pointer!important;">
+                        <div data-toggle="tooltip" data-placement="left" data-animation="true" data-container="body" title=" <H3>Strength Map</H3>
+                        The Strength Map is color- and size-coded to illustrate which dimensions and subcategories show areas of strength versus areas
+                         providing opportunities for development. On the Dimension Strength Map, the depth of the color corresponds to the amount of strength
+                        in that dimension. The more solid the color, the higher your strength in that dimension. The Subcategories Strength Map reflects strength
+                         by size of the box. The larger the size of the box, the stronger the subcategory. Smaller boxes reflect subcategories that require more
+                        effort and time to develop, which will correlate with the Effort Model. Stronger color across all the dimensions reflects higher overall FIT
+                        . Greater variation amongst the color of the dimensions and size of the subcategory boxes will reflect lower overall BALANCE. Having lighter
+                         dimension and smaller subcategory boxes should not be viewed negatively. This provides an opportunity to focus on improving in these areas.
+                         We all have areas that need improvement. By going through the FIT process, you have taken a necessary step by isolating which areas you should
+                         focus on, and can begin to start to strengthen those dimensions and subcategories that need further improvement.
+                        <br /><br />
+                        The FIT process is not about your score. The FIT process is about establishing where you are, which will enable you to move forward toward to
+                         a Desired Future State. The FIT process is always about moving forward no matter the level of FITness."
+                       data-html="true" href="#"><h5>UNDERSTAND THE GRAPH  <span class="glyphicon glyphicon-info-sign"></span></h5></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endverbatim %}
+<style>
+    .heatMapWrapper div[class^="icon-"]
+    {
+        zoom:.9;
+    }
+    .node {
+        border: solid 1px white;
+        font: 10px sans-serif;
+        line-height: 12px;
+        overflow: hidden;
+        position: absolute;
+        text-indent: 2px;
+        font-weight: bolder;
+    }
+    .vz-weighted_tree-link{
+        stroke-width:100px
+    }
+</style>
+
+<script src="{% static 'Scripts/d3.min.js' %}"></script>
+
+
+        </div>
+        <div id="currentStandingTab" class="tab-pane fade">
+            <div ng-controller="CurrentStandingCtrl" class="currentStanding">
+
+    <div class="row">
+        <div class="col-xs-12 margin-top-20">
+            <p>Dashboard</p>
+            <h2>
+                Your Advanced Metrics
+            </h2>
+            <div style="border-bottom: 1px solid #9B9B9B;  margin: auto;  width: 100%;"></div>
+        </div>
+        <div class="row">
+
+            <div class="col-xs-8">
+                <div style="padding-left:40px;">
+                    <h5 style="padding-top:20px; margin-bottom:-5px"><b>FIT DISTRIBUTION</b></h5>
+                    <p>Along the horizontal axis, you will find the range of scores: the FIT score and the Balance scores. The vertical axis represents the number of FIT members. The black line indicates where your score falls in relation to the other members.</p>
+                    <p style="padding-top:20px; margin-bottom:-10px">CLICK TO FILTER BY DIMENSION:</p>
+
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="padding-right-40">
+                    <select class="form-control margin-bottom-26 col-md-6" style="padding:0; margin-right:10px; margin-top:30px;" id="currentStandingTime" name="currentStandingTime" required="">
+                        <option value="0">Monthly</option>
+                        <option value="1">Quarterly</option>
+                        <option value="2">Year</option>
+                        <option value="3">Life Time</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <a id="cogButton" class="col-xs-3">
+                    <div ng-click="generateCategory('cog')" class="icon-cognitive"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Cognitive</h5></div>
+                </a>
+                <a id="emoButton" class="col-xs-3 ">
+                    <div ng-click="generateCategory('emo')" class="icon-emotional"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Emotional</h5></div>
+                </a>
+                <a id="phyButton" class="col-xs-3 ">
+                    <div ng-click="generateCategory('phy')" class="icon-physical"><h5 style="margin-top:75px; position:absolute; margin-left:20px">Physical</h5></div>
+                </a>
+                <a id="finButton" class="col-xs-3 ">
+                    <div ng-click="generateCategory('fin')" class="icon-financial"><h5 style="margin-top:75px;  position:absolute; margin-left:20px">Financial</h5></div>
+                </a>
+            </div>
+            <div class="col-xs-4">
+                <div style="margin-top:20px;" class="btn-group btn-group-justified padding-right-40" role="group" aria-label="..." data-toggle="buttons">
+                    <label class="btn toggleBal" id="fitButton" ng-click="generateCurrentStanding()">
+                        <a>Fit</a>
+                    </label>
+                    <label id="balanceButton" class="btn toggleBal" ng-click="generateBalance()">
+                        <a>Balance</a>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="chart" style="height:450px; min-height:450px; margin-top:30px;">
+        </div>
+
+        <div style="float:right;">
+            <div class="padding-right-20">
+                <div style="border: 1px solid #9B9B9B; padding: 0px 10px; border-radius: 10px; width: 235px;cursor: pointer!important;">
+                    <div data-toggle="tooltip" data-placement="left" data-animation="true" data-container="body" title="
+                       <H3>Distribution Plots</H3>Along the horizontal axis, you will find the range of one of the following scores: the
+                     FIT score (ranging from 0-100), one of the DIMENSION scores (ranging from 0-25), or the BALANCE score (ranging from
+                    0-10). The vertical axis represents the number of FIT members. The curve represents all of the FIT members who fall
+                    within various ranges along the range of scores. The black line indicates where your score falls in relation to the
+                     other members. Thus, the distribution plots show you where you stand for your FIT, BALANCE, and DIMENSION scores
+                    relative to the overall population or a representative peer group. High individual FIT and DIMENSION scores (and a
+                    lower BALANCE score) will be shown further to the right on the horizontal axis.
+                        <br /><br />
+                    It is important to keep in mind that scoring lower relative to the population or a peer group should not be thought
+                    of negatively. This is not a competition, but an indication of where you currently stand relative to others in this
+                    FIT community. You should view this as a guide for improvement and an honest assessment of your strengths and
+                    opportunities.
+                    <br /><br />
+                    The FIT process is not about your score. The FIT process is about establishing where you are, which will enable you
+                    to move forward toward to a Desired Future State. The FIT process is always about moving forward no matter the level
+                     of FITness."
+
+                       data-html="true" href="#"><h5>UNDERSTAND THE GRAPH  <span class="glyphicon glyphicon-info-sign"></span></h5></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link href="{% static 'assets/css/c3.css' %}" rel="stylesheet" />
+<script src="{% static 'Scripts/c3.js' %}"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="{% static 'assets/js/d3.v3.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<style>
+    .currentStanding div[class^="icon-"] {
+        zoom: .8;
+    }
+
+    .toggleBal.btn {
+        border-color: #404552;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+        .toggleBal.btn a {
+            color: #404552;
+        }
+
+    .toggleBal.btn-primary:active {
+        background-color: #404552;
+    }
+
+    .toggleBal.btn-primary {
+        border-color: #404552;
+        background-color: #404552;
+        border-radius: 10px;
+    }
+
+        .toggleBal.btn-primary a {
+            color: white;
+        }
+
+    .c3-chart-bars {
+        z-index: 100;
+    }
+
+    .tooltip-inner {
+        max-width: 500px;
+        line-height: 1.5;
+        padding: 12px;
+        border-radius: 5px;
+    }
+
+    .glyphicon.glyphicon-info-sign {
+        color: #FF7F00;
+    }
+</style>
+
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+    .advancedMetricsWrapper .nav-tabs li
+    {
+         background-color: #fff;
+    }
+
+    .advancedMetricsWrapper .nav-tabs .active span
+    {
+           border-bottom: solid 1px #ff7f00!important;
+    }
+</style>
+            </div>
+        </div>
+
+ <style>
+     .d3-tip {
+         padding: 0px;
+     }
+ </style>
+
+
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12">
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 margin-top-20 margin-bottom-20 dashboardMessage text-center">
+                <h3>Content is not available on mobile view.</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="{% static 'Scripts/d3Tip.js' %}"></script>
+
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href="https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a class="col-xs-12" href="{% url 'privacy_policy' %}">Privacy Policy</a> | <a class="col-xs-12" href="{% url 'termsofservice' %}">Terms of Service</a> | <a class="col-xs-12" href="{% url 'about' %}">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="{% static 'assets/plugins/back-to-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/smoothScroll.js' %}"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="{% static 'assets/js/app.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="{% static '/assets/plugins/respond.js' %}"></script>
+        <script src="{% static '/assets/plugins/html5shiv.js' %}"></script>
+        <script src="{% static '/assets/plugins/placeholder-IE-fixes.js' %}"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        //$(".owl-carousel").owlCarousel();
+        $(document).ready(function () {
+
+            $("#lastViewed").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var lastViewed = $("#lastViewed");
+            $('.lastViewed-next').click(function () {
+                lastViewed.trigger('owl.next');
+            })
+
+            $('.lastViewed-prev').click(function () {
+                lastViewed.trigger('owl.prev');
+            })
+
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var owl = $("#owl-demo");
+            $('.recomended-next').click(function () {
+                owl.trigger('owl.next');
+            })
+
+            $('.recomended-prev').click(function () {
+                owl.trigger('owl.prev');
+            })
+
+            $("#popularTiles").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var popularTiles = $("#popularTiles");
+            $('.popular-next').click(function () {
+                popularTiles.trigger('owl.next');
+            })
+
+            $('.popular-prev').click(function () {
+                popularTiles.trigger('owl.prev');
+            })
+
+
+        });
+
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+
+            $(document).on("keyup", function (event) {
+
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script type="text/javascript">mixpanel.track("view-page");</script>
+</body>
+</html>

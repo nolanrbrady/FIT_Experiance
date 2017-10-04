@@ -1,0 +1,974 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+
+    <title>FIT | Dream Builder</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footers/footer-v1.css' %}">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/line-icons/line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.css' %}">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/pages/page_about.css' %}">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme-colors/default.css' %}" id="style_color">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+    <link href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.theme.css' %}" rel="stylesheet" />
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link href="{% static 'assets/css/layouts/white_layout.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/headers/Custom_Header.css' %}" rel="stylesheet" />
+    
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'Scripts/angular.min.js' %}"></script>
+    <script src="{% static 'Scripts/main.js' %}"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+    <!-- tmp -->
+    <script src="{% static 'app/tmp-TakeFitfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-TakeFitCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Overviewfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-OverviewCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-DimensionsCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HistoricalCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingFactory.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-AdvancedMetricsCtrl.js' %}"></script>
+
+    <style>
+         .cancelBtn {
+    background: transparent;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #515151;
+    line-height: 17px;
+}
+    .cancelBtn:hover {
+    background: #515151;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #FFFFFF;
+    line-height: 17px;
+}
+
+        .header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a {
+            bottom: -2px;
+            position: relative;
+            border-bottom: none;
+        }
+    </style>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("{{ MIXPANEL_TOKEN }}");</script><!-- end Mixpanel -->
+</head>
+
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper">
+    <!--=== Header ===-->
+    <div class="header" ng-controller="TakeFitCtrl">
+        <div class="container padding-right-0 padding-left-0">
+            <div class="col-xs-4 col-md-3">
+                <a class="logo" href="{% url 'fit:dashboard' %}">
+                    <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-md-9">
+                <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+                <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+                <!-- End Toggle -->
+            </div>
+        </div><!--/end container-->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="container hamburgerMenuWrapper">
+            <div id="secureHamDropdown" class="hamburgerContent">
+                {% if user and not user.is_anonymous %}
+                <a href="{% url 'fit:dashboard' %}">My Dashboard</a>
+                <a href="{% url 'fit:assessment' %}">FIT Assessment</a>
+                <a href="{% url 'fit:dream_builder' %}">My Dream Builder</a>
+                <a href="{% url 'fit:plan_builder' %}">My Plan Builder</a>
+                <a href="{% url 'fit:calendar' %}">My Calendar</a>
+                <a href="{% url 'account_settings' %}">My Account</a>
+                <a href="{% url 'account_logout' %}">Log Out</a>
+                {% else %}
+                <a href="{% url 'account_login' %}">Sign In</a>
+                <a href="{% url 'account_signup' %}">Sign up</a>
+                {% endif %}
+            </div>
+        </div>
+        <!--/navbar-collapse-->
+    </div>
+    <!--=== End Header ===-->
+    
+
+
+<div class="row container auto-Margin BYD-header">
+    <div class=" col-xs-12 col-md-6">
+        <div class="BYD-title-wrapper">
+            <h2>Build Your Dream</h2>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6 " style=" text-align: center;">
+        <div class="BYD-icon-wrapper">
+            <div>
+                <div class="BYD-icon"><span>1</span></div>
+                <p>Environment</p>
+            </div>
+            <div>
+                <div class="BYD-icon"><span>2</span></div>
+                <p>Purpose</p>
+            </div>
+            <div>
+                <div class="BYD-icon"><span>3</span></div>
+                <p>Principles</p>
+            </div>
+            <div>
+                <div class="BYD-icon"><span>4</span></div>
+                <p>Vision</p>
+            </div>
+            <div>
+                <div class="BYD-icon"><span>5</span></div>
+                <p>Success</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @media(max-width:992px)
+    {
+        .BYD-title-wrapper{
+            text-align:center
+        }
+    }
+
+    .BYD-icon-wrapper{
+        width:500px;
+        margin:auto;
+        display: inline-flex;
+        text-align:center;
+    }
+      .BYD-icon-wrapper > div{
+        width: 110px;
+    }
+      .BYD-icon-wrapper  p{
+        margin-top: -20px;
+    }
+
+    .BYD-icon-wrapper   div:nth-child(-n+ 5 ) {
+        opacity: 1!important;
+    }
+     .BYD-icon-wrapper   div{
+      opacity: .4;
+    }
+    .BYD-icon
+    {
+        margin:auto;
+    }
+
+</style>
+  
+
+
+<div class="DdReportWrapper">
+    <div class="container">
+
+        <style>
+    .cogCol .progress-bar, .emoCol .progress-bar, .phyCol .progress-bar, .finCol .progress-bar {
+        width: 100%;
+        height: 0;
+        -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+        -webkit-transition: height 0.6s ease;
+        -o-transition: height 0.6s ease;
+        transition: height 0.6s ease;
+    }
+    .progress{
+        margin-bottom: 0 !important;
+    }
+    .progress .progress-bar {
+        position: relative !important;
+    }
+    .cogCol .progress-bar {             
+        background-color: #ff840a !important;
+        background: -webkit-linear-gradient(left, #ff840a, #eca055, #ff840a);
+        background: -o-linear-gradient(right, #ff840a, #eca055, #ff840a);
+        background: -moz-linear-gradient(right, #ff840a, #eca055, #ff840a);
+        background: linear-gradient(to right, #ff840a, #eca055, #ff840a);
+    }
+    .emoCol .progress-bar {
+        background-color: #068cb7 !important;
+        background: -webkit-linear-gradient(left, #068cb7, #18b7dc, #068cb7);
+        background: -o-linear-gradient(right, #068cb7, #18b7dc, #068cb7);
+        background: -moz-linear-gradient(right, #068cb7, #18b7dc, #068cb7);
+        background: linear-gradient(to right, #068cb7, #18b7dc, #068cb7);
+    }
+    .phyCol .progress-bar {
+        background-color: #b84a4a !important;
+        background: -webkit-linear-gradient(left, #b84a4a, #cc7075, #b84a4a);
+        background: -o-linear-gradient(right, #b84a4a, #cc7075, #b84a4a);
+        background: -moz-linear-gradient(right, #b84a4a, #cc7075, #b84a4a);
+        background: linear-gradient(to right, #b84a4a, #cc7075, #b84a4a);
+    }
+    .finCol .progress-bar {
+        background-color: #74b76e !important;
+        background: -webkit-linear-gradient(left, #74b76e, #a1d49c, #74b76e);
+        background: -o-linear-gradient(right, #74b76e, #a1d49c, #74b76e);
+        background: -moz-linear-gradient(right, #74b76e, #a1d49c, #74b76e);
+        background: linear-gradient(to right, #74b76e, #a1d49c, #74b76e);       
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 text-center">
+        <br />
+        <h3>Congratulations, {{user.first_name}}! </h3>
+        <p>You have successfully started the path to a new version of you.</p>
+    </div>    
+</div>
+
+<div style="border-top: 1px solid #eee; width: 70%; margin: auto;"></div>
+
+<div class="row"> 
+    <div class="col-md-12 margin-top-20 dreamHouseWrapper">
+        <br />
+        <div class="visionWrapper">
+            <h4 class="text-bold">MY VISION:</h4>
+            <span>{{vision.title}}</span>
+        </div>
+        <div class="row dimColumnsWrapper">
+            <div class="row dimensionNames">              
+                <div class="col-xs-3 progress cogCol">
+                    <div class="DH-icon-cognitive" style="bottom: {{prog.cognitive.bottom}}%;"></div>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="height: {{prog.cognitive.height}}%;">                 
+                    </div>
+                </div>
+
+                <div class="col-xs-3 progress emoCol">
+                    <div class="DH-icon-emotional" style="bottom: {{prog.emotional.bottom}}%;"></div>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="height: {{prog.emotional.height}}%;">     
+                    </div>
+                </div>
+
+                <div class="col-xs-3 progress phyCol">
+                    <div class="DH-icon-physical" style="bottom: {{prog.physical.bottom}}%;"></div>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="height: {{prog.physical.height}}%;">
+                    </div>
+                </div>
+
+                <div class="col-xs-3 progress finCol" >
+                    <div class="DH-icon-financial" style="bottom: {{prog.financial.bottom}}%;"></div>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="height: {{prog.financial.height}}%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row dimensionNames">
+                <div class="col-xs-3">
+                    <span class="sr-only">COGNITIVE {{prog.cognitive.score}}</span>
+                </div>
+                <div class="col-xs-3">
+                    <span class="sr-only">EMOTIONAL {{prog.emotional.score}}</span>
+                </div>
+                <div class="col-xs-3">
+                    <span class="sr-only">PHYSICAL {{prog.physical.score}}</span>
+                </div>
+                <div class="col-xs-3">
+                    <span class="sr-only">FINANCIAL {{prog.financial.score}}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div style="margin:auto">
+                <div class="principlesWrapper">
+                    <h4 class="col-sm-4 text-bold" style="text-align: left; margin-left: -20px; margin-top: -10px; margin-right:-40px;">MY PRINCIPLES:</h4>
+                    <span class="col-sm-8" style="text-align: left; margin-top: -10px;">
+                    {% for principle in principles %}{{principle.label}}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    </span>
+                </div>
+            </div>            
+        </div>
+        
+        <div class="row">
+            <div style="margin:auto">
+                <div class="purposesWrapper">
+                    <h4 class="col-sm-3 text-bold" style="text-align: right; margin-left: 0px; overflow-wrap: break-word; ">MY PURPOSE:</h4>
+                    <span class="col-sm-9">{{statement.text}}</span>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+<div class="row text-center environmentWrapper">    
+    <div class="col-sm-6 environmentContent">
+        <div>
+            <h4 class="green">Nutrients</h4>
+            <ul>
+            {% for nutrient in nutrients %}
+                <li>{{nutrient}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <h4 class="red">Toxins</h4>
+            <ul>
+            {% for toxin in toxins %}
+                <li>{{toxin}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+        @media (max-width: 991px ) {
+            .col-xs-12 .hexcolumn .row {
+                max-width: 200px;
+            }
+
+            .col-xs-12 .hexcolumn .hexagon {
+                margin-top: 100px;
+            }
+
+            .bioHeader .textWrapper {
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                bottom: -450px;
+                text-align: center;
+            }
+
+            .bioHeader .image {
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                max-width: 200px;
+            }
+
+            .dimensionInfoWrapper .image {
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                max-width: 155px;
+            }
+
+            .dimensionInfoWrapper .titleHolder {
+                padding-top: 135px;
+            }
+
+            .bioHeader .titleHolder {
+                position: static;
+                left: 0px;
+                top: 0px;
+                padding-top: 10px;
+            }
+
+            .bioHeader .nameHolder {
+                position: static;
+                left: 0px;
+                top: 0px;
+            }
+
+                .bioHeader .nameHolder .name {
+                    margin-top: -20px;
+                }
+
+            .bioHeader {
+                height: 400px;
+            }
+
+            .dimensionInfoWrapper .titleHolder {
+                text-align: center;
+            }
+
+            .dimensionInfoWrapper .video {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+
+            .header .navbar-nav > li a {
+                border-bottom: none;
+            }
+
+            .header .navbar-nav {
+                float: right !important;
+            }
+
+            .header .navbar-collapse.collapse.in {
+                margin-right: 15px;
+            }
+
+            .updateBtn {
+                margin-top: 0 !important;
+            }
+
+            .dreamHouseWrapper {
+                height: 535px !important;
+            }
+
+            .visionWrapper {
+                padding-top: 20px !important;
+                height: 102px !important;
+            }
+
+            .dimColumnsWrapper {
+                height: 197px !important;
+                width: 335px !important;
+            }
+
+            .principlesWrapper {
+                height: 51px !important;
+                padding-top: 5px !important;
+            }
+
+            .dreamHouseWrapper h4 {
+                font-size: 10px !important;
+            }
+
+            .purposesWrapper {
+                height: 131px !important;
+                padding-top: 5px !important;
+            }
+
+            .dreamHouseWrapper span {
+                font-size: 10px !important;
+            }
+
+            .dreamBuilderContent .blackBtn, .dreamBuilderContent .primaryBtn {
+                margin-top: 15px;
+            }
+
+            .cogCol, .emoCol, .phyCol, .finCol {
+                height: 197px !important;
+                width: 65px !important;
+            }
+
+            .emoCol, .phyCol {
+                margin-left: 11px !important;
+            }
+
+            .finCol {
+                margin-left: 8px !important;
+            }
+
+            .dimensionNames span {
+                font-size: 8px !important;
+            }
+
+            .DH-icon-cognitive {
+                background-position: -392px -233px !important;
+                height: 77px !important;
+                width: 65px !important;
+            }
+
+            .DH-icon-emotional {
+                background-position: -392px -155px !important;
+                height: 76px !important;
+                width: 67px !important;
+            }
+
+            .DH-icon-physical {
+                background-position: -393px 0px !important;
+                height: 76px !important;
+                width: 71px !important;
+            }
+
+            .DH-icon-financial {
+                background-position: -396px -78px !important;
+                height: 74px !important;
+                width: 74px !important;
+            }
+        }
+        @media  (min-width: 992px) and (max-width: 1199px){
+         .dreamHouseWrapper{
+            height: 673px !important;
+        }
+        .visionWrapper {
+            padding-top: 26px !important;
+            height: 130px !important;
+        }
+        .dimColumnsWrapper {
+            height: 255px !important;
+            width: 434px !important;
+        }
+        .dreamHouseWrapper h4 {
+            font-size: 15px !important;
+        }
+        .dreamHouseWrapper span {
+            font-size: 12px !important;
+        }
+        .principlesWrapper {
+            height: 66px !important;
+        }
+        .purposesWrapper {
+            height: 169px !important;
+        }
+        .cogCol, .emoCol, .phyCol, .finCol{
+            height: 255px !important;
+            width: 85px !important;
+         }
+        .emoCol, .phyCol{
+            margin-left: 17px !important;
+        }
+        .finCol{
+            margin-left: 15px !important;
+        }
+        .dimensionNames span {
+           font-size: 9px !important;
+        }
+        .DH-icon-cognitive {
+            background-position: -381px -233px !important;
+            height: 76px !important;
+            width: 86px !important;
+        }
+        .DH-icon-emotional {
+            background-position: -380px -157px !important;
+            height: 75px !important;
+            width: 85px !important;
+        }
+        .DH-icon-physical {
+            background-position: -382px -4px !important;
+            height: 73px !important;
+            width: 82px !important;
+        }
+        .DH-icon-financial {
+            background-position: -383px -81px !important;
+            height: 73px !important;
+            width: 82px !important;
+        }
+    }
+
+   
+
+</style>
+
+    </div>
+    <div ng-controller="ReportCtrl" class="dreamBuilderContent">
+    <div class="container">
+        <div class="col-md-12 content">
+            <br />
+            <h2 class="text-center">Next Steps </h2>
+            <br />
+            <div class="col-md-6 next-step">
+                <h3 class="text-bold next-step-title">Visit Dashboard</h3>
+                <div class="next-step-content margin-bottom-10">
+                    <p>Head back to your dashboard to get an in--depth look at how FIT you are.</p>
+                    <a href="{% url 'fit:dashboard' %}" class="btn secondaryBtn DdReportBtn text-uppercase margin-top-20">My Dashboard</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 next-step">
+                <h3 class="text-bold next-step-title">Build your plan</h3>
+                <div class="next-step-content margin-bottom-10">
+                    <p>You've got an idea of where you want to be - now it's time to build a roadmap to get there.</p>
+                    <a href="{% url 'fit:plan_builder' %}" class="btn btn-primary primaryBtn DdReportBtn DbBlueBtn text-uppercase margin-top-20">Build My Plan</a>                     
+                </div>                                             
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Share Results</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-show="response" ng-cloak>
+                        <div class="alertMessage">
+                            <div class="alert alert-success" role="alert"> <span style="color: green; font-weight: bold;">{{response}}</span></div>
+                        </div>
+                    </div>
+                    <div ng-show="error" ng-cloak>
+                        <div class="alertMessage">
+                            <div class="alert alert-error" role="alert"> <span style="color: red; font-weight: bold;">{{error}}</span></div>
+                        </div>
+                    </div>
+                    <form role="form" class="ng-pristine ng-valid" ng-hide="response || error" ng-submit="send($event)">
+                        <div class="form-group">
+                            <input type="text" ng-model="Name" class="form-control" placeholder="Their Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" ng-model="EmailAddress" class="form-control" placeholder="Their Email" required>
+                        </div>
+                        
+                        <input type="submit" class="btn secondaryBtn DdReportBtn text-uppercase" value="Share Results">
+                    </form>
+
+                </div>
+           
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    fitApp.factory('ReportFactory', function ($http) {
+        return {
+            capture: function (name, emailAddress, callback) {
+                var url = "/dreambuilder/DreamBuilderShare";
+
+                $http({ method: 'POST', url: url, data: { Name: name, EmailAddress:emailAddress }, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        data = angular.fromJson(data);
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+                    });
+            },
+        }
+    })
+
+    fitApp.controller('ReportCtrl', function ($scope, ReportFactory) {
+
+
+        $scope.EmailAddress = "";
+        $scope.Name = "";
+      
+        $scope.error = "";
+        $scope.response = "";
+
+        $scope.send = function (address, event) {
+            
+            ReportFactory.capture($scope.Name, $scope.EmailAddress, function (response) {
+
+                if (response.status == 200) {
+                    $scope.response = "Shared";
+                    $("#shareModal").modal("hide");
+                }
+                else {
+                    $scope.error = "Something went wrong.";
+                }
+            });
+        }
+
+        $scope.openShareModel = function ()
+        {
+            $("#shareModal").modal("show");
+        }
+
+
+    });
+</script>
+
+
+</div>
+
+
+         
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+       
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href=" https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="/static/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/static/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="/static/assets/plugins/smoothScroll.js"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="/static/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="/static/assets/js/app.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="/static/assets/plugins/respond.js"></script>
+            <script src="/static/assets/plugins/html5shiv.js"></script>
+            <script src="/static/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+         
+            $(document).on("keyup", function (event) {
+               
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+                    
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78694145-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MNW54K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MNW54K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</body>
+</html>

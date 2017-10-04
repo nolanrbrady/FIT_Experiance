@@ -1,0 +1,40 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Zndx Demo{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body_base %}
+    <section class="jumbotron">
+        <div class="container">
+            {% include "_messages.html" %}
+            <h1>{% blocktrans %}Welcome{% endblocktrans %}</h1>
+            <p>
+                {% blocktrans %}
+                In order to simplify active development while providing occasional
+                live demonstrations of functaionality, I've deployed project-specific
+                features in a generic framework environment. As a result, this page
+                and some common utility pages (e.g. errors, terms of service, etc.) will
+                take on an accordingly generic appearence for the time being.
+                {% endblocktrans %}
+            </p>
+            {% if not user.is_authenticated %}
+            {% url "account_login" as login_url %}
+            {% url "account_signup" as signup_url %}
+            <p>{% blocktrans %}You can <a href="{{ login_url }}" class="btn btn-default">Log In</a> or <a href="{{ signup_url }}" class="btn btn-primary">Sign Up</a> to try out the site.{% endblocktrans %}</p>
+            {% endif %}
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <p class="lead text-center">
+                {% blocktrans %}
+                See <a href="http://zndx.org/">zndx.org</a>
+                for more information.
+                {% endblocktrans %}
+            </p>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,1809 @@
+{% load staticfiles %}
+{% load angular %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title></title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footers/footer-v1.css' %}">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/line-icons/line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.css' %}">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/pages/page_about.css' %}">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme-colors/default.css' %}" id="style_color">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+    <link href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.theme.css' %}" rel="stylesheet" />
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link href="{% static 'assets/css/layouts/white_layout.css' %}" rel="stylesheet" /> 
+    <link href="{% static 'assets/css/headers/Custom_Header.css' %}" rel="stylesheet" />
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'Scripts/angular.min.js' %}"></script>
+    <script src="{% static 'Scripts/main.js' %}"></script>
+    <script src="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+    <!-- tmp -->
+    <script src="{% static 'app/tmp-TakeFitfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-TakeFitCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Overviewfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-OverviewCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-DimensionsCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HistoricalCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingFactory.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-AdvancedMetricsCtrl.js' %}"></script>
+
+    <style>
+         .cancelBtn {
+    background: transparent;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #515151;
+    line-height: 17px;
+}
+    .cancelBtn:hover {
+    background: #515151;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #FFFFFF;
+    line-height: 17px;
+}
+
+        .header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a {
+            bottom: -2px;
+            position: relative;
+            border-bottom: none;
+        }
+    </style>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("{{ MIXPANEL_TOKEN }}");</script><!-- end Mixpanel -->
+</head>
+
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper">
+
+
+<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            {% if user and not user.is_anonymous %}
+            <a class="logo" href="{% url 'fit:dashboard' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% else %}
+            <a class="logo" href="{% url 'fit:index' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+            {% if user and not user.is_anonymous %}
+            <a href="{% url 'fit:dashboard' %}">Dashboard</a>
+            <a href="{% url 'fit:assessment' %}">FIT Assessment</a>
+            <a href="{% url 'fit:calendar' %}">My Calendar</a>
+            <a href="{% url 'account_settings' %}">My Account</a>
+            <a href="{% url 'account_logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Sign In</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<!--=== End Header ===-->
+        
+
+
+        
+
+<link href="/static/assets/css/layouts/fit-assessment.css" rel="stylesheet" />
+
+<link href="/static/Content/jquery-ui.css" rel="stylesheet" />
+<script src="/static/Scripts/jquery-ui.min.js"></script>
+
+<div class="container" style="min-height: 800px;">
+    <div class="row">
+        <div class="bg-color-white dashboardDisplay">
+
+            <div class="col-md-3 profileContainer fullWidth">
+                <style>
+    .blackBar {
+        background-color: #373737;
+        height: 40px;
+        text-align: center;
+        margin-left:-15px;
+        margin-right:-15px;
+    }
+    .profile-header{
+        color: #fff;
+        font-size: 25px;
+    }
+        .profilePadding {
+        margin-top: 15px;
+        margin-bottom: 50px;
+    }
+
+    .stick-to-bottom{
+             position: relative;
+    top: 10px;
+    margin: 0 auto;
+    width: 100%;
+        border-top: 1px solid #ccc;
+    }
+</style>
+
+
+<div class="blackBar">
+    <div class="col-md-12">
+        <span class="profile-header">Profile</span>
+    </div>
+</div>
+<br />
+<div class="row profilePhoto">
+    <div class="col-md-12">
+        <style>
+    .profileContainer svg{
+      width:170px;
+    }
+    .profileContainer .name {
+        color: #515151;
+    }
+</style>
+
+<div class="row">
+    <div style="width:160px; margin: auto;">
+        <svg viewbox="0 0 100 100" version="1.1" xmlns="//www.w3.org/2000/svg">
+            <defs>
+                <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+                    <image xlink:href="https://s3-us-west-2.amazonaws.com/fitprofiles/70_131074712036378485" x="-25" width="150" height="100" />
+                </pattern>
+            </defs>
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)" />
+        </svg>
+    </div>
+    
+    <h2 style="text-align:center;"><a href="{% url 'account_settings' %}" class="name">{{user.first_name}} {{user.last_name}}</a></h2>
+</div>
+
+    </div>
+</div>
+
+ <div class="row hiddenTablet">
+    <div class="col-md-12">
+        
+<div class="margin-top-40" ng-controller="TakeFitCtrl">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="col-xs-12">
+        <div style="text-align:center;  ">
+            <h4 class="title" style="">MY FIT PLAN</h4>
+        </div>
+    </div>
+    
+    
+    <div class="buttonWrapper">
+
+        <div>
+            <a href="{% url 'account_settings' %}" class="btn btn-primary primaryBtn text-uppercase ">My Account</a>
+        </div>
+        <br />
+
+        <div>
+            <a href="{% url 'fit:dashboard' %}" class="btn btn-primary primaryBtn text-uppercase ">My FIT Score</a>
+        </div>
+        <br />
+        
+            <div>
+                <a href="{% url 'fit:dream_builder' %}" class="btn btn-primary primaryBtn text-uppercase ">My Dream Builder</a>
+            </div>
+        <br />
+
+
+            <div>
+                <a href="{% url 'fit:plan_builder' %}" class="btn btn-primary primaryBtn text-uppercase ">My Plan Builder</a>
+            </div>
+        <br/>
+
+       
+            <div>
+                <a href="{% url 'fit:calendar' %}" class="btn btn-primary primaryBtn text-uppercase ">My Calendar</a>
+            </div>
+        <br/>
+
+           <div>
+                <a href="https://backup.thefitexperience.com/f2/library/dimension/1" class="btn btn-primary primaryBtn text-uppercase ">FIT Library</a>
+            </div>
+        <br/>
+
+    </div>
+    
+</div>
+
+<style>
+    .profileContainer .buttonWrapper .btn{
+        width:80%;
+        margin:auto;
+        font-size:14px
+    }
+    .profileContainer .buttonWrapper{
+         text-align: center;
+    }    
+    .profileContainer .title{
+        text-transform: uppercase;  
+        font-weight: bolder;    
+        color: #515151;
+    }
+</style>
+
+
+
+    </div>
+</div>
+ 
+<div class="row hiddenTablet" style="display: none;">
+    <div class="col-md-12 ">
+        
+<div class="margin-top-40">
+    <div class="profileFitPlanWrapper"></div>
+        <br />
+        <h4 class="title" style="text-align:center;">
+            SHARE YOUR JOURNEY
+        </h4>
+
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <ul class="footer-socials list-inline">
+
+
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                            <i class="profileSocialIcons fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                            <i class="profileSocialIcons fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                            <i class="profileSocialIcons fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                            <i class="profileSocialIcons fa fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    
+</div>
+
+ 
+    </div>
+</div>
+
+<div class="row hiddenTablet">
+    <div class="col-md-12 ">
+        <div class="margin-top-40 buttonWrapper">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="text-center margin-bottom-50">
+        <a href="{% url 'fit:about' %}" class="btn btn-primary primaryBtn text-uppercase ">About FIT Assessment</a>
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+
+            </div>
+{% verbatim %}
+            <div class="col-md-9 fullWidth" ng-controller="fitAssessmentCtrl" ng-cloak style="padding-left: 0; padding-right: 0;">
+                <div>
+                    <div class="col-md-12">
+                        <div ng-hide="isComplete()" class="FIT-assessment-header">
+                            <h2>FIT Assessment</h2>
+                        </div>
+
+                        <div ng-hide="isComplete()">
+                            
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="70"
+         aria-valuemin="0" aria-valuemax="100" ng-style="{width: percentComplete + '%'}">        
+        {{percentComplete}}%
+    </div>
+    Percent Completed
+</div>
+<div>
+    {{answers.length}} of {{questions.length}} answered
+</div>
+                        </div>
+
+                        <div ng-hide="isComplete()">
+                            
+<div class="" style="text-align: center; text-transform: uppercase; margin: -12px 40px 20px 40px; font-size: 9px; ">
+    <div class="col-xs-3" ng-click="resetDimension(0)">
+        <div class="icon-cognitive {{iscognitive ? 'active' : ''}}"></div>
+        <span class="dimName {{iscognitive ? 'active' : ''}}">Cognitive</span>
+    </div>
+    <div class="col-xs-3" ng-click="resetDimension(1)">
+        <div class="icon-emotional {{isEmotional ? 'active' : ''}}"></div>
+        <span class="dimName {{isEmotional ? 'active' : ''}}">Emotional</span>
+    </div>
+    <div class="col-xs-3" ng-click="resetDimension(2)">
+        <div class="icon-physical {{isPhysical ? 'active' : ''}}"></div>
+        <span class="dimName {{isPhysical ? 'active' : ''}}">Physical</span>
+    </div>
+
+    <div class="col-xs-3" ng-click="resetDimension(3)">
+        <div class="icon-financial {{isFiscal ? 'active' : ''}}"></div>
+        <span class="dimName {{isFiscal ? 'active' : ''}}">Financial</span>
+    </div>
+</div>
+
+
+<style>
+    .icon-cognitive, .icon-emotional, .icon-physical, .icon-financial, .dimName {
+        opacity: 0.3;
+    }
+
+    .active{
+        opacity: 1 !important;
+    }
+</style>
+                        </div>
+                        <div ng-hide="isComplete()">
+                            <div class="instructionWrapper">
+
+                                <p>
+        <strong>Instructions: </strong> The following items ask you about the beliefs, strategies, and behaviors you use in your own life. There are no right or wrong answers so please answer these honestly. Please indicate your answer by clicking the cell and selecting the number which most accurately reflects your current state.
+    </p>
+    <p>
+        1 - Strongly Disagree; 2 - Disagree; 3 - Undecided; 4 - Agree; 5 - Strongly Agree
+    </p>
+</div>
+
+                        </div>
+                        <div ng-hide="isComplete()">
+                            <style>
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+        border: none;
+        background: none;
+        font-weight: normal;
+        color: #ffffff;
+        background-image: url("/static/assets/img/Sprites/FitSprites.png");
+        background-position: -104px -262px;
+        height: 34px;
+        width: 30px;
+        margin-top: -8px;
+        margin-left: -15px;
+        text-align: center;
+        line-height: 31px;
+    }
+
+    .ui-widget {
+        font-family: "Open Sans", Arial, sans-serif;
+        font-size: 1em;
+    }
+    .question.answered {
+        opacity: 0.4;
+    }
+</style>
+
+
+<div class="noMarginWrapper">
+    <div class="col-md-12">
+
+        
+        <div ng-repeat="question in currentQuestions">
+
+            <div style="margin-top: 15px; margin-bottom: 5px; ">
+                <span class="question" ng-if="!isAnswered(question.Id)">{{question.QuestionContent}}</span>
+                <span class="question answered" ng-if="isAnswered(question.Id)">{{question.QuestionContent}}</span>
+            </div>
+
+            <div class="col-xs-12 noMarginWrapper" style="padding-left: 0; padding-right: 0; margin-bottom: 30px; margin-top: 5px;">
+
+                <div class="slider" qid="{{question.Id}}"></div>
+
+                <div ng-if="question.QuestionTypeId == 0">
+                    <div class="rangeInputMarks col-xs-3">
+                        <span class="oneLineText">1 - Strongly Disagree</span>
+                        <span class="stackText">1 - Strongly <br><span style="padding-left: 15px;">Disagree</span></span>
+                    </div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3 col-xs-offset-9 regScaleLastItem">
+                        <span class="oneLineText">Strongly Agree - 5</span>
+                        <span class="stackText">Strongly - 5<br><span style="padding-right: 15px;">Agree</span></span>
+                    </div>
+                </div>
+
+                <div ng-if="question.QuestionTypeId == 1">
+                    <div class="rangeInputMarks col-xs-3">
+                        <span class="oneLineText">1 - Strongly Disagree</span>
+                        <span class="stackText">1 - Strongly <br><span style="padding-left: 15px;">Disagree</span></span>
+                    </div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3 col-xs-offset-9 regScaleLastItem">                        
+                        <span class="oneLineText">Strongly Agree - 5</span>
+                        <span class="stackText">Strongly - 5<br><span style="padding-right: 15px;">Agree</span></span>
+                    </div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 2">
+                    <div class="rangeInputMarks col-xs-3">1 - None</div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3 col-xs-offset-9 regScaleLastItem">A lot - 5</div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 3">
+                    <div class="rangeInputMarks col-xs-3">                        
+                        <span class="oneLineText">1 - Less Worried</span>
+                        <span class="stackText">1 - Less<br><span style="padding-left: 15px;">Worried</span></span>
+                    </div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3 col-xs-offset-9 regScaleLastItem">                        
+                        <span class="oneLineText">Much Happier - 5</span>
+                        <span class="stackText">Much - 5<br><span style="padding-right: 15px;">Happier</span></span>
+                    </div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 4">
+                    <div class="rangeInputMarks col-xs-3">0-1</div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span></div>
+                    <div class="rangeInputMarks col-xs-3 col-xs-offset-9 regScaleLastItem">5+</div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 5">
+                    <div class="rangeInputMarks NAscale">N/A</div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span>                        
+                        <span class="oneLineText">Mortgage/ATS &lt; 1</span>
+                        <span class="stackText">Mortgage<br>/ATS &lt; 1</span>
+                    </div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscaleLastItem">
+                        
+                        <span class="oneLineText">Mortgage/ATS &gt; 4+</span>
+                        <span class="stackText">Mortgage<br>/ATS &gt; 4+</span>
+                    </div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 6">
+                    <div class="rangeInputMarks NAscale">N/A</div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span>                        
+                        <span class="oneLineText">1 - No Success</span>
+                        <span class="stackText">1 - No<br><span style="padding-left: 15px;">Success</span></span>
+                    </div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscaleLastItem">                        
+                        <span class="oneLineText">Complete Success - 5</span>
+                        <span class="stackText">Complete - 5<br><span style="padding-right: 15px;">Success</span></span>
+                    </div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 7">
+                    <div class="rangeInputMarks NAscale">N/A</div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span>                        
+                        <span class="oneLineText">1 - Strongly Disagree</span>
+                        <span class="stackText">1 - Strongly <br><span style="padding-left: 15px;">Disagree</span></span>
+                    </div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscale"><span class="NAscaleMarks">|</span></div>
+                    <div class="rangeInputMarks NAscaleLastItem">
+                        <span class="oneLineText">Strongly Agree - 5</span>
+                        <span class="stackText">Strongly - 5<br><span style="padding-right: 15px;">Agree</span></span>
+                    </div>
+                </div>
+                <div ng-if="question.QuestionTypeId == 8">
+                    <div class="rangeInputMarks col-xs-3">0-2</div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span><span style="margin-left:-7px;">2-4</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span><span style="margin-left:-7px;">4-6</span></div>
+                    <div class="rangeInputMarks col-xs-3"><span class="regScaleMarks">|</span><span style="margin-left:-7px;">6-8</span></div>
+                    <div class="rangeInputMarks col-xs-3 col-xs-offset-9 regScaleLastItem">8+</div>
+                </div>
+                </div>
+
+
+        </div>
+
+    </div>
+</div>
+<div class="row" style="margin-top: 50px;">
+    <div class="col-xs-6" style="text-align: left;">
+        <button href="#" id="backButton" class="backBtn" ng-click="backClick($event);">BACK</button>
+    </div>
+    <div class="col-xs-6" style="text-align: right;">
+        <button id="nextButton" class="nextBtn" ng-click="nextClick($event);">NEXT</button>
+        <button href="#" class="nextBtn" ng-show="answers.length >= questions.length" ng-click="isCompleteOverride = false;">COMPLETE</button>
+    </div>
+</div>
+                        </div>
+                        <div ng-show="false">
+                            <div class="content" style="text-align: center;">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>View your FIT Score</h4>
+            <img src="/static/assets/img/reports/score-chart.png" alt="" />
+        </div>
+    </div>
+    
+</div>
+
+
+                        </div>
+                        <div ng-show="false">
+                            
+<div class="content" style="text-align: center;">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Take another survey</h4>
+            <a href="/secure/NewSurvey">why not?</a>
+        </div>
+    </div>
+
+</div>
+
+
+                        </div>
+                        <div ng-hide="true">
+                            <div class="content" style="text-align: center;" ng-controller="SurveyCompleteCtrl" >
+    <div class="row">
+        <div class="col-md-12">
+            <h4>View your FIT Score</h4>
+            <div class="row">
+                <div class="overviewWrappper" ng-cloak style="min-height: 580px;">
+
+                    <div class="graphWrapper" style="text-align:center; width:580px;  margin: auto; margin: 100px auto;">
+                       
+                        <div id="d3Object"> </div>
+                       
+                    </div>
+                  
+                </div>
+
+            </div>
+        </div>
+            <div id="saveSurveyButton" class="row   ">
+                <div class="col-md-12">
+                    
+                    
+                    <a href="/secure/IndividualDashboard" class="btn btn-primary">Go To Account</a>
+                </div>
+            </div>
+
+    </div>
+</div>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="/static/assets/js/d3.v3.min.js"></script>
+<script src="//labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+<script>
+    fitApp.factory('SurveyCompletefactory', function ($http) {
+        return {
+
+            getQuestions: function (items, callback) {
+                var url = "/f2/secure/GetUsersAnwsers/?cognative=" + items.cognative + "&financial=" + items.financial + "&emotional=" + items.emotional + "&physical=" + items.physical;
+
+                $http({ method: 'GET', url: url, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+            },
+
+            saveSurveyScore: function (fitData, callback) {
+                var url = "/f2/secure/SaveFitScore/";
+                
+                $http({ method: 'POST', data:fitData ,url: url, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+            },
+        }
+    });
+
+    fitApp.controller('SurveyCompleteCtrl', function ($scope, SurveyCompletefactory) {
+
+
+        $scope.$on('surveyComplete', function () {
+            
+            $scope.fitScore = 0
+            $scope.balanceScore = 0
+            var data = [];
+            var allData = [];
+            $scope.filter = {
+                cognative: 1,
+                financial: 1,
+                emotional: 1,
+                physical: 1,
+                modal: 1,
+                isLoading: true
+            }
+            $scope.updateFilter = function (eventType) {
+                if (eventType == 'cognative') {
+                    $scope.filter.cognative = 1
+                    $scope.filter.financial = 0
+                    $scope.filter.emotional = 0
+                    $scope.filter.physical = 0
+                    $scope.fitScore = data[0].score
+                }
+                else if (eventType == 'modal') {
+                    if ($scope.filter.modal == 1) {
+                        $scope.filter.modal = 0
+                    }
+                    else {
+                        $scope.filter.modal = 1
+                    }
+
+                }
+                else if (eventType == 'financial') {
+                    $scope.filter.cognative = 0
+                    $scope.filter.financial = 1
+                    $scope.filter.emotional = 0
+                    $scope.filter.physical = 0
+                    $scope.fitScore = data[3].score
+                }
+                else if (eventType == 'emotional') {
+                    $scope.filter.cognative = 0
+                    $scope.filter.financial = 0
+                    $scope.filter.emotional = 1
+                    $scope.filter.physical = 0
+                    $scope.fitScore = data[1].score
+                }
+                else if (eventType == 'physical') {
+                    $scope.filter.cognative = 0
+                    $scope.filter.financial = 0
+                    $scope.filter.emotional = 0
+                    $scope.filter.physical = 1
+                    $scope.fitScore = data[2].score
+                }
+            }
+
+            $scope.filterGraph = function (e, eventType) {
+                e.preventDefault();
+                allData = [];
+
+
+                if (eventType != 'modal') {
+                    $(".graphWrapper a div").css('opacity', function (i, o) {
+                        return 0.4
+                    });
+
+                    $(e.toElement).css('opacity', function (i, o) {
+                        return 1;
+                    });
+
+                }
+
+
+
+                $scope.updateFilter(eventType);
+
+
+                Overviewfactory.getQuestions($scope.filter, function (response) {
+                    data = response;
+                    $('#d3Object').empty();
+                    $scope.displayGraph();
+                })
+
+            };
+
+            $scope.displayGraph = function () {
+                var width = 500, height = 500, radius = Math.min(width, height) / 2, innerRadius = 0.3 * radius
+
+                $scope.balanceScore = data[0].balance;
+                $scope.score = data[0].score;
+
+                var pie = d3.layout.pie()
+                    .sort(null)
+                    .value(function (d) { return d.width; });
+
+                var tip = d3.tip()
+                    .attr('class', 'd3-tip')
+                    .offset([0, 0])
+                    .html(function (d) {
+                        return d.data.label + ": <span style='color:orangered'>" + d.data.score + "</span>";
+                    });
+
+                var arc = d3.svg.arc()
+                    .innerRadius(innerRadius)
+                    .outerRadius(function (d) {
+                        return (radius - innerRadius) * (d.data.score / 25.0) + innerRadius;
+                    });
+
+                var outlineArc = d3.svg.arc()
+                        .innerRadius(innerRadius)
+                        .outerRadius(radius);
+
+
+
+
+
+                var svg = d3.select("#d3Object").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+                svg.call(tip);
+
+
+                var item = []
+                data.forEach(function (d) {
+                    d.subScores.forEach(function (s) {
+                        item = []
+                        item.id = d.id;
+                        item.order = d.order;
+                        item.color = s.Color;
+                        item.weight = d.weight;
+                        item.score = s.Score;
+                        item.width = d.weight;
+                        item.label = s.SubCategory.Name;
+                        allData.push(item);
+
+
+                    });
+                });
+                // for (var i = 0; i < data.score; i++) { console.log(data[i].id) }
+
+                var path = svg.selectAll(".solidArc")
+                    .data(pie(allData))
+                    .enter().append("path")
+                    .attr("fill", function (d) { return d.data.color; })
+                    .attr("class", "solidArc")
+                    .attr("stroke", "gray")
+                    .attr("d", arc)
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide);
+
+                var outerPath = svg.selectAll(".outlineArc")
+                    .data(pie(allData))
+                    .enter().append("path")
+                    .attr("fill", "none")
+                    .attr("stroke", "gray")
+                    .attr("class", "outlineArc")
+                    .attr("d", outlineArc);
+
+
+                if ($scope.filter.physical) {
+                    var percentOfCircle = data[2].score / 25;
+                    var physicalArc = d3.svg.arc()
+                   .innerRadius(innerRadius)
+                   .outerRadius(innerRadius + (percentOfCircle * 175));
+                    var physical = svg.selectAll(".physicalArc")
+                        .data(pie(allData))
+                        .enter().append("path")
+                        .attr("fill", "none")
+                        .attr("stroke", data[2].color)
+                        .attr("class", "physicalArc")
+                        .attr("d", physicalArc);
+                }
+                if ($scope.filter.emotional) {
+                    var percentOfCircle = data[1].score / 25;
+                    var emotionalArc = d3.svg.arc()
+                   .innerRadius(innerRadius)
+                   .outerRadius(innerRadius + (percentOfCircle * 175));
+                    var emotional = svg.selectAll(".emotionalArc")
+                        .data(pie(allData))
+                        .enter().append("path")
+                        .attr("fill", "none")
+                        .attr("stroke", data[1].color)
+                        .attr("class", "emotionalArc")
+                        .attr("d", emotionalArc);
+                }
+                if ($scope.filter.financial) {
+                    var percentOfCircle = data[3].score / 25;
+                    var financialArc = d3.svg.arc()
+                   .innerRadius(innerRadius)
+                   .outerRadius(innerRadius + (percentOfCircle * 175));
+                    var financial = svg.selectAll(".financialArc")
+                        .data(pie(allData))
+                        .enter().append("path")
+                        .attr("fill", "none")
+                        .attr("stroke", data[3].color)
+                        .attr("class", "financialArc")
+                        .attr("d", financialArc);
+                }
+                if ($scope.filter.cognative) {
+                    var percentOfCircle = data[0].score / 25;
+                    var cognativeArc = d3.svg.arc()
+                   .innerRadius(innerRadius)
+                   .outerRadius(innerRadius + (percentOfCircle * 175));
+                    var cognative = svg.selectAll(".cognativeArc")
+                        .data(pie(allData))
+                        .enter().append("path")
+                        .attr("fill", "none")
+                        .attr("stroke", data[0].color)
+                        .attr("class", "cognativeArc")
+                        .attr("d", cognativeArc);
+                }
+
+
+                var testArc = d3.svg.arc()
+               .innerRadius(innerRadius)
+               .outerRadius(radius);
+                var test = svg.selectAll(".testArc")
+                    .data(pie(allData))
+                    .enter().append("path")
+                    .attr("fill", "none")
+                    .attr("stroke", "gray")
+                    .attr("class", "testArc")
+                    .attr("d", testArc);
+                // calculate the weighted mean score
+                var score = $scope.fitScore;
+
+                svg.append("svg:text")
+                    .attr("class", "aster-score")
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "middle") // text-align: right
+                    .text(score);
+
+            }
+
+            SurveyCompletefactory.getQuestions($scope.filter, function (response) {
+                data = response;
+                $scope.fitScore = data[0].score + data[1].score + data[2].score + data[3].score;
+                $scope.balanceScore = data[0].balance + data[1].balance + data[2].balance + data[3].balance;
+             
+
+
+                SurveyCompletefactory.saveSurveyScore(data, function (response) {
+                        console.log(response);
+                    })
+
+            })
+
+           
+        });
+    });
+</script>
+
+<style>
+    #d3Object {
+        font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .bar {
+        fill: orange;
+    }
+
+    .solidArc:hover {
+        fill: orangered;
+    }
+
+    .solidArc {
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .x.axis path {
+        display: none;
+    }
+
+    .aster-score {
+        line-height: 1;
+        font-weight: bold;
+        font-size: 500%;
+    }
+
+    .d3-tip {
+        line-height: 1;
+        font-weight: bold;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+
+        .d3-tip.n:after {
+            margin: -1px 0 0 0;
+            top: 100%;
+            left: 0;
+        }
+</style>
+                        </div>
+                        <br /><br /><br />
+                    </div>
+
+                </div>
+                <div ng-show="isComplete()">
+                    
+<div class="postAssessmentHeading">
+    <div class="content">
+        <div class="row" style="width: 100%; margin: auto;">
+            <h2 class="white">Thanks for taking the Assessment!</h2>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <div ng-show="isComplete()">
+                    
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 margin-top-40 margin-bottom-50" style="padding: 0;">
+
+    <div class="col-xs-12">
+        <h4 style="font-weight: 600;">
+            Great job! You finished the assessment. This will give you a clear picture of where you are now. Remember, we all have incredible capacity for growth. Join us on your FIT journey. Click below to see your results.
+        </h4>
+    </div>
+    {% endverbatim %}
+    <div class="col-xs-12 margin-top-40 margin-bottom-40">
+        <div class="nextStepTop">
+            <h4 style="padding: 10px 35px;">Next step: Create a compelling version for your future.</h4>
+        </div>
+        <div class="col-xs-12 nextStepBottom">
+            <div class="col-xs-12 nextStepItem">
+                <div class="icon-next-step"></div>
+                <span>1</span>
+                <h4>Assessment | <i class="fa fa-check" aria-hidden="true" style="color: #FF7F00;"></i></h4>
+                <div style="text-align: right; margin-top: 25px;">
+                    <a href="{% url 'fit:dashboard' %}" class="btn btn-primary primaryBtn welcome-btn">VIEW YOUR RESULTS</a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 nextStepItem" style="background-color: #f0f0f2; display: flex;">
+                <div class="icon-next-step"></div>
+                <span>2</span>
+                <h4>Build your dream</h4>
+                <div style="text-align: right; margin-top: 25px;">
+                        <a href="{% url 'fit:dream_builder' %}" class="btn btn-primary primaryBtn welcome-btn">Click Here</a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 nextStepItem">
+                <div class="icon-next-step"></div>
+                <span>3</span>
+                <h4>Build your plan and realize your dream</h4>
+                <div style="text-align: right; margin-top: 25px;">
+                        <a href="{% url 'fit:plan_builder' %}" class="btn btn-primary primaryBtn welcome-btn">Click Here</a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 nextStepItem" style="background-color: #f0f0f2">
+                <div class="icon-next-step"></div>
+                <span>4</span>
+                <h4>Build your calendar</h4>
+                <div style="text-align: right; margin-top: 25px;">
+                        <a href="{% url 'fit:calendar' %}" class="btn btn-primary primaryBtn welcome-btn">Click Here</a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 nextStepItem">
+                <div class="icon-next-step"></div>
+                <span>5</span>
+                <h4>Visit the FIT library</h4>
+                <div style="text-align: right; margin-top: 25px;">
+                        <a href="{% url 'fit:library' %}" class="btn btn-primary primaryBtn welcome-btn">Click Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% verbatim %}
+</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    fitApp.factory('fitAssessmentFactory', function ($http) {
+        return {
+            saveAnswer: function (answer, callback) {
+                var url = "/f2/survey/answer/";
+
+                $http({ method: 'POST', url: url, data: answer, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        data = angular.fromJson(data);
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+                        console.log("error: saveAnswer")
+                    });
+            },
+
+
+        }
+    })
+
+    fitApp.controller('fitAssessmentCtrl', function ($scope, fitAssessmentFactory) {
+        $scope.messaging = {
+            isMessage: false,
+            title: "title",
+            message: "message"
+        };
+
+        $scope.answer = {
+            QuestionId: 0,
+            Value: 0,
+        };
+
+        $('#nextButton').attr('disabled', true);
+        $('#nextButton').addClass('question answered');
+        $('#backButton').addClass('question answered');
+
+        $scope.isComplete = false;
+
+        $scope.setAnswer = function(questionId, value){
+            $scope.answer.QuestionId = questionId;
+            $scope.answer.Value = value;
+
+            fitAssessmentFactory.saveAnswer({QuestionId : questionId,
+                Value: value}, function(response){
+                    var found = $.grep($scope.answers, function(val){
+                        return val.QuestionId == $scope.answer.QuestionId;
+                    });
+
+                    if(found.length == 0){
+                        $scope.answers.push({QuestionId: $scope.answer.QuestionId,
+                            Value: $scope.answer.Value}
+                        );
+                    }
+                    else{
+                        var toUpdate = $.grep($scope.answers, function(val){
+                            return val.QuestionId == $scope.answer.QuestionId;
+                        });
+
+                        if(toUpdate[0].Value != null){
+                            toUpdate[0].Value = $scope.answer.Value;
+                        }
+                    }
+
+                    $scope.percentComplete = Math.round(($scope.answers.length / $scope.questions.length) * 100);
+
+                    if($scope.percentComplete == 100){
+                        $scope.$broadcast ('surveyComplete');
+                    }
+                });
+
+        };
+
+        // convert model data to json
+        $scope.dimensions = [{"Id":1,"Name":"Cognitive","Divisor":6,"Description":null},{"Id":2,"Name":"Emotional","Divisor":6,"Description":null},{"Id":3,"Name":"Physical","Divisor":8,"Description":null},{"Id":4,"Name":"Financial","Divisor":5,"Description":null}];
+        $scope.subCategories = [{"Id":1,"Name":"Learning Strategies","CategoryId":1,"Multiplier":5},{"Id":2,"Name":"Intellectual Engagement","CategoryId":1,"Multiplier":5},{"Id":3,"Name":"Effortful Control","CategoryId":1,"Multiplier":5},{"Id":4,"Name":"Attention","CategoryId":1,"Multiplier":5},{"Id":5,"Name":"Autonomy","CategoryId":1,"Multiplier":5},{"Id":6,"Name":"Social Cognition","CategoryId":1,"Multiplier":5},{"Id":7,"Name":"General Emotional Health","CategoryId":2,"Multiplier":5},{"Id":8,"Name":"Self Compassion \u0026 Self Awareness","CategoryId":2,"Multiplier":5},{"Id":9,"Name":"Stress Resilience","CategoryId":2,"Multiplier":5},{"Id":10,"Name":"Gratitude \u0026 Positivity","CategoryId":2,"Multiplier":5},{"Id":11,"Name":"Spiriturality","CategoryId":2,"Multiplier":5},{"Id":12,"Name":"Social Engagement","CategoryId":2,"Multiplier":5},{"Id":13,"Name":"Nutrition","CategoryId":3,"Multiplier":5},{"Id":14,"Name":"Nutrition Knowledge","CategoryId":3,"Multiplier":5},{"Id":15,"Name":"Inactivity","CategoryId":3,"Multiplier":5},{"Id":16,"Name":"Aerobic Activity","CategoryId":3,"Multiplier":5},{"Id":17,"Name":"Strength Training","CategoryId":3,"Multiplier":5},{"Id":32,"Name":"Improve Self Image","CategoryId":3,"Multiplier":5},{"Id":33,"Name":"Improve Sleep Habits","CategoryId":3,"Multiplier":5},{"Id":34,"Name":"Social Aspects of Training","CategoryId":3,"Multiplier":5},{"Id":18,"Name":"Long Term Financial","CategoryId":4,"Multiplier":5},{"Id":19,"Name":"Short Term Financial","CategoryId":4,"Multiplier":5},{"Id":20,"Name":"Reduce Sadness","CategoryId":4,"Multiplier":5},{"Id":21,"Name":"Increase Happiness","CategoryId":4,"Multiplier":5},{"Id":22,"Name":"Social/Emotional Support","CategoryId":4,"Multiplier":5}];
+        $scope.questions = [{"Id":209,"Sequence":1,"CategoryId":1,"DimensionId":1,"QuestionContent":"When learning new things, I create small goals.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":2,"Sequence":2,"CategoryId":1,"DimensionId":1,"QuestionContent":"When learning new things I take a lot of notes.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":3,"Sequence":3,"CategoryId":1,"DimensionId":1,"QuestionContent":"When learning something new, I use specific strategies to monitor the accuracy of my knowledge.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":4,"Sequence":4,"CategoryId":1,"DimensionId":1,"QuestionContent":"I use memory strategies to help me remember things I need to do.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":5,"Sequence":5,"CategoryId":1,"DimensionId":1,"QuestionContent":"I  misplace things daily.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":6,"Sequence":6,"CategoryId":1,"DimensionId":1,"QuestionContent":"I am good at remembering names of people I meet.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":7,"Sequence":7,"CategoryId":1,"DimensionId":1,"QuestionContent":"After being interrupted, I have a hard time remembering what I was doing previously.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":9,"Sequence":8,"CategoryId":2,"DimensionId":1,"QuestionContent":"I do not seek out mentally challenging situations.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":11,"Sequence":9,"CategoryId":2,"DimensionId":1,"QuestionContent":"I am drawn to tasks that require problem solving.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":13,"Sequence":10,"CategoryId":2,"DimensionId":1,"QuestionContent":"It is important for me to be mentally challenged everyday.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":15,"Sequence":11,"CategoryId":2,"DimensionId":1,"QuestionContent":"I enjoy working on mentally challenging tasks for long hours.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":16,"Sequence":12,"CategoryId":3,"DimensionId":1,"QuestionContent":"I procrastinate things that I do not want to deal with.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":18,"Sequence":13,"CategoryId":3,"DimensionId":1,"QuestionContent":"I avoid doing things that are difficult.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":19,"Sequence":14,"CategoryId":3,"DimensionId":1,"QuestionContent":"I tend to get things done ahead of deadlines.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":20,"Sequence":15,"CategoryId":3,"DimensionId":1,"QuestionContent":"I deal with a difficult situation by tackling it right away.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":21,"Sequence":16,"CategoryId":3,"DimensionId":1,"QuestionContent":"I am disciplined in my choices to avoid temptations.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":22,"Sequence":17,"CategoryId":3,"DimensionId":1,"QuestionContent":"I buy things spontaneously and regret the purchase later.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":23,"Sequence":18,"CategoryId":4,"DimensionId":1,"QuestionContent":"I am easily distracted when reading.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":24,"Sequence":19,"CategoryId":4,"DimensionId":1,"QuestionContent":"In a large social setting I have a difficult time focusing on one conversation.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":25,"Sequence":20,"CategoryId":4,"DimensionId":1,"QuestionContent":"There are often times when I lose focus during a conversation with a co-worker or significant other.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":26,"Sequence":21,"CategoryId":4,"DimensionId":1,"QuestionContent":"I can stay focused on a task for hours at a time.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":27,"Sequence":22,"CategoryId":4,"DimensionId":1,"QuestionContent":"When working to meet a deadline, I stay focused until it is accomplished.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":28,"Sequence":23,"CategoryId":4,"DimensionId":1,"QuestionContent":"When I am interrupted, I can easily shift my attention back to what I was doing before.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":29,"Sequence":24,"CategoryId":5,"DimensionId":1,"QuestionContent":"I feel my days are spent doing things I have to do each day, rather than things I want to do each\r\nday.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":30,"Sequence":25,"CategoryId":5,"DimensionId":1,"QuestionContent":"I have freedom to choose what I do each day.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":31,"Sequence":26,"CategoryId":5,"DimensionId":1,"QuestionContent":"I have a clear sense of purpose that drives my daily decisions.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":32,"Sequence":27,"CategoryId":6,"DimensionId":1,"QuestionContent":"I am good at understanding sarcasm.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":33,"Sequence":28,"CategoryId":6,"DimensionId":1,"QuestionContent":"I have been known to offend people by making a social faux pas (i.e., an insensitive remark or error in social etiquette).","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":39,"Sequence":29,"CategoryId":6,"DimensionId":1,"QuestionContent":"I am good at detecting when people are lying.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":45,"Sequence":30,"CategoryId":6,"DimensionId":1,"QuestionContent":"Even when I do not agree with someone\u0027s point of view, I try to understand his or her perspective.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":46,"Sequence":31,"CategoryId":6,"DimensionId":1,"QuestionContent":"I do not appreciate hearing other people’s opinions when they are different from mine.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":47,"Sequence":32,"CategoryId":6,"DimensionId":1,"QuestionContent":"I actively seek out feedback from other people regarding areas I can improve.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":48,"Sequence":33,"CategoryId":18,"DimensionId":4,"QuestionContent":"I would care if the stock market crashed.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":49,"Sequence":34,"CategoryId":18,"DimensionId":4,"QuestionContent":"What is the ratio of the total mortgage left on your home to your household annual after tax salary?","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":5},{"Id":50,"Sequence":35,"CategoryId":18,"DimensionId":4,"QuestionContent":"I am confident with my retirement plan.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":51,"Sequence":36,"CategoryId":18,"DimensionId":4,"QuestionContent":"I am knowledgeable on the differences and similarities between stocks, bonds, mutual funds, and ETFs.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":52,"Sequence":37,"CategoryId":18,"DimensionId":4,"QuestionContent":"I feel prepared for the cost of a family.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":53,"Sequence":38,"CategoryId":18,"DimensionId":4,"QuestionContent":"I feel financially secure about my future.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":2,"QuestionTypeId":1},{"Id":54,"Sequence":39,"CategoryId":19,"DimensionId":4,"QuestionContent":"I have credit card debt.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":55,"Sequence":40,"CategoryId":19,"DimensionId":4,"QuestionContent":"I regret expenditures in the past three months.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":56,"Sequence":41,"CategoryId":19,"DimensionId":4,"QuestionContent":"I would be nervous if I lost my job.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":2,"QuestionTypeId":1},{"Id":57,"Sequence":42,"CategoryId":19,"DimensionId":4,"QuestionContent":"I owe money to three or more creditors.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":58,"Sequence":43,"CategoryId":19,"DimensionId":4,"QuestionContent":"I have a monthly budget.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":59,"Sequence":44,"CategoryId":19,"DimensionId":4,"QuestionContent":"I am successful at not spending more than my monthly budget.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":60,"Sequence":45,"CategoryId":20,"DimensionId":4,"QuestionContent":"I am confident with my life insurance.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":61,"Sequence":46,"CategoryId":20,"DimensionId":4,"QuestionContent":"I feel overwhelmed paying bills. ","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":62,"Sequence":47,"CategoryId":20,"DimensionId":4,"QuestionContent":"I spend too much money each week dining out","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":71,"Sequence":48,"CategoryId":20,"DimensionId":4,"QuestionContent":"I feel my current wealth is holding me back from doing what I want.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":2,"QuestionTypeId":1},{"Id":72,"Sequence":49,"CategoryId":20,"DimensionId":4,"QuestionContent":"Would you be less worried or more happy if you made more money?","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":3},{"Id":73,"Sequence":50,"CategoryId":20,"DimensionId":4,"QuestionContent":"I am concerned about my short-term financial future.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":3,"QuestionTypeId":1},{"Id":74,"Sequence":51,"CategoryId":21,"DimensionId":4,"QuestionContent":"I care about my work/job beyond just receiving a paycheck.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":75,"Sequence":52,"CategoryId":21,"DimensionId":4,"QuestionContent":"I save enough of my household take home pay.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":76,"Sequence":53,"CategoryId":21,"DimensionId":4,"QuestionContent":"I spend an appropriate amount of my discretionary money on healthy activities.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":2},{"Id":77,"Sequence":54,"CategoryId":21,"DimensionId":4,"QuestionContent":"I am not adequately compensated for my work given my talent, education, and drive.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":2,"QuestionTypeId":1},{"Id":78,"Sequence":55,"CategoryId":21,"DimensionId":4,"QuestionContent":"I am in a better place financially than I was 3 years ago.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":79,"Sequence":56,"CategoryId":22,"DimensionId":4,"QuestionContent":"Financial concerns cause me to have trouble sleeping.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":80,"Sequence":57,"CategoryId":22,"DimensionId":4,"QuestionContent":"Over the past three months, financial concerns caused restless nights sleep.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":81,"Sequence":58,"CategoryId":22,"DimensionId":4,"QuestionContent":"My partner and I agree on financial decisions.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":7},{"Id":82,"Sequence":59,"CategoryId":22,"DimensionId":4,"QuestionContent":"My partner is fully aware of my financial situation.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":7},{"Id":83,"Sequence":60,"CategoryId":22,"DimensionId":4,"QuestionContent":"There are there people I can turn to for financial help.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":84,"Sequence":61,"CategoryId":22,"DimensionId":4,"QuestionContent":"I feel awkward engaging with people that have more money than me.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":85,"Sequence":62,"CategoryId":22,"DimensionId":4,"QuestionContent":"I feel awkward engaging with people that have less money than me.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":1,"QuestionTypeId":1},{"Id":86,"Sequence":63,"CategoryId":7,"DimensionId":2,"QuestionContent":"I am generally sad when I wake up in the morning.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":87,"Sequence":64,"CategoryId":7,"DimensionId":2,"QuestionContent":"I am generally not afraid of much.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":88,"Sequence":65,"CategoryId":7,"DimensionId":2,"QuestionContent":"I have a fear of losing control.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":89,"Sequence":66,"CategoryId":7,"DimensionId":2,"QuestionContent":"I rarely worry about my health.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":90,"Sequence":67,"CategoryId":7,"DimensionId":2,"QuestionContent":"I am on medication to help me with my mood or with my sleep.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":91,"Sequence":68,"CategoryId":8,"DimensionId":2,"QuestionContent":"There are things I do to forgive myself if I have made a mistake.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":92,"Sequence":69,"CategoryId":8,"DimensionId":2,"QuestionContent":"When I think about my flaws as a person, it makes me feel more cut off from others.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":93,"Sequence":70,"CategoryId":8,"DimensionId":2,"QuestionContent":"When things get difficult I am really hard on myself.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":94,"Sequence":71,"CategoryId":8,"DimensionId":2,"QuestionContent":"When I\u0027m having challenges in my life, I realize that I\u0027m not alone and that others also experience difficulties.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":95,"Sequence":72,"CategoryId":8,"DimensionId":2,"QuestionContent":"One of the things which interest me is to understand and manage my strengths and weakness.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":96,"Sequence":73,"CategoryId":8,"DimensionId":2,"QuestionContent":"Sitting quietly with my thoughts and feelings is not that important to me.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":97,"Sequence":74,"CategoryId":8,"DimensionId":2,"QuestionContent":"Sometimes I react and I don\u0027t know why I\u0027m reacting that way.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":98,"Sequence":75,"CategoryId":8,"DimensionId":2,"QuestionContent":"I can deal with difficult feelings if I am in pursuit of a goal.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":99,"Sequence":76,"CategoryId":9,"DimensionId":2,"QuestionContent":"When something bad happens to me, it bothers me, but I can usually shake it off quite easily.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":100,"Sequence":77,"CategoryId":9,"DimensionId":2,"QuestionContent":"Setbacks don\u0027t discourage me\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":102,"Sequence":79,"CategoryId":9,"DimensionId":2,"QuestionContent":"I usually find myself feeling overwhelmed.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":103,"Sequence":80,"CategoryId":9,"DimensionId":2,"QuestionContent":"I have something I can do to calm myself if I am really upset.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":104,"Sequence":81,"CategoryId":10,"DimensionId":2,"QuestionContent":"My family and friends don\u0027t have much to do with my success.\r\n","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":105,"Sequence":82,"CategoryId":10,"DimensionId":2,"QuestionContent":"If I made a list of everything I felt grateful for, it would be a long list.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":106,"Sequence":83,"CategoryId":10,"DimensionId":2,"QuestionContent":"I do something each day to remind me of what makes me so fortunate.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":107,"Sequence":84,"CategoryId":10,"DimensionId":2,"QuestionContent":"I struggle to be optimistic.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":108,"Sequence":85,"CategoryId":10,"DimensionId":2,"QuestionContent":"I have an easy time seeing the positive in situations.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":109,"Sequence":86,"CategoryId":10,"DimensionId":2,"QuestionContent":"My tendency is to really persist with a difficult task.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":110,"Sequence":87,"CategoryId":11,"DimensionId":2,"QuestionContent":"My spiritual beliefs help me deal with difficult situations.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":111,"Sequence":88,"CategoryId":11,"DimensionId":2,"QuestionContent":"There is a power bigger than me in this world which I feel connected to.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":112,"Sequence":89,"CategoryId":11,"DimensionId":2,"QuestionContent":"Sitting quietly to meditate or pray is not part of my daily or weekly routine.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":113,"Sequence":90,"CategoryId":11,"DimensionId":2,"QuestionContent":"I think about the meaning and purpose of my life.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":114,"Sequence":91,"CategoryId":12,"DimensionId":2,"QuestionContent":"I feel relieved after sharing my worries with a friend.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":115,"Sequence":92,"CategoryId":12,"DimensionId":2,"QuestionContent":"There is someone I can turn to if I\u0027m having problems with my family or at work.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":116,"Sequence":93,"CategoryId":12,"DimensionId":2,"QuestionContent":"One of my goals is to understand other people\u0027s behaviors and intentions.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":117,"Sequence":94,"CategoryId":12,"DimensionId":2,"QuestionContent":"My friends or colleagues will come to me if they need help with a difficult social situation.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":120,"Sequence":97,"CategoryId":13,"DimensionId":3,"QuestionContent":"I consume seven or more servings of vegetables each day.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":121,"Sequence":98,"CategoryId":13,"DimensionId":3,"QuestionContent":"I drink eight or more eight-ounce glasses of water per day.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":122,"Sequence":99,"CategoryId":13,"DimensionId":3,"QuestionContent":"I eat four or more times per day.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":123,"Sequence":100,"CategoryId":13,"DimensionId":3,"QuestionContent":"I ingest a wide variety of fruits and vegetables of various colors.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":124,"Sequence":101,"CategoryId":13,"DimensionId":3,"QuestionContent":"I consume more sugar than I should.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":125,"Sequence":102,"CategoryId":14,"DimensionId":3,"QuestionContent":"I know how many servings of fruits and vegetables I should consume per day.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":126,"Sequence":103,"CategoryId":14,"DimensionId":3,"QuestionContent":"I know how to eat a healthy and balanced diet.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":127,"Sequence":104,"CategoryId":14,"DimensionId":3,"QuestionContent":"I know how many calories I should eat per day to achieve or maintain my ideal weight.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":128,"Sequence":105,"CategoryId":14,"DimensionId":3,"QuestionContent":"I know how many grams or teaspoons of sugar I consume per day.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":129,"Sequence":106,"CategoryId":14,"DimensionId":3,"QuestionContent":"I have a good understanding of current concepts in nutrition.\r\n","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":130,"Sequence":107,"CategoryId":15,"DimensionId":3,"QuestionContent":"I frequently get up throughout the day to walk around or perform chores.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":131,"Sequence":108,"CategoryId":15,"DimensionId":3,"QuestionContent":"I become short of breath when climbing multiple flights of stairs.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":132,"Sequence":109,"CategoryId":15,"DimensionId":3,"QuestionContent":"How many hours per day do you watch television?","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":8},{"Id":133,"Sequence":110,"CategoryId":15,"DimensionId":3,"QuestionContent":"I often sit three hours or more at a time without getting up to move around.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":134,"Sequence":111,"CategoryId":15,"DimensionId":3,"QuestionContent":"I spend a total of ten or more hours seated per day.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":135,"Sequence":112,"CategoryId":16,"DimensionId":3,"QuestionContent":"I engage in 150 minutes per week of moderate aerobic activity or 75 min per week in vigorous aerobic activity.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":136,"Sequence":113,"CategoryId":16,"DimensionId":3,"QuestionContent":"I know what types of aerobic activity will most benefit me.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":137,"Sequence":114,"CategoryId":16,"DimensionId":3,"QuestionContent":"I am satisfied with my current level of aerobic fitness/activity.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":138,"Sequence":115,"CategoryId":16,"DimensionId":3,"QuestionContent":"Aerobic exercise is an important component of my physical fitness.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":139,"Sequence":116,"CategoryId":17,"DimensionId":3,"QuestionContent":"I consistently strength train two days per week.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":140,"Sequence":117,"CategoryId":17,"DimensionId":3,"QuestionContent":"I know how to organize my strength training in a way that best meets my needs.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":141,"Sequence":118,"CategoryId":17,"DimensionId":3,"QuestionContent":"I should strength train more often.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":142,"Sequence":119,"CategoryId":17,"DimensionId":3,"QuestionContent":"I have more body pain than I should.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":143,"Sequence":120,"CategoryId":32,"DimensionId":3,"QuestionContent":"I like the way I look.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":201,"Sequence":121,"CategoryId":32,"DimensionId":3,"QuestionContent":"I need to lose 20 or more pounds.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":202,"Sequence":122,"CategoryId":32,"DimensionId":3,"QuestionContent":"I have poor posture.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":203,"Sequence":123,"CategoryId":32,"DimensionId":3,"QuestionContent":"I am overweight.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":204,"Sequence":124,"CategoryId":33,"DimensionId":3,"QuestionContent":"I sleep soundly.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":205,"Sequence":125,"CategoryId":33,"DimensionId":3,"QuestionContent":"The room I sleep in is designated solely to sleeping.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":206,"Sequence":126,"CategoryId":33,"DimensionId":3,"QuestionContent":"On average, I sleep 7-8 hours per night.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":207,"Sequence":127,"CategoryId":33,"DimensionId":3,"QuestionContent":"I should get more sleep.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":210,"Sequence":170,"CategoryId":34,"DimensionId":3,"QuestionContent":"I enjoy working out with a friend.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":211,"Sequence":171,"CategoryId":34,"DimensionId":3,"QuestionContent":"Discussing my physical health with another person feels good.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":212,"Sequence":172,"CategoryId":34,"DimensionId":3,"QuestionContent":"It\u0027s better to figure out my exercise routine alone.","IsReversed":true,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":213,"Sequence":173,"CategoryId":34,"DimensionId":3,"QuestionContent":"I am part of a fitness group or team, which meets at least three times a month. ","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1},{"Id":101,"Sequence":78,"CategoryId":9,"DimensionId":2,"QuestionContent":"I heard that I was really loved and cared for when I was a young child.","IsReversed":false,"IsActive":true,"IsCorp":false,"Weight":0,"QuestionTypeId":1}];
+        {% endverbatim %}
+        $scope.answers = {{latest_answers}};
+        {% verbatim %}
+
+        // update this value to update the UI
+        $scope.percentComplete = 0;
+
+
+        // icon state to active
+        $scope.iscognitive = true;
+        $scope.isEmotional = false;
+        $scope.isPhysical = false;
+        $scope.isFiscal = false;
+
+        $scope.dimensionIndex = 0;
+        $scope.subCategoryIndex = 0;
+
+        // show questions in an array that is filtered by subcategory
+        $scope.currentQuestions = [];
+
+        $scope.currentDimension = $scope.dimensions[$scope.dimensionIndex];
+        $scope.currentSubCategory = $scope.subCategories[$scope.subCategoryIndex];
+
+
+
+        // filter questinos
+        $scope.setCurrentQuestions = function () {
+            $scope.currentQuestions = $.grep($scope.questions, function(value){
+                return value.DimensionId == $scope.currentSubCategory.CategoryId && value.CategoryId == $scope.currentSubCategory.Id;
+            });
+
+            setTimeout(function(e){
+                $(".slider").slider({
+                    min: 1,
+                    max: 5,
+                    range: 1,
+                    value: 1,
+                    slide: function( event, ui ) {
+                        $(ui.handle).text(ui.value)
+                    },
+                    stop: function( event, ui ) {
+                        angular.element(this).scope().setAnswer($(this).attr("qid"), $(this).slider("value"));
+                        $scope.enableNextButton();
+                    },
+                    create: function( event, ui ) {
+                        // check for N/A option
+                        var questionId = $(this).attr("qid");
+                        var currentQuestions = $.grep($scope.currentQuestions, function(value){
+                            return value.Id == questionId;
+                        });
+                        var questionTypeId = currentQuestions[0].QuestionTypeId;
+                        switch(questionTypeId){
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                $(this).slider("option", "min", 0);
+                                $(this).slider("value", 0);
+                                break;
+                            case 6:
+                                $(this).slider("option", "min", 0);
+                                $(this).slider("value", 0);
+                                break;
+                            case 7:
+                                $(this).slider("option", "min", 0);
+                                $(this).slider("value", 0);
+                                break;
+                            case 8:
+                                break;
+                            default: 
+                                break;
+
+                            }
+
+                        // check for answers
+                        var results = $.grep($scope.answers, function(value){
+                            return value.QuestionId == questionId;
+                        });
+                        if(results.length > 0){
+                            $(this).slider("value", results[0].Value);                            
+                        }
+                        $scope.setFooter();
+                    }
+                });
+                $(".ui-slider-handle").each(function() {
+                    $(this).text($(this).parent().slider("value"));
+                });
+            }, 500);
+
+
+
+        }
+
+        // used with slider drop event
+        $scope.onAnswerChange = function(answer, event){
+
+        }
+
+        $scope.backClick = function(event){
+            event.preventDefault();
+
+            // this logic needs refinement, currently fpo
+            if($scope.subCategoryIndex > 0){
+                $scope.subCategoryIndex--;
+                $scope.currentSubCategory = $scope.subCategories[$scope.subCategoryIndex];
+            }
+
+            if($scope.currentSubCategory.CategoryId != $scope.currentDimension.Id)            {
+
+                $scope.dimensionIndex--;
+                $scope.currentDimension = $scope.dimensions[$scope.dimensionIndex];
+            }
+
+            $scope.setCurrentQuestions();
+
+            $scope.enableNextButton();
+            $scope.disableBackButton();
+
+        }
+
+        $scope.nextClick = function(event){
+            event.preventDefault();
+
+            // this logic needs refinement, currently fpo
+            if($scope.subCategoryIndex < $scope.subCategories.length - 1){
+                $scope.subCategoryIndex++;
+
+                $scope.currentSubCategory = $scope.subCategories[$scope.subCategoryIndex];
+            }
+
+            // save answers for page of questions if not done so already
+            $.each($scope.currentQuestions, function(key, value){
+                var found = $.grep($scope.answers, function(val){
+                    return val.QuestionId == value.Id;
+                });
+
+                if(found.length == 0){
+
+                    $scope.setAnswer(value.Id, 1);
+
+                    $scope.answers.push({QuestionId:value.Id, Value: 1});
+
+                    $scope.percentComplete = Math.round(($scope.answers.length / $scope.questions.length) * 100);
+                }
+            });
+
+            var dimension = $.grep($scope.dimensions, function(value){
+                return value.Id == $scope.currentSubCategory.CategoryId;
+            });
+
+            $scope.dimensionIndex = $scope.dimensions.indexOf(dimension[0]);
+            $scope.currentDimension = $scope.dimensions[$scope.dimensionIndex]; //for testing
+
+            $scope.setIcon();
+
+            $scope.setCurrentQuestions();
+
+            $('#nextButton').attr('disabled', true);
+            $('#nextButton').addClass('question answered');
+
+            $scope.enableNextButton();
+            $scope.disableBackButton();
+        }
+
+        $scope.setFooter = function(){
+            var docHeight = $(window).height();
+            var docWidth = $(window).width();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+            else if (docWidth <= 1280){
+                $(".footer-v1").css("position", "relative");
+            }
+            else {
+                $(".footer-v1").css("position", "relative");
+            }
+
+            $(".footer-v1").css("position", "relative");
+        }
+
+        $scope.resetDimension = function(index){
+            $scope.dimensionIndex = index;
+            $scope.currentDimension = $scope.dimensions[index];
+
+            var subCategory = $.grep($scope.subCategories, function(value){
+                return value.CategoryId == $scope.dimensions[index].Id;
+            });
+            $scope.subCategoryIndex = $scope.subCategories.indexOf(subCategory[0])
+            $scope.currentSubCategory = subCategory[0];
+
+            $scope.setCurrentQuestions();
+        }
+
+        $scope.setIcon = function(){
+            if($scope.dimensionIndex == 0){
+                $scope.iscognitive = true;
+            }
+            else if($scope.dimensionIndex == 1){
+                $scope.iscognitive = true;
+                $scope.isEmotional = true;
+            }
+            else if($scope.dimensionIndex == 2){
+                $scope.iscognitive = true;
+                $scope.isEmotional = true;
+                $scope.isPhysical = true;
+            }
+            else if($scope.dimensionIndex == 3){
+                $scope.iscognitive = true;
+                $scope.isEmotional = true;
+                $scope.isPhysical = true;
+                $scope.isFiscal = true;
+            }
+        };
+
+        $scope.getCurrentSection = function() {
+            var lastAnswer = $scope.answers[$scope.answers.length - 1];
+
+            var question = $.grep($scope.questions, function(value){
+                return value.Id == lastAnswer.QuestionId;
+            });
+
+            if(question.length > 0){
+                var dimensionId = question[0].DimensionId;
+                var dimension = $.grep($scope.dimensions, function(value){
+                    return value.Id == dimensionId;
+                });
+
+                $scope.dimensionIndex = $scope.dimensions.indexOf(dimension[0]);
+
+                var subCategoryId = question[0].CategoryId;
+                var subCategory = $.grep($scope.subCategories, function(value){
+                    return value.Id == subCategoryId;
+                });
+                $scope.subCategoryIndex = $scope.subCategories.indexOf(subCategory[0])
+
+                $scope.currentDimension = dimension[0];
+                $scope.currentSubCategory = subCategory[0];
+            }
+
+            $scope.setIcon();
+        }
+
+        $scope.percentComplete = Math.round(($scope.answers.length / $scope.questions.length) * 100);
+
+        if($scope.answers.length > 0){
+            $scope.getCurrentSection();
+        }
+
+        $scope.setCurrentQuestions();
+
+        $scope.isAnswered = function(id){
+            var answers = $.grep($scope.answers, function(value){
+                return value.QuestionId == id;
+            });
+
+            return answers.length;
+        }
+
+        $scope.isCompleteOverride = false;
+
+        $scope.isComplete = function(){
+
+            var isComplete = $scope.answers.length >= $scope.questions.length;
+
+            if($scope.isCompleteOverride){
+                isComplete = false;
+            }
+
+            return  isComplete;
+
+        }
+
+
+        $scope.enableNextButton = function(){
+
+            $scope.foundAggrigate = [];
+
+            $.each($scope.currentQuestions, function(key, value){
+                var found = $.grep($scope.answers, function(val){
+                    return val.QuestionId == value.Id;
+                });
+
+                if(found.length == 1){
+                    $scope.foundAggrigate.push(value);
+                }
+            });
+
+            if($scope.foundAggrigate.length >= $scope.currentQuestions.length -1){
+                $('#nextButton').attr('disabled', false);
+                $('#nextButton').removeClass('question answered');
+            }
+            else{
+                $('#nextButton').addClass('question answered');
+            }
+        };
+
+        $scope.disableBackButton = function(){
+
+
+            if($scope.subCategoryIndex == 0){
+                $('#backButton').attr('disabled', true);
+                $('#backButton').addClass('question answered');
+            }
+            else{
+                $('#backButton').attr('disabled', false);
+                $('#backButton').removeClass('question answered');
+            }
+        }
+
+
+        $scope.enableNextButton();
+        $scope.disableBackButton();
+
+        $(document).on("keydown", function (event) { 
+            if (event.ctrlKey == true && event.shiftKey == true && event.which == 52) { 
+                $.ajax(
+                    "/survey/HackMySurvey/1", {
+                        success: function (data, textStatus, jqXHR) {
+                            alert(data.Message);
+                        }
+                    });
+            }
+            else if (event.ctrlKey == true && event.shiftKey == true && event.which == 53) { 
+                $.ajax(
+                    "/survey/HackMySurvey/5", {
+                        success: function (data, textStatus, jqXHR) {
+                            alert(data.Message);
+                        }
+                    });
+            }
+        });
+    });
+
+</script>
+
+
+         
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+       
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href=" https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="/static/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/static/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="/static/assets/plugins/smoothScroll.js"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="/static/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="/static/assets/js/app.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="/static/assets/plugins/respond.js"></script>
+            <script src="/static/assets/plugins/html5shiv.js"></script>
+            <script src="/static/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        //$(".owl-carousel").owlCarousel();
+        $(document).ready(function () {
+            
+            $("#lastViewed").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var lastViewed = $("#lastViewed");
+            $('.lastViewed-next').click(function () {
+                lastViewed.trigger('owl.next');
+            })
+
+            $('.lastViewed-prev').click(function () {
+                lastViewed.trigger('owl.prev');
+            })
+
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var owl = $("#owl-demo");
+            $('.recomended-next').click(function () {
+                owl.trigger('owl.next');
+            })
+            
+            $('.recomended-prev').click(function () {
+                owl.trigger('owl.prev');
+            })
+            
+            $("#popularTiles").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var popularTiles = $("#popularTiles");
+            $('.popular-next').click(function () {
+                popularTiles.trigger('owl.next');
+            })
+
+            $('.popular-prev').click(function () {
+                popularTiles.trigger('owl.prev');
+            })
+
+            
+        });
+
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+         
+            $(document).on("keyup", function (event) {
+               
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+                    
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78694145-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MNW54K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MNW54K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</body>
+{% endverbatim %}
+</html>

@@ -1,0 +1,443 @@
+{% extends "core/fit/base_dimensions.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper"> 
+        
+          <!--=== Header ===-->
+        <div class="header">
+            
+
+    <div class="container padding-right-0">
+        <div class="col-xs-8 col-md-6">
+            <a class="logo" href="/">
+                <img class="header-logo guestInnerLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+        </div>
+        <div class="col-xs-4 col-md-6">
+            <!-- Toggle get grouped for better mobile display -->
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+        </div>
+
+    </div>
+    <div class="container hamburgerMenuWrapper publicHamburgerMenuWrapper mainNavTopMargin">
+        <ul id="secureHamDropdown" class="navbar-nav hamburgerContent publicHamburgerContent homepageMainNav">
+                <li class="hiddenOnSurveyPages">
+        <a href="/survey/welcome">
+            Try FIT Assessment
+        </a>
+    </li>
+    <li>
+        {% if user and not user.is_anonymous %}
+        <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Sign In with Google</a></li>
+        {% endif %}
+    </li>
+
+
+
+        </ul>
+    </div>
+        </div>
+        <!--=== End Header ===-->
+        
+        
+
+
+
+<style>
+
+</style>
+<div class="dimensionInfoWrapper" style="background: #f4f4f4;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <h1 class="center-content dimension-title">The Cognitive Dimension</h1>
+            </div>
+        </div>
+        <div class="row margin-bottom-30">
+            <div class="col-xs-12 center-content" style=" margin-top: -20px;">
+                <div class="blue-line" id="blue-line2">
+
+                </div>
+                <div class="icon icon-cognitive">
+                </div>
+
+                <div class="blue-line" id="blue-line1">
+
+                </div>
+            </div>
+        </div>
+      
+        <div class="col-xs-12">
+
+            <div class=" col-md-6 col-xs-12" style="padding:10px; float: right;">
+                <div>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/UfpYIacfziA"></iframe>
+                    </div>
+
+                </div>
+                <div class="col-md-offset-2 margin-top-40 margin-bottom-20">
+                    <a href="{% url 'fit:bio_rena_kirkland' %}">
+                        <div class="col-md-4 col-xs-12 image">
+                            <div class="hex-Rena dimensionHexagon ">
+                                <div class="dimensionHexTop"></div>
+                                <div class="dimensionHexBottom"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="col-md-6 col-xs-12 titleHolder coachTitle">
+
+                        <span class="name">Rena Kirkland, PhD</span><br />
+                        <span class="title" style="">Cognitive DIMENSION COACH</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="">
+                <p class="dimension-paragraph">Cognitive FITness is vital to every aspect of your life. Your thinking patterns are related to your emotions, physical health, and financial decisions. Your thoughts impact the quality of your social interactions, what you eat, and how you approach your goals. The FIT process encompasses learning about your current thinking habits and engaging in deliberate work to maximize your cognitive FITness.<br><br>Your thinking patterns profoundly impact your day-to-day experience. Our premise at FIT is that to reach your greatest human potential you must be fully integrated across all life dimensions, requiring time, effort, and intention. Developing Cognitive FITness involves tackling mentally challenging tasks and continuously working to improve and strengthen your habits of thought.<br><br>The FIT Assessment provides a snapshot of your cognitive functioning in the areas of Learning, Intellectual Engagement, Attention, Effortful Control, Autonomy, and Social Skills. Receiving feedback regarding these areas of your cognitive functioning allows you to engage in healthier thinking patterns that will cultivate behaviors to achieve your dreams.<br><br>Individuals who are cognitively FIT operate in the most optimal mental framework for success. Cognitively FIT habits include productive ways of thinking that are fully integrated with purpose and goals. For instance, cognitive FITness is related to finding solutions to difficult problems. Individuals who are cognitively FIT seek out feedback, are eager to understand other people’s perspectives, enjoy learning, do not shy away from challenges, and believe in their ability to succeed.<br><br>Most importantly, it is crucial to realize that your potential to achieve your wildest dreams begins with you thoughts. We hope you begin your journey to living a Fully Integrated life by engaging with us in the FIT experience.</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 center-content margin-bottom-50">
+                <a href="{% url 'fit:survey_welcome' %}" class="btn btn-primary primaryBtn homepage-btn text-uppercase dimension-btn">Get your <strong>FIT</strong> Together</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<style>
+    .icon-center {
+            margin: 20px auto 0px;
+    }
+    .white {
+        color: #fff;
+    }
+</style>
+
+<div style="background: #0084b1;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <h2 class="white">Explore other FIT Dimensions</h2>
+                <br />
+            </div>
+        </div>
+        <div class="row">
+           
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="redefiningFitnessBox">
+                        <div class="col-lg-12 col-xs-12">
+                            <a href="{% url 'fit:dim_emotional' %}">
+                                <div class="icon-emotional icon-center"></div>
+                            </a>
+                        </div>
+                        <div class="">
+                            <label class="row redefiningFitnessBoxLabel">Emotional Dimension</label>
+                        </div>
+                        <div class="col-lg-12 col-xs-12">
+                            <p class="redefiningFitnessBoxParagraph">Emotional health is central to a FIT and fulfilled life.  Stress resiliency and mindful emotion management are important habits to develop. At FIT, we help you build realistic and positive emotional skills to enrich your life. Incorporating these skills into your mindset will permeate and enhance your other key life dimensions as well.</p>
+                        </div>
+                        <div class="margin-bottom-20">
+                            <a href="{% url 'fit:dim_emotional' %}" class="btn btn-primary secondaryBtn dimension-btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                            <div class="col-lg-4  col-md-4 col-xs-12">
+                    <div class="redefiningFitnessBox">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                            <a href="{% url 'fit:dim_physical' %}">
+                                <div class="icon-physical icon-center"></div>
+                            </a>
+                        </div>
+                        <div class="">
+                            <label class="row redefiningFitnessBoxLabel">Physical Dimension</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <p class="redefiningFitnessBoxParagraph">We are embodied, perceiving the world and everything in it through our physical senses. Our mental and emotional lives are governed by physical pathways, tied directly to the physical condition of our body.  Find out how improving your physical health and fitness can completely transform your life.</p>
+                        </div>
+                        <div class="margin-bottom-20">
+                            <a href="{% url 'fit:dim_physical' %}" class="btn btn-primary secondaryBtn dimension-btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="redefiningFitnessBox">
+                        <div class="col-lg-12 col-xs-12">
+                            <a href="{% url 'fit:dim_financial' %}">
+                                <div class="icon-financial icon-center"></div>
+                            </a>
+                        </div>
+                        <div class="">
+                            <label class="row redefiningFitnessBoxLabel">Financial Dimension</label>
+                        </div>
+                        <div class="col-lg-12 col-xs-12">
+                            <p class="redefiningFitnessBoxParagraph">The financial dimension is about more than just money. Managing your short-term finances, having a long-term financial plan, and finding job satisfaction impact the FITness of your entire life. Financial health enables you to maximize your FIT or Balance across all key life dimensions.<br /><br /></p>
+                        </div>
+                        <div class="margin-bottom-20">
+                            <a href="{% url 'fit:dim_financial' %}" class="btn btn-primary secondaryBtn dimension-btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+        <style>
+    .footer-v1 .footer {
+       padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+        position: relative;
+        bottom: 0;
+        left: 0;
+    }
+    .footer-v1 .footer-socials {
+        text-align: center;
+    }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href="https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                            </li>
+                      </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- JS Implementing Plugins -->
+        <script type="text/javascript" src="{% static 'assets/plugins/back-to-top.js' %}"></script>
+        <script type="text/javascript" src="{% static 'assets/plugins/smoothScroll.js' %}"></script>
+        
+        <!-- JS Customization -->
+        <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+        <!-- JS Page Level -->
+        <script type="text/javascript" src="{% static 'assets/js/app.js' %}"></script>
+        <script type="text/javascript" src="{% static 'assets/js/pages/page_contacts.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'assets/js/plugins/style-switcher.js' %}"></script>
+
+        <!--[if lt IE 9]>
+            <script src="/assets/plugins/respond.js"></script>
+            <script src="/assets/plugins/html5shiv.js"></script>
+            <script src="/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">       
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+
+
+
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            var windowSize = $(window).width();
+            if (windowSize <= 1023) {
+                $('.loginDivider').hide();
+                //$('.signUpMenuLink').css('padding', '9px 10px 9px 10px;')
+            }
+        });
+
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            var windowSize = $(window).width();
+            if (windowSize >= 1024) {
+                $('#secureHamDropdown').addClass("showHamburger");
+            }
+            else {
+                document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+            }
+            
+        }
+        
+
+        $(document).ready(function (){
+            hamburgerDisplay()
+        });
+
+        $(window).resize(function (){
+            hamburgerDisplay()
+        });
+
+        function hamburgerDisplay() {
+            var windowSize = $(window).width();
+            if (windowSize >= 1024) {
+                $('.hamburgerSecure').hide();
+                $('#secureHamDropdown').addClass("showHamburger");                
+            }
+            else {
+                $('#secureHamDropdown').removeClass("showHamburger");
+                $('.hamburgerSecure').show();                
+            }
+        }
+
+        //disable hamburger button based on url
+        $(document).ready(function () {
+            if (window.location.href.indexOf("{% url 'fit:survey_demographic' %}") > -1 ||
+                window.location.href.indexOf("{% url 'fit:survey_welcome' %}") > -1) {
+                $('.hiddenOnSurveyPages').css("display", "none");
+            }
+            if (window.location.href.indexOf("{% url 'fit:survey_assessment' %}") > -1) {                
+                $('.hiddenOnSurveyPages').css("display", "none");
+                document.getElementById("logoAnchor").href = "{% url 'fit:dashboard' %}";
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.redefiningFitnessBoxParagraph');
+            heightsEqualizer('.aboutTab');
+        });
+
+        $(window).resize(function () {            
+            heightsEqualizer('.redefiningFitnessBoxParagraph');
+            heightsEqualizer('.aboutTab');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+            
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 992) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }       
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.redefiningFitnessBoxParagraph');
+            heightsEqualizer('.aboutTab');
+        }, 1000);
+    </script>
+    <script type="text/javascript">mixpanel.track("view-page");</script>
+</body>
+</html>
+{% endblock content %}

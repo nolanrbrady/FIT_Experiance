@@ -1,0 +1,1302 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title></title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="/assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="/assets/css/footers/footer-v1.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/animate.css">
+    <link rel="stylesheet" href="/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="/assets/css/pages/page_about.css">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="/assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="/assets/css/theme-skins/dark.css">
+    <link href="/assets/plugins/owl-carousel/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link href="/assets/css/layouts/white_layout.css" rel="stylesheet" /> 
+    <link href="/assets/css/headers/Custom_Header.css" rel="stylesheet" />
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="/assets/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/main.js"></script>
+    <script src="/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+
+    <style>
+         .cancelBtn {
+    background: transparent;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #515151;
+    line-height: 17px;
+}
+    .cancelBtn:hover {
+    background: #515151;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #FFFFFF;
+    line-height: 17px;
+}
+
+        .header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a {
+            bottom: -2px;
+            position: relative;
+            border-bottom: none;
+        }
+    </style>
+ 
+</head>
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper">
+
+        
+
+
+<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            <a class="logo" href="/secure/IndividualDashboard">
+                <img class="secureAdminLogo" src="/assets/img/icons/dimension-icons/FIT-logo-sm.png" />
+            </a>
+        </div>
+
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+
+
+
+            <a href="/secure/IndividualDashboard">Dashboard</a>
+            <a href="/secure/IndividualSurvey">FIT Assessment</a>
+            <a href="/secure/MySurveys">My History</a>
+            <a href="/secure/account">My Account</a>
+            <a href="{{takeFitLink}}">{{takeFitText}}</a>
+            <a href="/home/logout">Log Out</a>
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<script>
+
+
+    fitApp.factory('TakeFitfactory', function ($http) {
+        return {
+
+            getFItButtonData: function (callback) {
+                var url = "/secure/takeFitButtonCheck";
+
+                $http({ method: 'GET', url: url, headers: { 'Content-Type': 'application/json' } }).
+                    success(function (data, status, headers, config) {
+                        callback(data);
+
+                    }).error(function (data, status, headers, config) {
+
+                    });
+            },
+        }
+    });
+
+    fitApp.controller('TakeFitCtrl', function ($scope, TakeFitfactory) {
+
+        $scope.takeFitLink = "/secure/NewSurvey";
+        $scope.takeFitText = "Take FIT Assessment";
+        $scope.keyword = "";
+
+        TakeFitfactory.getFItButtonData(function (response) {
+            data = response;
+
+            $scope.takeFitLink = data.link;
+            $scope.takeFitText = data.text;
+        })
+
+        $scope.checkSearch = function (event) {
+            if (event.keyCode == 13) {
+                window.location = "/f2/search/?q=" + $scope.keyword;
+            }
+        }
+    }); 
+</script>
+<!--=== End Header ===-->
+        
+
+        
+
+
+<style>
+    .thumbnail {
+        width: 100%;
+    }
+
+    .owl-controls {
+        display: none !important;
+    }
+
+    #subCat1 .item,
+    #subCat2 .item,
+    #subCat3 .item,
+    #subCat4 .item,
+    #subCat5 .item,
+    #subCat6 .item,
+    #subCat7 .item,
+    #subCat8 .item,
+    #subCat9 .item,
+    #subCat10 .item,
+    #subCat11 .item,
+    #subCat12 .item,
+    #subCat13 .item,
+    #subCat14 .item,
+    #subCat15 .item,
+    #subCat16 .item,
+    #subCat17 .item,
+    #subCat18 .item,
+    #subCat19 .item,
+    #subCat20 .item,
+    #subCat21 .item,
+    #subCat22 .item,
+    #subCat32 .item,
+    #subCat33 .item,
+    #subCat34 .item {
+        margin: 3px;
+    }
+
+        #subCat1 .item img,
+        #subCat2 .item img,
+        #subCat3 .item img,
+        #subCat4 .item img,
+        #subCat5 .item img,
+        #subCat6 .item img,
+        #subCat7 .item img,
+        #subCat8 .item img,
+        #subCat9 .item img,
+        #subCat10 .item img,
+        #subCat11 .item img,
+        #subCat12 .item img,
+        #subCat13 .item img,
+        #subCat14 .item img,
+        #subCat15 .item img,
+        #subCat16 .item img,
+        #subCat17 .item img,
+        #subCat18 .item img,
+        #subCat19 .item img,
+        #subCat20 .item img,
+        #subCat21 .item img,
+        #subCat22 .item img,
+        #subCat32 .item img,
+        #subCat33 .item img,
+        #subCat34 .item img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+    .library-tile-wrapper img {
+        border: none;
+    }
+
+    .library-previous-icon {
+        left: -45px;
+    }
+
+    .library-next-icon {
+        right: -45px;
+    }
+</style>
+
+<!--=== Breadcrumbs ===-->
+
+<div class="container">
+    <ul class="pull-left breadcrumb">
+        <li><a href="/library/search">Fit Library</a></li>
+        <li class="active">Financial Dimension</li>
+    </ul>
+</div>
+
+<!--=== End Breadcrumbs ===-->
+
+<div>
+    <div class="container" ng-controller="LibraryCtrl" style="padding-top: 40px;">
+
+        <div class="row mobile-hidden">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10 library-dimensions-wrapper">
+
+<style>
+    .icon-Cognitive, .icon-Emotional, .icon-Physical, .icon-Financial {
+        zoom: 0.5;        
+    }
+    ul .icon-Cognitive, ul .icon-Emotional, ul .icon-Physical, ul .icon-Financial {
+        zoom: 0.4;
+    }
+    ul h6{
+        font-size: 10px;
+    }
+</style>
+
+<div class="row col-sm-6">
+    <div class="col-xs-5 col-md-3 text-center text-uppercase">
+        <div class="icon-Financial"></div>
+        <h6>Financial</h6>
+    </div>
+    <div class="col-xs-7 col-md-9">
+        <h4>Lorem ipsum dolor sit amet, vel sumo nemore compre</h4>
+    </div>
+</div>
+<div class="col-sm-6">
+    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+        <h5 class="text-orange" style="margin-bottom:0;">Browse other dimensions</h5>
+
+        <ul style="display: inline-flex;">
+                    <li class="text-center text-uppercase" style="padding: 0 15px 0 0;">
+                        <a href="/library/dimension/1">
+                            <div class="icon-Cognitive"></div>
+                            <h6>Cognitive</h6>
+                        </a>
+                    </li>
+                    <li class="text-center text-uppercase" style="padding: 0 15px 0 0;">
+                        <a href="/library/dimension/2">
+                            <div class="icon-Emotional"></div>
+                            <h6>Emotional</h6>
+                        </a>
+                    </li>
+                    <li class="text-center text-uppercase" style="padding: 0 15px 0 0;">
+                        <a href="/library/dimension/3">
+                            <div class="icon-Physical"></div>
+                            <h6>Physical</h6>
+                        </a>
+                    </li>
+        </ul>
+    </div>
+
+</div>
+            </div>
+        </div>
+
+        <div class="row margin-top-20 library-dimension-coach" style="border-top: 1px solid #ddd;">
+            <div class="col-sm-3 col-md-2 library-coach-wrapper" style="background: #eee;">
+
+<a href="/bios/James_Doran">
+    <div class="hex-James dimensionHexagon ">
+        <div class="dimensionHexTop"></div>
+        <div class="dimensionHexBottom"></div>
+    </div>
+</a>
+<div class="text-center">
+    <h5 class="text-bold">James Doran</h5>
+
+
+    <h6 class="text-uppercase" style="padding-bottom: 20px;"> financial coach</h6>
+</div>
+
+                <br />
+                <div class="mobile-hidden">
+                    <h4 class="text-bold">Sub-Dimensions</h4>
+                            <ul style="list-style:none;">
+                                <li><a href="/library/results?subCategory=18"><h5 class="text-blue"> Long Term Financial</h5></a></li>
+                            </ul>
+                            <ul style="list-style:none;">
+                                <li><a href="/library/results?subCategory=19"><h5 class="text-blue"> Short Term Financial</h5></a></li>
+                            </ul>
+                            <ul style="list-style:none;">
+                                <li><a href="/library/results?subCategory=20"><h5 class="text-blue"> Reduce Sadness</h5></a></li>
+                            </ul>
+                            <ul style="list-style:none;">
+                                <li><a href="/library/results?subCategory=21"><h5 class="text-blue"> Increase Happiness</h5></a></li>
+                            </ul>
+                            <ul style="list-style:none;">
+                                <li><a href="/library/results?subCategory=22"><h5 class="text-blue"> Social/Emotional Support</h5></a></li>
+                            </ul>
+
+                </div>
+
+            </div>
+            <div class="col-sm-9 col-md-10" style="padding: 40px 30px;">
+
+                        <div class="row margin-bottom-20" style="border-bottom: 1px solid #ddd;">
+                            <div class="col-xs-9 padding-0">
+                                <h4 class="text-bold text-uppercase"><strong>Long Term Financial</strong></h4>
+                            </div>
+                            <div class="col-xs-3 padding-0">
+                                <a href="/library/results?subCategory=18" class="text-blue" style="float:right;">See all</a>
+                            </div>
+                        </div>
+<div id="subCat18" class="margin-bottom-25 col-xs-12">
+
+<style>
+   
+</style> 
+            <div class="item library-tile-wrapper">
+                <a href="/library/resource/12">
+                    <div class="library-subCat-img">
+                        <img src="https://s3-us-west-2.amazonaws.com/fitlibrary/thumbnail_131153215787400664" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                    </div>
+
+                    <div class="library-tile library-subCat-item">
+                        <h4><strong>Dave Ramsey Has Just Four Words for You in 2015</strong></h4>
+
+                        <p>Dave Ramsey is the seventh finalist featured in GOBankingRat...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item library-tile-wrapper">
+                <a href="/library/resource/9">
+                    <div class="library-subCat-img">
+                        <img src="https://s3-us-west-2.amazonaws.com/fitlibrary/thumbnail_131152526477126293" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                    </div>
+
+                    <div class="library-tile library-subCat-item">
+                        <h4><strong>Mind on My Money</strong></h4>
+
+                        <p>Election policy is getting lots of attention recently, what ...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item library-tile-wrapper">
+                <a href="/library/resource/4">
+                    <div class="library-subCat-img">
+                        <img src="https://s3-us-west-2.amazonaws.com/fitlibrary/thumbnail_131152387064073971" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                    </div>
+
+                    <div class="library-tile library-subCat-item">
+                        <h4><strong>Blue Book Value</strong></h4>
+
+                        <p>being aware of blue book values for houses can help you get ...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item library-tile-wrapper">
+                <a href="/library/resource/2">
+                    <div class="library-subCat-img">
+                        <img src="https://s3-us-west-2.amazonaws.com/fitlibrary/thumbnail_131152385625355387" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                    </div>
+
+                    <div class="library-tile library-subCat-item">
+                        <h4><strong>Blue Book Value</strong></h4>
+
+                        <p>being aware of blue book values for houses can help you get ...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="item library-tile-wrapper">
+                <a href="/library/resource/1">
+                    <div class="library-subCat-img">
+                        <img src="https://s3-us-west-2.amazonaws.com/fitlibrary/thumbnail_131153235471814834" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                    </div>
+
+                    <div class="library-tile library-subCat-item">
+                        <h4><strong>Blue Book Value</strong></h4>
+
+                        <p>being aware of blue book values for houses can help you get ...</p>
+                    </div>
+                </a>
+            </div>
+
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12" style="margin-top: -300px;">
+                            <div class="col-xs-6">
+                                <a class="subCat18-prev library-previous-icon"></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a class="subCat18-next library-next-icon"></a>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-20" style="border-bottom: 1px solid #ddd;">
+                            <div class="col-xs-9 padding-0">
+                                <h4 class="text-bold text-uppercase"><strong>Short Term Financial</strong></h4>
+                            </div>
+                            <div class="col-xs-3 padding-0">
+                                <a href="/library/results?subCategory=19" class="text-blue" style="float:right;">See all</a>
+                            </div>
+                        </div>
+<div id="subCat19" class="margin-bottom-25 col-xs-12">
+
+<style>
+   
+</style> 
+                                <div class="item library-tile-wrapper">
+                                    <a href="/library/resource/1">
+                                        <div class="library-subCat-img">
+                                            <img src="" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                                        </div>
+
+                                        <div class="library-tile library-subCat-item">
+                                            <h4><strong></strong></h4>
+
+                                            <p>No items to display</p>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12" style="margin-top: -300px;">
+                            <div class="col-xs-6">
+                                <a class="subCat19-prev library-previous-icon"></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a class="subCat19-next library-next-icon"></a>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-20" style="border-bottom: 1px solid #ddd;">
+                            <div class="col-xs-9 padding-0">
+                                <h4 class="text-bold text-uppercase"><strong>Reduce Sadness</strong></h4>
+                            </div>
+                            <div class="col-xs-3 padding-0">
+                                <a href="/library/results?subCategory=20" class="text-blue" style="float:right;">See all</a>
+                            </div>
+                        </div>
+<div id="subCat20" class="margin-bottom-25 col-xs-12">
+
+<style>
+   
+</style> 
+                                <div class="item library-tile-wrapper">
+                                    <a href="/library/resource/1">
+                                        <div class="library-subCat-img">
+                                            <img src="" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                                        </div>
+
+                                        <div class="library-tile library-subCat-item">
+                                            <h4><strong></strong></h4>
+
+                                            <p>No items to display</p>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12" style="margin-top: -300px;">
+                            <div class="col-xs-6">
+                                <a class="subCat20-prev library-previous-icon"></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a class="subCat20-next library-next-icon"></a>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-20" style="border-bottom: 1px solid #ddd;">
+                            <div class="col-xs-9 padding-0">
+                                <h4 class="text-bold text-uppercase"><strong>Increase Happiness</strong></h4>
+                            </div>
+                            <div class="col-xs-3 padding-0">
+                                <a href="/library/results?subCategory=21" class="text-blue" style="float:right;">See all</a>
+                            </div>
+                        </div>
+<div id="subCat21" class="margin-bottom-25 col-xs-12">
+
+<style>
+   
+</style> 
+                                <div class="item library-tile-wrapper">
+                                    <a href="/library/resource/1">
+                                        <div class="library-subCat-img">
+                                            <img src="" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                                        </div>
+
+                                        <div class="library-tile library-subCat-item">
+                                            <h4><strong></strong></h4>
+
+                                            <p>No items to display</p>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12" style="margin-top: -300px;">
+                            <div class="col-xs-6">
+                                <a class="subCat21-prev library-previous-icon"></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a class="subCat21-next library-next-icon"></a>
+                            </div>
+                        </div>
+                        <div class="row margin-bottom-20" style="border-bottom: 1px solid #ddd;">
+                            <div class="col-xs-9 padding-0">
+                                <h4 class="text-bold text-uppercase"><strong>Social/Emotional Support</strong></h4>
+                            </div>
+                            <div class="col-xs-3 padding-0">
+                                <a href="/library/results?subCategory=22" class="text-blue" style="float:right;">See all</a>
+                            </div>
+                        </div>
+<div id="subCat22" class="margin-bottom-25 col-xs-12">
+
+<style>
+   
+</style> 
+                                <div class="item library-tile-wrapper">
+                                    <a href="/library/resource/1">
+                                        <div class="library-subCat-img">
+                                            <img src="" alt="" class="thumbnail" style="margin-bottom: 0;" />
+                                        </div>
+
+                                        <div class="library-tile library-subCat-item">
+                                            <h4><strong></strong></h4>
+
+                                            <p>No items to display</p>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12" style="margin-top: -300px;">
+                            <div class="col-xs-6">
+                                <a class="subCat22-prev library-previous-icon"></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a class="subCat22-next library-next-icon"></a>
+                            </div>
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#subCat1").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat1 = $("#subCat1");
+        $('.subCat1-next').click(function () {
+            subCat1.trigger('owl.next');
+        })
+        $('.subCat1-prev').click(function () {
+            subCat1.trigger('owl.prev');
+        })
+
+
+        $("#subCat2").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat2 = $("#subCat2");
+        $('.subCat2-next').click(function () {
+            subCat2.trigger('owl.next');
+        })
+
+        $('.subCat2-prev').click(function () {
+            subCat2.trigger('owl.prev');
+        })
+
+
+        $("#subCat3").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat3 = $("#subCat3");
+        $('.subCat3-next').click(function () {
+            subCat3.trigger('owl.next');
+        })
+
+        $('.subCat3-prev').click(function () {
+            subCat3.trigger('owl.prev');
+        })
+
+
+        $("#subCat4").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat4 = $("#subCat4");
+        $('.subCat4-next').click(function () {
+            subCat4.trigger('owl.next');
+        })
+        $('.subCat4-prev').click(function () {
+            subCat4.trigger('owl.prev');
+        })
+
+
+        $("#subCat5").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat5 = $("#subCat5");
+        $('.subCat5-next').click(function () {
+            subCat5.trigger('owl.next');
+        })
+
+        $('.subCat5-prev').click(function () {
+            subCat5.trigger('owl.prev');
+        })
+
+
+        $("#subCat6").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat6 = $("#subCat6");
+        $('.subCat6-next').click(function () {
+            subCat6.trigger('owl.next');
+        })
+
+        $('.subCat6-prev').click(function () {
+            subCat6.trigger('owl.prev');
+        })
+
+
+        $("#subCat7").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat7 = $("#subCat7");
+        $('.subCat7-next').click(function () {
+            subCat7.trigger('owl.next');
+        })
+        $('.subCat7-prev').click(function () {
+            subCat7.trigger('owl.prev');
+        })
+
+
+        $("#subCat8").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat8 = $("#subCat8");
+        $('.subCat8-next').click(function () {
+            subCat8.trigger('owl.next');
+        })
+
+        $('.subCat8-prev').click(function () {
+            subCat8.trigger('owl.prev');
+        })
+
+
+        $("#subCat9").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat9 = $("#subCat9");
+        $('.subCat9-next').click(function () {
+            subCat9.trigger('owl.next');
+        })
+
+        $('.subCat9-prev').click(function () {
+            subCat9.trigger('owl.prev');
+        })
+
+
+        $("#subCat10").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat10 = $("#subCat10");
+        $('.subCat10-next').click(function () {
+            subCat10.trigger('owl.next');
+        })
+        $('.subCat10-prev').click(function () {
+            subCat10.trigger('owl.prev');
+        })
+
+
+        $("#subCat11").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat11 = $("#subCat11");
+        $('.subCat11-next').click(function () {
+            subCat11.trigger('owl.next');
+        })
+
+        $('.subCat11-prev').click(function () {
+            subCat11.trigger('owl.prev');
+        })
+
+
+        $("#subCat12").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat12 = $("#subCat12");
+        $('.subCat12-next').click(function () {
+            subCat12.trigger('owl.next');
+        })
+
+        $('.subCat12-prev').click(function () {
+            subCat12.trigger('owl.prev');
+        })
+
+
+        $("#subCat13").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat13 = $("#subCat13");
+        $('.subCat13-next').click(function () {
+            subCat13.trigger('owl.next');
+        })
+        $('.subCat13-prev').click(function () {
+            subCat13.trigger('owl.prev');
+        })
+
+
+        $("#subCat14").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat14 = $("#subCat14");
+        $('.subCat14-next').click(function () {
+            subCat14.trigger('owl.next');
+        })
+
+        $('.subCat14-prev').click(function () {
+            subCat14.trigger('owl.prev');
+        })
+
+
+        $("#subCat15").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat15 = $("#subCat15");
+        $('.subCat15-next').click(function () {
+            subCat15.trigger('owl.next');
+        })
+
+        $('.subCat15-prev').click(function () {
+            subCat15.trigger('owl.prev');
+        })
+
+
+        $("#subCat16").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat16 = $("#subCat16");
+        $('.subCat16-next').click(function () {
+            subCat16.trigger('owl.next');
+        })
+
+        $('.subCat16-prev').click(function () {
+            subCat16.trigger('owl.prev');
+        })
+
+
+        $("#subCat17").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat17 = $("#subCat17");
+        $('.subCat17-next').click(function () {
+            subCat17.trigger('owl.next');
+        })
+        $('.subCat17-prev').click(function () {
+            subCat17.trigger('owl.prev');
+        })
+
+
+        $("#subCat18").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat18 = $("#subCat18");
+        $('.subCat18-next').click(function () {
+            subCat18.trigger('owl.next');
+        })
+
+        $('.subCat18-prev').click(function () {
+            subCat18.trigger('owl.prev');
+        })
+
+
+        $("#subCat19").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat19 = $("#subCat19");
+        $('.subCat19-next').click(function () {
+            subCat19.trigger('owl.next');
+        })
+
+        $('.subCat19-prev').click(function () {
+            subCat19.trigger('owl.prev');
+        })
+
+
+        $("#subCat20").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat20 = $("#subCat20");
+        $('.subCat20-next').click(function () {
+            subCat20.trigger('owl.next');
+        })
+        $('.subCat20-prev').click(function () {
+            subCat20.trigger('owl.prev');
+        })
+
+
+        $("#subCat21").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat21 = $("#subCat21");
+        $('.subCat21-next').click(function () {
+            subCat21.trigger('owl.next');
+        })
+
+        $('.subCat21-prev').click(function () {
+            subCat21.trigger('owl.prev');
+        })
+
+
+        $("#subCat22").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat22 = $("#subCat22");
+        $('.subCat22-next').click(function () {
+            subCat22.trigger('owl.next');
+        })
+
+        $('.subCat22-prev').click(function () {
+            subCat22.trigger('owl.prev');
+        })
+
+
+        $("#subCat32").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat32 = $("#subCat32");
+        $('.subCat32-next').click(function () {
+            subCat32.trigger('owl.next');
+        })
+        $('.subCat32-prev').click(function () {
+            subCat32.trigger('owl.prev');
+        })
+
+
+        $("#subCat33").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat33 = $("#subCat33");
+        $('.subCat33-next').click(function () {
+            subCat33.trigger('owl.next');
+        })
+
+        $('.subCat33-prev').click(function () {
+            subCat33.trigger('owl.prev');
+        })
+
+
+        $("#subCat34").owlCarousel({
+            items: 3,
+            lazyLoad: true,
+            navigation: true
+        });
+        var subCat34 = $("#subCat34");
+        $('.subCat34-next').click(function () {
+            subCat34.trigger('owl.next');
+        })
+
+        $('.subCat34-prev').click(function () {
+            subCat34.trigger('owl.prev');
+        })
+
+    })
+</script>
+
+         
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+       
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href=" https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="/assets/plugins/smoothScroll.js"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="/assets/plugins/respond.js"></script>
+            <script src="/assets/plugins/html5shiv.js"></script>
+            <script src="/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        //$(".owl-carousel").owlCarousel();
+        $(document).ready(function () {
+            
+            $("#lastViewed").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var lastViewed = $("#lastViewed");
+            $('.lastViewed-next').click(function () {
+                lastViewed.trigger('owl.next');
+            })
+
+            $('.lastViewed-prev').click(function () {
+                lastViewed.trigger('owl.prev');
+            })
+
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var owl = $("#owl-demo");
+            $('.recomended-next').click(function () {
+                owl.trigger('owl.next');
+            })
+            
+            $('.recomended-prev').click(function () {
+                owl.trigger('owl.prev');
+            })
+            
+            $("#popularTiles").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var popularTiles = $("#popularTiles");
+            $('.popular-next').click(function () {
+                popularTiles.trigger('owl.next');
+            })
+
+            $('.popular-prev').click(function () {
+                popularTiles.trigger('owl.prev');
+            })
+
+            
+        });
+
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+         
+            $(document).on("keyup", function (event) {
+               
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+                    
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78694145-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MNW54K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MNW54K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</body>
+</html>

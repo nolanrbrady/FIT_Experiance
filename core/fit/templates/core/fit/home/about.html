@@ -1,0 +1,891 @@
+﻿{% load staticfiles %}
+{% load angular %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title></title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&amp;subset=cyrillic,latin'>
+    <link href='//fonts.googleapis.com/css?family=Volkhov:400,400italic' rel='stylesheet' type='text/css'>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="{% static 'assets/css/headers/header-default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footers/footer-v1.css' %}">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/line-icons/line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.css' %}">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/pages/page_about.css' %}">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme-colors/default.css' %}" id="style_color">
+    <link rel="stylesheet" href="{% static 'assets/css/theme-skins/dark.css' %}">
+    <link href="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.theme.css' %}" rel="stylesheet" />
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link href="{% static 'assets/css/layouts/white_layout.css' %}" rel="stylesheet" /> 
+    <link href="{% static 'assets/css/headers/Custom_Header.css' %}" rel="stylesheet" />
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery/jquery-migrate.min.js' %}"></script>
+    <script src="{% static 'Scripts/angular.min.js' %}"></script>
+    <script src="{% static 'Scripts/main.js' %}"></script>
+    <script src="{% static 'assets/plugins/owl-carousel/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+    <script src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js'></script>
+    <!-- tmp -->
+    <script src="{% static 'app/tmp-TakeFitfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-TakeFitCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Overviewfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-OverviewCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-DimensionsCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-Dimensionsfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HistoricalCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapfactory.js' %}"></script>
+    <script src="{% static 'app/tmp-HeatMapCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingFactory.js' %}"></script>
+    <script src="{% static 'app/tmp-CurrentStandingCtrl.js' %}"></script>
+    <script src="{% static 'app/tmp-AdvancedMetricsCtrl.js' %}"></script>
+
+    <style>
+         .cancelBtn {
+    background: transparent;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #515151;
+    line-height: 17px;
+}
+    .cancelBtn:hover {
+    background: #515151;
+    border: 3px solid #515151;
+    border-radius: 2px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 17.39px;
+    color: #FFFFFF;
+    line-height: 17px;
+}
+
+        .header .navbar-nav > li > a:hover, .header .navbar-nav > .active > a {
+            bottom: -2px;
+            position: relative;
+            border-bottom: none;
+        }
+    </style>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+    mixpanel.init("{{ MIXPANEL_TOKEN }}");</script><!-- end Mixpanel -->
+</head>
+
+<body ng-app="fitApp">
+
+    <div class="wrapper fitApp-wrapper">
+
+
+<!--=== Header ===-->
+<div class="header" ng-controller="TakeFitCtrl">
+    <div class="container padding-right-0 padding-left-0">
+        <div class="col-xs-4 col-md-3">
+            {% if user and not user.is_anonymous %}
+            <a class="logo" href="{% url 'fit:index' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% else %}
+            <a class="logo" href="{% url 'fit:index' %}">
+                <img class="secureAdminLogo" src="{% static 'assets/img/icons/dimension-icons/FIT-logo-sm.png' %}" />
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-xs-8 col-md-9">
+            <input type="text" class="search-bar form-control" placeholder="Search" ng-keyup="checkSearch($event)" ng-model="keyword" />
+            <button onclick="hamburgerToggle(event)" class="hamburgerSecure">&#9776;</button>
+            <!-- End Toggle -->
+        </div>
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="container hamburgerMenuWrapper">
+        <div id="secureHamDropdown" class="hamburgerContent">
+            {% if user and not user.is_anonymous %}
+            <a href="{% url 'fit:dashboard' %}">Dashboard</a>
+            <a href="{% url 'fit:assessment' %}">FIT Assessment</a>
+            <a href="{% url 'fit:calendar' %}">My Calendar</a>
+            <a href="{% url 'account_settings' %}">My Account</a>
+            <a href="{% url 'account_logout' %}">Log Out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Sign In</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+    <!--/navbar-collapse-->
+</div>
+<!--=== End Header ===-->
+        
+
+        
+
+
+<style>
+    .tooltip-inner {
+    text-align:left;
+}
+    h3 {
+    text-align:center;
+}
+</style>
+
+
+<link rel="stylesheet" href="{% static 'assets/css/pages/page_log_reg_v1.css' %}">
+
+
+<div class="container dashboardContainer" >
+    <div class="">
+        <div class="bg-color-white dashboardDisplay">
+            <div class="col-md-3 profileContainer fullWidth">
+                <style>
+    .blackBar {
+        background-color: #373737;
+        height: 40px;
+        text-align: center;
+        margin-left:-15px;
+        margin-right:-15px;
+    }
+    .profile-header{
+        color: #fff;
+        font-size: 25px;
+    }
+        .profilePadding {
+        margin-top: 15px;
+        margin-bottom: 50px;
+    }
+
+    .stick-to-bottom{
+    position: relative;
+    top: 10px;
+    margin: 0 auto;
+    width: 100%;
+        border-top: 1px solid #ccc;
+    }
+</style>
+
+
+<div class="blackBar">
+    <div class="col-md-12">
+        <span class="profile-header">Profile</span>
+    </div>
+</div>
+<br />
+<div class="row profilePhoto">
+    <div class="col-md-12">
+        <style>
+    .profileContainer svg{
+      width:170px;
+    }
+    .profileContainer .name {
+        color: #515151;
+    }
+</style>
+
+<div class="row">
+    <div style="width:160px; margin: auto;">
+        <svg viewbox="0 0 100 100" version="1.1" xmlns="//www.w3.org/2000/svg">
+            <defs>
+                <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">
+                    <image xlink:href="https://s3-us-west-2.amazonaws.com/fitprofiles/70_131074712036378485" x="-25" width="150" height="100" />
+                </pattern>
+            </defs>
+            <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)" />
+        </svg>
+    </div>
+    
+    <h2 style="text-align:center;"><a href="{% url 'account_settings' %}" class="name">{{user.first_name}} {{user.last_name}}</a></h2>
+    
+</div>
+
+    </div>
+</div>
+
+ <div class="row hiddenTablet">
+    <div class="col-md-12">
+        
+<div class="margin-top-40" ng-controller="TakeFitCtrl">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="col-xs-12">
+        <div style="text-align:center;  ">
+            <h4 class="title" style="">MY FIT PLAN</h4>
+        </div>
+    </div>
+    
+    <div class="buttonWrapper">
+        <div>
+            <a href="{% url 'account_settings' %}" class="btn btn-primary primaryBtn text-uppercase ">MY ACCOUNT</a>
+        </div>
+        <br />
+
+        <div>
+            <a href="{% url 'fit:assessment' %}" class="btn btn-primary primaryBtn text-uppercase ">FIT Assessment</a>
+        </div>
+        <br />
+            <div>
+                <a href="{% url 'fit:dream_builder' %}" class="btn btn-primary primaryBtn text-uppercase ">My Dream Builder</a>
+            </div>
+        <br />
+
+            <div>
+                <a href="{% url 'fit:plan_builder' %}" class="btn btn-primary primaryBtn text-uppercase ">My Plan Builder</a>
+            </div>
+        <br/>
+
+            <div>
+                <a href="{% url 'fit:calendar' %}" class="btn btn-primary primaryBtn text-uppercase ">MY CALENDAR</a>
+            </div>
+        <br/>
+            <div>
+                <a href="https://thefitexperience.com/f2/library/dimension/1" class="btn btn-primary primaryBtn text-uppercase ">FIT Library</a>
+            </div>
+    </div>
+    
+</div>
+
+<style>
+    .profileContainer .buttonWrapper .btn{
+        width:80%;
+        margin:auto;
+        font-size:14px
+    }
+    .profileContainer .buttonWrapper{
+         text-align: center;
+    }    
+    .profileContainer .title{
+        text-transform: uppercase;  
+        font-weight: bolder;    
+        color: #515151;
+    }
+</style>
+
+
+
+    </div>
+</div>
+ 
+<div class="row hiddenTablet" style="display: none;">
+    <div class="col-md-12 ">
+        
+<div class="margin-top-40">
+    <div class="profileFitPlanWrapper"></div>
+        <br />
+        <h4 class="title" style="text-align:center;">
+            SHARE YOUR JOURNEY
+        </h4>
+
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                <ul class="footer-socials list-inline">
+
+
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                            <i class="profileSocialIcons fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                            <i class="profileSocialIcons fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                            <i class="profileSocialIcons fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                            <i class="profileSocialIcons fa fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    
+</div>
+
+ 
+    </div>
+</div>
+
+<div class="row hiddenTablet">
+    <div class="col-md-12 ">
+        <div class="margin-top-40 buttonWrapper">
+    <div class="profileFitPlanWrapper"></div>
+    <br />
+    <div class="text-center margin-bottom-50">
+        <a href="{% url 'fit:about' %}" class="btn btn-primary primaryBtn text-uppercase ">About FIT Assessment</a>
+    </div>
+
+</div>
+
+    </div>
+</div>
+
+            </div>
+
+            <div class="col-md-9 fullWidth dashboardContent">
+                
+<div class="aboutWrapper">
+    <div class="row" style="border: 1px solid #ddd; background-color: rgba(240, 240, 242, 0.6); margin-right: 0;">
+        <div class="auto-Margin">
+            <ul class="nav nav-tabs text-center" >
+                <li class="col-md-3 padding-0 active"><a class="tab aboutTab" data-toggle="tab" href="#learnAboutAssessment" aria-expanded="true">LEARN ABOUT ASSESSMENT</a></li>
+                <li class="col-md-3 padding-0"><a class="tab aboutTab" data-toggle="tab" href="#theFitScience" aria-expanded="false">THE FIT SCIENCE</a></li>
+                <li class="col-md-3 padding-0"><a class="tab aboutTab" data-toggle="tab" href="#theFitPhilosophy" aria-expanded="false">THE FIT PHILOSOPHY</a></li>
+                <li class="col-md-3 padding-0"><a class="tab aboutTab" data-toggle="tab" href="#limitations">LIMITATIONS</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+
+            <div class="tab-content">
+                <div id="learnAboutAssessment" class="tab-pane fade in active">
+                    <div class="col-md-12" style="min-height:559px; ">
+    <h3>The FIT Assessment</h3>
+    <div class="aboutTabHr"></div>
+
+    <p>
+        In our view, assessing current FITness levels is likened to assessing an organization’s operating systems. Are your habits healthy and providing efficient and productive outcomes? Or do you have negative habits that are sabotaging your productivity and your potential to enjoy a healthy, fulfilled, and financially robust future?
+    </p>
+    <p>
+        To better answer these questions, we developed the FIT Assessment based on contemporary science across the fields of exercise and nutrition science, cognitive neuroscience, positive psychology, learning and memory, and finance. No other assessment provides a snapshot of your Cognitive, Emotional, Physical, and Financial FITness levels in one questionnaire.
+    </p>
+    <p>
+        The FIT Assessment Tool provides a summary FIT score, as well as separate dimension scores summarizing how FIT you are in the Cognitive, Emotional, Physical, and Financial dimensions. Furthermore, these four dimensions are broken down into subcategories to help uncover specific areas that you can devote time to developing in order to achieve a more FIT life.  After taking the FIT Assessment, you are also provided with detailed feedback regarding your functioning in these 25 subcategories. Finally, you are provided with a BALANCE score that reflects how integrated you are across the Cognitive, Emotional, Physical, and Financial dimensions.
+    </p>
+    <p>
+        We believe that one of the most important aspects of the FIT experience is gaining an honest and clear understanding of areas that might be limiting your potential to achieve a more purposeful and Fully Integrated life. The only way to improve upon your future state is to actively engage in a process of growth and development, which necessitates a method of assessing your current functioning.
+    </p>
+    <p>
+        While acknowledging that self-assessments are never free of bias, taking the FIT Assessment provides an understanding of your current strengths and weaknesses. Empowered by this knowledge, you can start working toward developing a more nutrient-rich and optimal future state. Furthermore, once you take the survey and receive your scores, you can use our educational materials to help you work toward living a more FIT and balanced life.
+    </p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+
+                </div>
+                <div id="theFitScience" class="tab-pane fade">
+                    <div class="col-md-12">
+    <span>ABOUT</span>
+    <h3>The FIT Science</h3>
+    <div class="aboutTabHr"></div>
+
+    <p>The FIT Assessment is based on contemporary science across the four dimensions. Each dimension coach has extracted the most important processes, behaviors, and beliefs that are associated with high levels of functioning in that dimension. In addition, we included the most important subcategories for the Cognitive, Emotional, Physical, and Financial dimensions.
+    </p>
+    <p>
+        The FIT Assessment is based in the science of measurement. Development of the FIT Assessment included an extensive stage of piloting, examining item-level statistics, and running analyses to examine the properties of the assessment.  The result is the most comprehensive, science-based assessment on the market.
+    </p>
+    <p>
+        The subcategories that were derived for each of the dimensions are based on contemporary evidence from each respective field of science. For instance, the most up-to-date knowledge from the field of nutrition science is represented in the assessment for the Physical dimension. Unfortunately, there is often a disconnect between what scientists know to be true regarding the best practices for optimal functioning, and the more conservative guidelines that politically driven agencies recommend. When we developed the FIT Assessment, we did not subjectively consider issues of compliance. Instead, we painstakingly reviewed evidence from scientific sources and developed the subcategories grounded in this scientific evidence.
+    </p>
+    <p>
+        Of course, it is impossible to measure everything in the Cognitive, Emotional, Physical, and Financial dimensions. Decisions were made regarding what to include and exclude based on the most impactful subcomponents of each of the dimensions. For instance, in the Cognitive dimension, the decision to include the six subcategories and exclude others is based on decades of research in the psychological sciences. This includes evidence from the areas of neuroscience, cognition, development, social processes, motivation, education, and positive psychology.
+    </p>
+    <p>
+        Of critical importance, we have a team of data analysts continuously tracking how improvements in subcategories relate to growth across the dimensions. We track factors that improve the overall dimension scores as well as the BALANCE score over time. For instance, we track which subcategories are most impactful to other subcategories, and where time and energy should be spent to improve your BALANCE score. These results not only inform the physical, mental, and financial exercises that we recommend, but also provide us with information regarding how often people should take the FIT Assessment. One of the most important trends that we track is change over time for our members. Usually, we see improvements in scores, but we also know that life is not always linear, and sometimes we experience temporary setbacks. The FIT Assessments provides us with information to help you get back on track.  For instance, if we see a subcategory score drop, then we can recommend a set of materials with actionable goals to foster growth in that area. This is just one example of how the FIT process is tailored to your specific life situation.
+    </p>
+    <p>
+        The FIT Assessment Tool provides the following:
+    </p>
+    <p>
+        <ul>
+            <li>Your FIT score</li>
+            <li>Separate DIMENSION scores for the Cognitive, Emotional, Physical, and Financial dimensions</li>
+            <li>Your BALANCE score, which measures how integrated you are across key dimensions</li>
+            <li>25 SUBCATEGORY scores for each of the subcategories within the dimensions</li>
+        </ul>
+    </p>
+
+    <div style="border: 1px solid #ccc; padding: 20px; margin-top: 20px;">
+        <p>
+            Your scores include feedback on these four dimensions and 25 subcategories:
+        </p>
+
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <h4 style="font-weight: 700;">Cognitive Dimension</h4>
+                <ul>
+                    <li>Learning strategies</li>
+                    <li>Intellectual engagement</li>
+                    <li>Effortful control</li>
+                    <li>Attention</li>
+                    <li>Autonomy</li>
+                    <li>Social cognition</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <h4 style="font-weight: 700;">Emotional Dimension</h4>
+                <ul>
+                    <li>Emotional health</li>
+                    <li>Emotional intelligence</li>
+                    <li>Stress resilience</li>
+                    <li>Gratitude & Positivity</li>
+                    <li>Spirituality</li>
+                    <li>Social Engagement</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <h4 style="font-weight: 700;">Physical Dimension</h4>
+                <ul>
+                    <li>Nutrition</li>
+                    <li>Nutrition knowledge</li>
+                    <li>Inactivity</li>
+                    <li>Aerobic activity</li>
+                    <li>Strength training</li>
+                    <li>Self image</li>
+                    <li>Sleep habits</li>
+                    <li>Social</li>
+                </ul>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <h4 style="font-weight: 700;">Financial Dimension</h4>
+                <ul>
+                    <li>Long-term financial security</li>
+                    <li>Short-term financial security</li>
+                    <li>Reduction in sadness</li>
+                    <li>Increasing happiness</li>
+                    <li>Non-pecuniary</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+   
+</div>
+
+                </div>
+                <div id="theFitPhilosophy" class="tab-pane fade">
+                    <div class="col-md-12" style="min-height:490px;">
+    <span>ABOUT</span>
+    <h3>The FIT Philosophy</h3>
+    <div class="aboutTabHr"></div>
+
+    <p>The FIT Assessment is first and foremost a tool. This means that we designed the assessment to be used as an instrument to foster change on the road to your Desired Future State. After taking the FIT Assessment, you will receive an overall FITness score as well as scores on each of the four key life dimensions: Cognitive, Emotional, Physical, and Financial. These scores are intended to provide feedback regarding areas of strength and areas that could use bolstering. In other words, the FIT scores should act as a starting point to understand where and how you can begin living a more purposeful and integrated life.
+    </p>
+    <p>
+        Assessing your relative areas of FITness provides a baseline and is essential for being able to track future growth.
+    </p>
+    <p>
+        Notably, the FIT Assessment is not a test. There are no correct or incorrect answers. There are several reasons for this design. First, many of the areas we are assessing are a matter of personal preference or ask about subjective experiences. Therefore, the information obtained is useful to understand areas of relative value from individual to individual, but many of these issues are not a question of right or wrong. With this in mind, it is imperative to answer the questions as honestly as possible to obtain an accurate snapshot of where you are on each of the four dimensions. While it is impossible to eliminate bias when taking a self-assessment, being as truthful as possible when answering the questions will provide the most valuable information. Click here to read more about the limitations of self-report assessments.
+    </p>
+    <p>
+        Secondly, although science is clear regarding recommendations for optimal health, few FIT individuals adhere to these recommendations perfectly. For instance, contemporary science has clear evidence regarding how much sleep and exercise we should get each day as well as how many vegetable servings we should consume, but with the goal of achieving balance in life, it is not realistic to adhere to these recommendations perfectly 100% of the time. In fact, being obsessive about physical health and fitness likely comes at the expense of other areas of your life, such as finances or relationships. Thus, the relative BALANCE across dimensions is more important than the overall FITness score.
+    </p>
+    <p>
+        Additionally, we believe that FITness is a journey. Working towards an optimal future state does not mean that you will someday reach the top of a mountain. Instead, our FIT philosophy encompasses a spirit of continuous upward progress. When people have the mentality that they have reached the top, or “arrived”, then it is inevitable that they will come down the mountain that they worked so hard to summit.
+    </p>
+    <p>
+        This philosophy of viewing FITness as a journey inspired us to design the FIT Assessment so that a perfect score is not possible. We do not believe that you ever reach the end or the top or “arrive”. Working to create continuous forward momentum is the mentality that we believe will guide us towards life-giving situations where we work to positively impact the world. A growth-orientated FITness mindset is about constantly seeking out ways to improve your Current and Desired Future States, as well as persist in the face of failure.
+    </p>
+    <p>
+        Another premise of FIT is that our best possible selves will emerge when we work towards achieving Balance across key dimensions in life. This is what we refer to as a Fully Integrated Human Experience. Therefore, we designed the FIT Assessment to provide a measure of how well you are integrated across dimensions. This is your BALANCE score. The higher this score, the more likely you are off balance and neglecting some areas of your life. In other words, high BALANCE scores correspond to being less integrated, whereas the closer your score is to zero, the more integrated and balanced you are across dimensions.
+    </p>
+    <p>
+        Most importantly, the FIT process is not about your scores. The FIT process is about establishing where you are (your Current State) which will enable you to move forward toward your Desired Future State. The FIT process is always about moving forward no matter the level of FITness.
+    </p>
+    <p>
+        We admit that while designing the FIT Assessment Tool many of us had high BALANCE scores indicating that we were unstable and at risk of imploding.  Some of the researchers were spending many hours sitting and not getting sufficient exercise and sleep, therefore we were unfit. However, we are proud to say that we are actively working on improving these scores and have made great progress!
+    </p>
+</div>
+
+                </div>
+                <div id="limitations" class="tab-pane fade">
+                    <div class="col-md-12" style="min-height:540px; ">
+    <span>ABOUT</span>
+    <h3>Limitations</h3>
+    <div class="aboutTabHr"></div>
+
+    <p>
+        As with any type of assessment, self-report surveys possess some limitations. It has long been known that self-report measures are prone to social desirability, which is the tendency to under-report behaviors the individual believes are viewed as undesirable, and over-report behaviors the individual believes are viewed as desirable. Consequently, people are prone to answering questions the way they think they should answer as opposed to how they actually think or behave. For example, people almost always over-report how often they exercise but under-report how much sugar they consume.
+    </p>
+    <p>
+        In addition, people sometimes lack self-awareness regarding the behaviors being surveyed. In fact, people are often not completely accurate when it comes to evaluating their own behaviors or mental processes. For instance, many people are not fully aware of their own strengths and weaknesses or how often they think about exercise or the amount of sugar they consume in a day.
+    </p>
+    <p>
+        Finally, respondents can misinterpret self-report questionnaires, such that individuals misunderstand the questions when they take the survey, and/or misinterpret the meaning of the results.<sup>[1]</sup>
+    </p>
+    <p>
+        This FIT Assessment is designed to reduce the aforementioned limitations; however, no self-report survey is invulnerable to these issues. It is important to note that performance tests also have equally serious limitations, but with different weaknesses. In fact, Angela Duckworth and David Scott Yeager, who specialize in psychological and educational research, recently published an article in the Educational Reviewer that discusses these challenges. They said, “No measure is perfect”, and asserted that the most appropriate measure depends on the context and the purpose of the assessment (p. 239).
+    </p>
+    <p>
+        The purpose of the FIT Assessment is to use the scores as a tool to move you toward a more integrated and purposeful future state. The more honest you are when answering the questions, the more likely you will receive an accurate summary of your current functioning across the Cognitive, Emotional, Physical, and Financial dimensions.
+    </p>
+    <break></break>
+    <break></break>
+        <sup> 1 Duckworth, A. L., & Yeager, D. S. (2015). Measurement matters: Assessing personal qualities other than cognitive ability for educational purposes. Educational Researcher, 44(4), 237-251.</sup>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+                
+
+            
+            
+        </div>
+    </div>
+</div>
+
+         
+        <style>
+    .footer-v1 .footer {
+        padding: 7px 0;
+        background: #373737;
+    }
+
+    .copyright {
+        background: #373737;
+    }
+
+    .footer-v1 {
+        width: 100%;
+        height: 117px;
+       
+        bottom: 0;
+        left: 0;
+    }
+
+        .footer-v1 .footer-socials {
+            text-align: center;
+        }
+</style>
+
+<!--=== Footer Version 1 ===-->
+<div class="footer-v1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <ul class="footer-socials list-inline">
+
+
+                        <li>
+                            <a href=" https://plus.google.com/u/1/+FITnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/FITnessin4d/" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/FITin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/c/fitnessin4d" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: center;">
+                    <div style="color: #fff;">
+                        2016 &copy; All Rights Reserved.<br />
+                        <a href="/Privacy_Policy">Privacy Policy</a> | <a href="/Terms_Of_Service">Terms of Service</a> | <a href="/Home/About">About FIT Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/footer-->
+
+    </div>
+
+
+    <script type="text/javascript" src="/static/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="/static/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="/static/assets/plugins/smoothScroll.js"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="/static/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script type="text/javascript" src="/static/assets/js/app.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--[if lt IE 9]>
+            <script src="/static/assets/plugins/respond.js"></script>
+            <script src="/static/assets/plugins/html5shiv.js"></script>
+            <script src="/static/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        //$(".owl-carousel").owlCarousel();
+        $(document).ready(function () {
+            
+            $("#lastViewed").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var lastViewed = $("#lastViewed");
+            $('.lastViewed-next').click(function () {
+                lastViewed.trigger('owl.next');
+            })
+
+            $('.lastViewed-prev').click(function () {
+                lastViewed.trigger('owl.prev');
+            })
+
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var owl = $("#owl-demo");
+            $('.recomended-next').click(function () {
+                owl.trigger('owl.next');
+            })
+            
+            $('.recomended-prev').click(function () {
+                owl.trigger('owl.prev');
+            })
+            
+            $("#popularTiles").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                navigation: true
+            });
+            var popularTiles = $("#popularTiles");
+            $('.popular-next').click(function () {
+                popularTiles.trigger('owl.next');
+            })
+
+            $('.popular-prev').click(function () {
+                popularTiles.trigger('owl.prev');
+            })
+
+            
+        });
+
+        function collapseNavbar() {
+
+            var scroll = $(window).scrollTop();
+            if (scroll >= 10) {
+                $(".header").addClass("position-fixed");
+
+            } else {
+                $(".header").removeClass("position-fixed");
+            }
+        }
+
+        $(window).scroll(collapseNavbar);
+        $(document).ready(collapseNavbar);
+    
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+        // Closes the Responsive Menu on Menu Item Click
+        $('.navbar-collapse ul li a').click(function () {
+            if ($(this).attr('class') != 'dropdown-toggle active' && $(this).attr('class') != 'dropdown-toggle') {
+                $('.navbar-toggle:visible').click();
+            }
+        });
+
+        $(document).ready(function () {
+         
+            $(document).on("keyup", function (event) {
+               
+                if (event.ctrlKey == true && event.shiftKey == true && event.which == 51) {
+                    
+                    $.ajax(
+                        "/secure/HackASurvey", {
+                            success: function (data, textStatus, jqXHR) {
+                                var scope = angular.element('#OverviewCtrl').scope();
+
+                                scope.$apply(function () {
+                                    scope.$broadcast('surveyComplete');
+                                });
+
+                                alert('survey hacked.');
+                            }
+                        });
+                }
+            });
+        });
+
+        function hamburgerToggle(event) {
+            event.stopPropagation();
+            document.getElementById("secureHamDropdown").classList.toggle("showHamburger");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            document.getElementById("secureHamDropdown").classList.remove("showHamburger");
+        }
+
+        $(document).ready(function () {
+            var docHeight = $(window).height();
+            var contentHeight = $(".footer-v1").position().top;
+
+            if (docHeight > contentHeight) {
+                $(".footer-v1").css("position", "fixed");
+            }
+        });
+
+        $(document).ready(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        });
+
+        $(window).resize(function () {
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        })
+
+        function heightsEqualizer(selector) {
+            var elements = document.querySelectorAll(selector),
+                max_height = 0,
+                len = 0,
+                i;
+
+            if ((elements) && (elements.length > 0)) {
+                len = elements.length;
+                for (i = 0; i < len; i++) { // get max height
+                    elements[i].style.height = ''; // reset height attr
+                    if (elements[i].clientHeight > max_height) {
+                        max_height = elements[i].clientHeight;
+                    }
+                }
+
+
+                for (i = 0; i < len; i++) { // set max height to all elements
+
+                    if ($(window).width() >= 768) {
+                        elements[i].style.height = max_height + 'px';
+                    }
+                    else {
+                        elements[i].style.height = 'auto';
+                    }
+                }
+            }
+        }
+
+
+        setTimeout(function () { // set 1 second timeout for having all fonts loaded
+            heightsEqualizer('.aboutTab');
+            heightsEqualizer('.next-step-title');
+            heightsEqualizer('.next-step-content');
+            heightsEqualizer('.libraryResultItem');
+            heightsEqualizer('.library-popular-item');
+            heightsEqualizer('.library-popular-img');
+            heightsEqualizer('.library-recomended-item');
+            heightsEqualizer('.library-recomended-img');
+            heightsEqualizer('.library-lastViewed-item');
+            heightsEqualizer('.library-lastViewed-img');
+            heightsEqualizer('.library-subCat-item');
+            heightsEqualizer('.library-subCat-img');
+            heightsEqualizer('.PB-sub-category');
+        }, 1000);
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-78694145-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MNW54K"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MNW54K');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</body>
+</html>
